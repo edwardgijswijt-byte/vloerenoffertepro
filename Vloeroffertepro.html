@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8"/>
+<title>VloerenOffertePro - Gratis offerte-tool</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<style>
+:root{--primary:#0d47a1;--secondary:#ff6f00;--ok:#2e7d32;--danger:#c62828;--bg:#f5f7fa;--card:#fff;--text:#212121;--mute:#757575;--radius:6px;}
+*{box-sizing:border-box;font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;}
+body{margin:0;background:var(--bg);color:var(--text);}
+h1,h2,h3{margin:0 0 .5em;font-weight:600;}
+.tabs{display:flex;border-bottom:2px solid var(--primary);}
+.tabs button{flex:1;padding:12px;font-size:16px;border:none;background:#fff;cursor:pointer;transition:.2s;color:var(--primary);}
+.tabs button.active{background:var(--primary);color:#fff;}
+.tab-content{display:none;padding:20px;}
+.tab-content.active{display:block;}
+.row{display:flex;gap:20px;margin-bottom:20px;flex-wrap:wrap;}
+.col{flex:1;min-width:280px;background:var(--card);padding:18px;border-radius:var(--radius);box-shadow:0 1px 3px rgba(0,0,0,.08);}
+label{display:block;margin:.5em 0 .2em;font-weight:600;font-size:14px;}
+input,select,textarea{width:100%;padding:8px 10px;border:1px solid #bbb;border-radius:var(--radius);}
+input[type=checkbox]{width:auto;margin-right:6px;}
+.btn{padding:10px 18px;border:none;border-radius:var(--radius);cursor:pointer;font-size:15px;background:var(--primary);color:#fff;margin-top:10px;margin-right:8px;}
+.btn.secondary{background:var(--secondary);}
+.btn.success{background:var(--ok);}
+.kpi{background:var(--primary);color:#fff;padding:20px;border-radius:var(--radius);text-align:center;font-size:26px;font-weight:700;margin-bottom:20px;}
+table{width:100%;border-collapse:collapse;font-size:14px;}
+th,td{padding:8px 10px;text-align:left;border-bottom:1px solid #e0e0e0;}
+th{background:#fafafa;}
+.preview-img{max-width:100%;max-height:220px;border-radius:var(--radius);}
+.options-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;}
+.option-card{border:1px solid #ddd;border-radius:var(--radius);padding:10px;text-align:center;cursor:pointer;transition:.15s;}
+.option-card:hover{border-color:var(--primary);transform:translateY(-2px);}
+.option-card.selected{border:2px solid var(--primary);background:#e3f2fd;}
+canvas{max-width:100%;}
+
+/* ===== PRINT ===== */
+@media screen {.print-header{display:none;}}
+@media print{
+  body{background:#fff;color:#000;margin:0;}
+  .tabs,.btn{display:none !important;}
+  .print-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;border-bottom:2px solid var(--primary);padding-bottom:10px;}
+  .print-header img{height:60px;}
+  .print-header .co-info{text-align:right;font-size:13px;line-height:1.4;}
+  .row{page-break-inside:avoid;}
+  table.details th.nr,table.details td.nr{text-align:right;}
+  table.details tr.tot{background:#f5f5f5;font-weight:700;}
+}
+</style>
+</head>
+<body>
+
+<div class="tabs">
+    <button class="active" onclick="switchTab(event,'calc')">Calculatie</button>
+    <button onclick="switchTab(event,'quote')">Offerte</button>
+    <button onclick="switchTab(event,'mgmt')">Management</button>
+</div>
+
+<!-- ========================== CALCULATIE ========================== -->
+<div id="calc" class="tab-content active">
+    <h1>1. Project & Klantgegevens</h1>
+    <div class="row">
+        <div class="col">
+            <label>Projectnaam *</label><input id="projName" placeholder="Woonkamer Familie De Vries">
+            <label>Klantnaam</label><input id="custName" placeholder="Zoek of typ">
+            <label>Projectadres *</label><input id="projAdres" placeholder="Straat 1, 1234 AB Stad">
+            <label>Status</label>
+            <select id="status"><option>Concept</option><option>Verzonden</option><option>Aangepast</option><option>Gewonnen</option><option>Verloren</option></select>
+        </div>
+    </div>
+
+    <h1>2. Vloerkeuze & Hoeveelheden</h1>
+    <div class="row">
+        <div class="col">
+            <label>Vloeroppervlakte (m²) *</label><input id="vlOppervl" type="number" step="0.1" oninput="bereken()">
+            <label>Vloertype *</label>
+            <select id="vlType" oninput="bereken()">
+                <option value="">Kies...</option>
+                <option>PVC</option><option>Laminaat</option><option>Hout</option><option>Gietvloer</option><option>Tegels</option><option>Vloerbedekking</option>
+            </select>
+            <label>Product (Merk / Kleur)</label><input id="vlProd" placeholder="Quick-Step Classic – Eik Wit">
+            <label>Afwerking</label>
+            <select id="afwerk"><option>Mat</option><option>Zijdeglans</option><option>Structuur</option></select>
+            <label>Zaagverlies (%)</label><input id="zaagV" type="number" step="0.1" value="5" oninput="bereken()">
+            <label>Netto vloerprijs (€/m² excl.)</label><input id="vlPrijs" type="number" step="0.01" oninput="bereken()">
+            <label>Totaal m² vloer (incl. zaagverlies)</label><input id="vlTotaal" readonly>
+        </div>
+    </div>
+
+    <h1>3. Ondervloer, Plinten & Toebehoren</h1>
+    <div class="row">
+        <div class="col">
+            <label><input id="ondVereist" type="checkbox" oninput="bereken()"> Ondervloer vereist?</label>
+            <label>Ondervloer selectie</label>
+            <select id="ondKeuze" oninput="bereken()"><option>Geen</option><option>Geluiddempende plaat</option><option>Vochtscherm folie</option></select>
+            <label>Netto ondervloer prijs (€/m²)</label><input id="ondPrijs" type="number" step="0.01" oninput="bereken()">
+            <label>Omtrek ruimte (m) * (voor plinten)</label><input id="omtrek" type="number" step="0.1" oninput="bereken()">
+            <label>Plint keuze</label>
+            <select id="plintKeuze" oninput="bereken()"><option>Geen</option><option>Plakplint wit</option><option>MDF 7 cm</option><option>Massief eik</option></select>
+            <label>Netto plint prijs (€/m)</label><input id="plintPrijs" type="number" step="0.01" oninput="bereken()">
+            <label>Overige materialen (lijm, kit, etc.) €</label><input id="overigMat" type="number" step="0.01" oninput="bereken()">
+        </div>
+    </div>
+
+    <h1>4. Arbeid & Service</h1>
+    <div class="row">
+        <div class="col">
+            <label>Leggen vloer (€/m²)</label><input id="leggen" type="number" step="0.01" oninput="bereken()">
+            <label>Leggen toeslag (€/m² of %)</label><input id="legToeslag" type="number" step="0.01" placeholder="0" oninput="bereken()">
+            <label>Egaliseren (€/m²)</label><input id="egal" type="number" step="0.01" oninput="bereken()">
+            <label>Oude vloer verwijderen (€/m²)</label><input id="oudVloer" type="number" step="0.01" oninput="bereken()">
+            <label>Voorrijkosten / transport €</label><input id="vrijKosten" type="number" step="0.01" oninput="bereken()">
+            <label>Vrij tekst (condities)</label><textarea id="vrijTekst" rows="3" placeholder="Niet inbegrepen: verwijdering meubels..."></textarea>
+        </div>
+    </div>
+
+    <h1>5. Finale Prijscalculatie</h1>
+    <div class="row">
+        <div class="col">
+            <table>
+                <tr><th>Post</th><th>Bedrag (€ excl.)</th></tr>
+                <tr><td>Subtotaal Materialen</td><td id="subMat">0.00</td></tr>
+                <tr><td>Subtotaal Arbeid</td><td id="subArb">0.00</td></tr>
+                <tr><td>Totaal Netto</td><td id="totNetto">0.00</td></tr>
+                <tr><td>BTW 21%</td><td id="btw">0.00</td></tr>
+                <tr><td><strong>Totaal Offerteprijs (Bruto)</strong></td><td id="totBruto"><strong>0.00</strong></td></tr>
+            </table>
+            <button class="btn success" onclick="saveCalc()">Opslaan & Offerte Tonen</button>
+            <button class="btn secondary" onclick="exportCSV()">Export CSV</button>
+        </div>
+    </div>
+</div>
+
+<!-- ========================== OFFERTE ========================== -->
+<div id="quote" class="tab-content">
+    <div id="quotePreview"></div>
+</div>
+
+<!-- ========================== MANAGEMENT ======================= -->
+<div id="mgmt" class="tab-content">
+    <h1>Management Dashboard</h1>
+    <div class="row">
+        <div class="col"><div class="kpi" id="kpiAOV">Gem. Orderwaarde<br/>€ <span>0</span></div></div>
+        <div class="col"><div class="kpi" id="kpiConv">Conversie<br/><span>0</span> %</div></div>
+        <div class="col"><div class="kpi" id="kpiPipe">Pipeline<br/>€ <span>0</span></div></div>
+    </div>
+    <h2>Offerte-Pijplijn</h2><canvas id="pipeChart" height="120"></canvas>
+    <h2>Redenen Verloren</h2><canvas id="lossChart" height="120"></canvas>
+    <h2>Performance per Productgroep</h2><canvas id="prodChart" height="120"></canvas>
+    <button class="btn" onclick="resetData()">Reset demo data</button>
+</div>
+
+<script>
+/* ----------  STORE  ---------- */
+const STORE = {
+    calc(){ return JSON.parse(localStorage.getItem('calc')||'{}'); },
+    setCalc(obj){ localStorage.setItem('calc',JSON.stringify(obj)); },
+    offertes(){ return JSON.parse(localStorage.getItem('offertes')||'[]'); },
+    addOfferte(o){ const arr = STORE.offertes(); arr.push({...o, id:Date.now()}); localStorage.setItem('offertes',JSON.stringify(arr)); }
+};
+
+/* ----------  TABS  ---------- */
+function switchTab(ev,id){
+    document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    if(ev && ev.target) ev.target.classList.add('active');
+    if(id==='quote') renderQuote();
+    if(id==='mgmt') renderMgmt();
+}
+
+/* ----------  CALC  ---------- */
+function bereken(){
+    const vl   = parseFloat(document.getElementById('vlOppervl').value)||0;
+    const zv   = parseFloat(document.getElementById('zaagV').value)||0;
+    const vlTotaal = vl*(1+zv/100);
+    document.getElementById('vlTotaal').value = vlTotaal.toFixed(2);
+
+    const vlPrijs    = parseFloat(document.getElementById('vlPrijs').value)||0;
+    const ondPrijs   = (document.getElementById('ondVereist').checked ? parseFloat(document.getElementById('ondPrijs').value)||0 : 0);
+    const omtrek     = parseFloat(document.getElementById('omtrek').value)||0;
+    const plintPrijs = parseFloat(document.getElementById('plintPrijs').value)||0;
+    const overig     = parseFloat(document.getElementById('overigMat').value)||0;
+    const subMat     = vlTotaal*vlPrijs + vl*ondPrijs + omtrek*plintPrijs + overig;
+
+    const leg     = parseFloat(document.getElementById('leggen').value)||0;
+    const toeslag = parseFloat(document.getElementById('legToeslag').value)||0;
+    const egal    = parseFloat(document.getElementById('egal').value)||0;
+    const oud     = parseFloat(document.getElementById('oudVloer').value)||0;
+    const vri     = parseFloat(document.getElementById('vrijKosten').value)||0;
+    const subArb  = vl*leg + vl*toeslag + vl*egal + vl*oud + vri;
+
+    const netto = subMat + subArb;
+    const btw   = netto * 0.21;
+    const bruto = netto + btw;
+
+    document.getElementById('subMat').innerText   = subMat.toFixed(2);
+    document.getElementById('subArb').innerText   = subArb.toFixed(2);
+    document.getElementById('totNetto').innerText = netto.toFixed(2);
+    document.getElementById('btw').innerText      = btw.toFixed(2);
+    document.getElementById('totBruto').innerText = bruto.toFixed(2);
+}
+
+function saveCalc(){
+    const c = {
+        projName:  document.getElementById('projName').value,
+        custName:  document.getElementById('custName').value,
+        projAdres: document.getElementById('projAdres').value,
+        status:    document.getElementById('status').value,
+        vlOppervl: document.getElementById('vlOppervl').value,
+        vlType:    document.getElementById('vlType').value,
+        vlProd:    document.getElementById('vlProd').value,
+        vlPrijs:   document.getElementById('vlPrijs').value,
+        zaagV:     document.getElementById('zaagV').value,
+        vlTotaal:  document.getElementById('vlTotaal').value,
+        ondVereist:document.getElementById('ondVereist').checked,
+        ondKeuze:  document.getElementById('ondKeuze').value,
+        ondPrijs:  document.getElementById('ondPrijs').value,
+        omtrek:    document.getElementById('omtrek').value,
+        plintKeuze:document.getElementById('plintKeuze').value,
+        plintPrijs:document.getElementById('plintPrijs').value,
+        overigMat: document.getElementById('overigMat').value,
+        leggen:    document.getElementById('leggen').value,
+        legToeslag:document.getElementById('legToeslag').value,
+        egal:      document.getElementById('egal').value,
+        oudVloer:  document.getElementById('oudVloer').value,
+        vrijKosten:document.getElementById('vrijKosten').value,
+        vrijTekst: document.getElementById('vrijTekst').value,
+        subMat:    document.getElementById('subMat').innerText,
+        subArb:    document.getElementById('subArb').innerText,
+        totNetto:  document.getElementById('totNetto').innerText,
+        btw:       document.getElementById('btw').innerText,
+        totBruto:  document.getElementById('totBruto').innerText,
+        date:      new Date().toISOString()
+    };
+    STORE.setCalc(c);
+    STORE.addOfferte(c);
+    switchTab({target:{}},'quote');
+}
+
+/* ----------  OFFERTE  ---------- */
+function renderQuote(){
+    const c = STORE.calc();
+    if(!c.projName){ document.getElementById('quotePreview').innerHTML = '<p>Geen offerte beschikbaar – vul eerst de calculatie in.</p>'; return;}
+    /*  !!  VUL JE ECHTE BASE-64 LOGO HIER IN  !!  */
+    const logoB64 = `iVBORw0KGgoAAAANSUhEUgAAAMgAAABaCAYAAABtpJK+AAAACXBIWXMAAAsTAAALEwEAmpwYAAAA
+    ...  (vervangen door je eigen string)  ...`;
+
+    const vloerOms = (c.vlType === 'Vloerbedekking') ? 'Vloerbedekking' : `${c.vlType} vloer`;
+
+    const html = `
+<div class="print-header">
+  <img src="data:image/png;base64,${logoB64}" alt="Next Generation Flooring">
+  <div class="co-info">
+    <strong>Next Generation Flooring</strong><br>
+    Josephine Bakerstraat 18<br>
+    1311 GA  Almere<br>
+    Tel:  +31 020 210 1184<br>
+    E-mail:  info@nextgenerationflooring.nl<br>
+    KvK:  ######## (NL)
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <h2>Offerte ${c.projName}</h2>
+    <table class="meta">
+      <tr><td>Offertenummer:</td><td>NG-${c.id||'0000'}</td></tr>
+      <tr><td>Datum:</td><td>${new Date(c.date).toLocaleDateString('nl-NL')}</td></tr>
+      <tr><td>Klant:</td><td>${c.custName||''}</td></tr>
+      <tr><td>Projectadres:</td><td>${c.projAdres||''}</td></tr>
+      <tr><td>Geldigheid:</td><td>30 dagen</td></tr>
+    </table>
+  </div>
+  <div class="col">
+    <img class="preview-img" src="https://source.unsplash.com/900x600/?floor,${c.vlType}" alt="${c.vlProd||'Gekozen vloer'}">
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <h3>Gekozen product</h3>
+    <p><strong>${c.vlProd||''}</strong><br>
+       Type: ${c.vlType||''} | Afwerking: ${c.afwerk||'Standaard'}<br>
+       Totaal benodigde m² (incl. zaagverlies): ${c.vlTotaal} m²
+    </p>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <h3>Prijsopbouw (€ incl. 21 % BTW)</h3>
+    <table class="details">
+      <thead><tr><th>Omschrijving</th><th class="nr">aantal</th><th class="nr">€ / eenh.</th><th class="nr">bedrag</th></tr></thead>
+      <tbody>
+        <tr><td>${vloerOms}</td><td class="nr">${c.vlTotaal} m²</td><td class="nr">${parseFloat(c.vlPrijs).toFixed(2)}</td>
+            <td class="nr">${(parseFloat(c.vlTotaal)*parseFloat(c.vlPrijs)).toFixed(2)}</td></tr>
+        ${c.ondVereist?`
+        <tr><td>Ondervloer ${c.ondKeuze}</td><td class="nr">${c.vlOppervl} m²</td>
+            <td class="nr">${parseFloat(c.ondPrijs).toFixed(2)}</td>
+            <td class="nr">${(parseFloat(c.vlOppervl)*parseFloat(c.ondPrijs)).toFixed(2)}</td></tr>`:''}
+        <tr><td>Plinten ${c.plintKeuze}</td><td class="nr">${c.omtrek} m</td>
+            <td class="nr">${parseFloat(c.plintPrijs).toFixed(2)}</td>
+            <td class="nr">${(parseFloat(c.omtrek)*parseFloat(c.plintPrijs)).toFixed(2)}</td></tr>
+        <tr><td>Overige materialen</td><td class="nr"></td><td class="nr"></td>
+            <td class="nr">${parseFloat(c.overigMat).toFixed(2)}</td></tr>
+        <tr><td>Arbeid & service</td><td class="nr"></td><td class="nr"></td>
+            <td class="nr">${parseFloat(c.subArb).toFixed(2)}</td></tr>
+        <tr class="tot"><td><strong>Totaal incl. 21 % BTW</strong></td><td class="nr"></td><td class="nr"></td>
+            <td class="nr"><strong>€ ${parseFloat(c.totBruto).toFixed(2)}</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <h3>Levering & garantie</h3>
+    <ul>
+      <li>Levertijd: 5-10 werkdagen na akkoord</li>
+      <li>10 jaar woon-garantie op de vloer</li>
+      <li>2 jaar garantie op gehele installatie</li>
+      <li>Professionele legservice inbegrepen</li>
+    </ul>
+    <p><strong>Opmerkingen:</strong> ${c.vrijTekst||'Geen bijzonderheden.'}</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <button class="btn success" onclick="alert('Bedankt – u ontvangt binnen 1 uur een bevestiging per e-mail!')">Offerte digitaal ondertekenen</button>
+    <button class="btn secondary" onclick="window.print()">Download / print PDF</button>
+  </div>
+</div>`;
+    document.getElementById('quotePreview').innerHTML = html;
+}
+
+/* ----------  MGMT  ---------- */
+function renderMgmt(){
+    const list = STORE.offertes();
+    const won = list.filter(o=>o.status==='Gewonnen');
+    const verzonden = list.filter(o=>['Verzonden','Aangepast','Gewonnen','Verloren'].includes(o.status));
+    const aov = won.length ? won.reduce((s,o)=>s+parseFloat(o.totBruto),0)/won.length : 0;
+    const conv = verzonden.length ? (100*won.length/verzonden.length) : 0;
+    const pipe = list.filter(o=>['Concept','Verzonden','Aangepast'].includes(o.status))
+                   .reduce((s,o)=>s+parseFloat(o.totBruto),0);
+    document.querySelector('#kpiAOV span').innerText = aov.toFixed(0);
+    document.querySelector('#kpiConv span').innerText = conv.toFixed(1);
+    document.querySelector('#kpiPipe span').innerText = pipe.toFixed(0);
+    drawBar('pipeChart',{labels:['Concept','Verzonden','Aangepast','Gewonnen','Verloren'],
+                         data:[list.filter(o=>o.status==='Concept').length,
+                               list.filter(o=>o.status==='Verzonden').length,
+                               list.filter(o=>o.status==='Aangepast').length,
+                               won.length,
+                               list.filter(o=>o.status==='Verloren').length]});
+    drawPie('lossChart',['Prijs te hoog','Levertermijn','Product niet beschikbaar','Andere'],[40,25,20,15]);
+    const omzetPerType = {};
+    list.forEach(o=>{ if(o.status==='Gewonnen') omzetPerType[o.vlType] = (omzetPerType[o.vlType]||0) + parseFloat(o.totBruto);});
+    drawBar('prodChart',{labels:Object.keys(omzetPerType),data:Object.values(omzetPerType)});
+}
+
+/* ----------  CHARTS  ---------- */
+function drawBar(canvasId,{labels,data}){
+    const canv = document.getElementById(canvasId);
+    const ctx = canv.getContext('2d');
+    const pad = 30; const w = canv.width = canv.offsetWidth; const h = 160;
+    const barW = (w-2*pad)/labels.length;
+    const max = Math.max(...data,1);
+    ctx.clearRect(0,0,w,h);
+    labels.forEach((l,i)=>{
+        const hei = (data[i]/max)*(h-2*pad);
+        ctx.fillStyle='#0d47a1'; ctx.fillRect(pad+i*barW+8,h-pad-hei,barW-16,hei);
+        ctx.fillStyle='#000'; ctx.font='12px sans-serif'; ctx.textAlign='center';
+        ctx.fillText(l,pad+i*barW+barW/2,h-10);
+        ctx.fillText(data[i],pad+i*barW+barW/2,h-pad-hei-5);
+    });
+}
+function drawPie(canvasId,labels,data){
+    const canv = document.getElementById(canvasId);
+    const ctx = canv.getContext('2d');
+    const w = canv.width = canv.offsetWidth; const h = 160; const R = Math.min(w,h)/2-20;
+    const tot = data.reduce((a,b)=>a+b,0);
+    let cur = 0;
+    const colors = ['#c62828','#ff6f00','#2e7d32','#0277bd'];
+    ctx.clearRect(0,0,w,h);
+    data.forEach((v,i)=>{
+        const ang = v/tot*2*Math.PI;
+        ctx.beginPath(); ctx.moveTo(w/2,h/2);
+        ctx.arc(w/2,h/2,R,cur,cur+ang);
+        ctx.closePath(); ctx.fillStyle=colors[i%colors.length]; ctx.fill();
+        cur+=ang;
+    });
+}
+
+/* ----------  EXPORT  ---------- */
+function exportCSV(){
+    const c = STORE.calc();
+    if(!c.projName){ alert('Niets om te exporteren – sla eerst op.'); return;}
+    let csv = `Veld,Waarde\n`;
+    for(let k in c){ csv += `${k},"${c[k]}"\n`; }
+    const blob = new Blob([csv],{type:'text/csv;charset=utf-8;'});
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+    a.download = `calculatie_${c.projName.replace(/\s+/g,'_')}.csv`;
+    a.click();
+}
+function resetData(){
+    const demo = [
+        {projName:'Woonkamer Jansen',status:'Gewonnen',vlType:'PVC',totBruto:3500},
+        {projName:'Keuken De Vries',status:'Verloren',vlType:'Laminaat',totBruto:2100},
+        {projName:'Kantoor Hoofdstraat',status:'Verzonden',vlType:'Gietvloer',totBruto:7800},
+        {projName:'Hal Peters',status:'Concept',vlType:'Tegels',totBruto:4400}
+    ];
+    localStorage.setItem('offertes',JSON.stringify(demo));
+    renderMgmt();
+}
+
+/* ----------  START  ---------- */
+(function(){
+    const c = STORE.calc();
+    if(c.projName){
+        Object.keys(c).forEach(k => {
+            const el = document.getElementById(k);
+            if(el && el.tagName !== 'TABLE') el.value = c[k];
+        });
+        bereken();
+    }
+    if(!STORE.offertes().length) resetData();
+})();
+</script>
+</body>
+</html>
