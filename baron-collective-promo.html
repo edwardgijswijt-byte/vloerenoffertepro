@@ -75,10 +75,11 @@ const ctx    = canvas.getContext('2d');
 canvas.width  = CW;
 canvas.height = CH;
 
-// Small grain buffer – drawn scaled-up each frame
+// Small grain buffer – drawn scaled-up each frame (2× smaller = 4× faster)
 const gC  = document.createElement('canvas');
 gC.width  = 270; gC.height = 480;
 const gCtx = gC.getContext('2d');
+const gImg = gCtx.createImageData(270, 480);   // reuse to avoid GC pressure
 
 // ─────────────────────────────────────────────
 //  TIMING
@@ -93,25 +94,23 @@ const P = [
 
 // Artists – relative ms from start of phase 1
 const ACTS = [
-  { name: 'JULIAR',       y: 820,  size: 158, hl: false, t: 120  },
-  { sep: true,            y: 878,  size: 22,            t: 820  },
-  { name: 'LIKE61',       y: 1038, size: 158, hl: false, t: 1480 },
-  { sep: true,            y: 1096, size: 22,            t: 2130 },
-  { name: 'SECRET GUEST', y: 1256, size: 120, hl: true,  t: 2780 },
+  { name: 'JULIAR',       y: 780,  size: 158, hl: false, t: 120  },
+  { sep: true,            y: 838,  size: 22,            t: 820  },
+  { name: 'LIKE61',       y: 998,  size: 158, hl: false, t: 1480 },
+  { sep: true,            y: 1056, size: 22,            t: 2130 },
+  { name: 'SECRET GUEST', y: 1216, size: 120, hl: true,  t: 2780 },
 ];
 
 // ─────────────────────────────────────────────
 //  FILM GRAIN
 // ─────────────────────────────────────────────
 function grain() {
-  const d = gCtx.createImageData(gC.width, gC.height).data.buffer;
-  const img = new ImageData(new Uint8ClampedArray(d), gC.width, gC.height);
-  const px  = img.data;
+  const px = gImg.data;
   for (let i = 0; i < px.length; i += 4) {
     const v = (Math.random() * 215) | 0;
     px[i] = px[i+1] = px[i+2] = v; px[i+3] = 38;
   }
-  gCtx.putImageData(img, 0, 0);
+  gCtx.putImageData(gImg, 0, 0);
   ctx.save();
   ctx.globalAlpha = 0.40;
   ctx.globalCompositeOperation = 'screen';
@@ -322,6 +321,7 @@ function maybeGlitch(ms) {
 // ─────────────────────────────────────────────
 //  MAIN LOOP
 // ─────────────────────────────────────────────
+const PHASES_LEN = P.length;
 let t0 = null, prevNow = null, rafId = null, activePhase = -1;
 
 function frame(now) {
@@ -331,17 +331,11 @@ function frame(now) {
 
   document.getElementById('pbar').style.width = Math.min(ms/TOTAL*100, 100) + '%';
 
+  // Single-pass phase detection
   let phase = PHASES_LEN - 1;
   for (let i = 0; i < P.length; i++) {
-    if (ms >= P[i].s && ms < P[i].e) { phase = i; break; }
+    if (ms < P[i].e) { phase = i; break; }
   }
-  if (ms < TOTAL) {
-    for (let i = 0; i < P.length; i++) {
-      if (ms < P[i].s) { phase = i - 1; break; }
-    }
-  }
-  // Clamp
-  if (ms < P[0].s) phase = -1;
 
   // Hard-cut flash on phase change
   if (phase !== activePhase) {
@@ -370,7 +364,6 @@ function frame(now) {
     document.getElementById('rec-btn').disabled  = false;
   }
 }
-const PHASES_LEN = P.length;
 
 // ─────────────────────────────────────────────
 //  CONTROLS
