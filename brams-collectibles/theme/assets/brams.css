@@ -1,0 +1,179 @@
+/* ============================================================
+   Brams Collectibles — huisstijllaag over Dawn
+   Wordt na base.css geladen, dus overschrijft de standaardwaarden.
+   Kleuren komen uit de kleurenschema's in settings_data.json;
+   hier staat alleen wat daar niet in te vangen is.
+   ============================================================ */
+
+:root {
+  /* Lettertypes. Dawn zet deze in theme.liquid via de font_picker;
+     wij overschrijven ze zodat we Oswald en Poppins kunnen gebruiken. */
+  --font-heading-family: 'Oswald', 'Arial Narrow', Arial, sans-serif;
+  --font-heading-style: normal;
+  --font-heading-weight: 700;
+
+  --font-body-family: 'Poppins', 'Helvetica Neue', Arial, sans-serif;
+  --font-body-style: normal;
+  --font-body-weight: 400;
+  --font-body-weight-bold: 600;
+
+  /* Merkkleuren, voor de accenten hieronder */
+  --brams-navy: #0d1b2a;
+  --brams-panel: #16253a;
+  --brams-gold: #c9a24b;
+  --brams-gold-licht: #e0bea2;
+  --brams-cream: #f2efe6;
+}
+
+/* ---------- Koppen ---------- */
+/* Oswald in kapitaal met wat letterafstand, zoals op het drukwerk. */
+h1, h2, h3,
+.h0, .h1, .h2, .h3,
+.title,
+.card__heading,
+.product__title > h1,
+.product__title > h2 {
+  text-transform: uppercase;
+  letter-spacing: 0.012em;
+  text-wrap: balance;
+}
+
+h4, h5, .h4, .h5 {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Kleine bovenkopjes en labels krijgen de gespatieerde behandeling. */
+.caption-with-letter-spacing,
+.collection__title .title-wrapper .caption-with-letter-spacing {
+  letter-spacing: 0.22em;
+  font-weight: 600;
+}
+
+/* ---------- Gouden streep onder sectiekoppen ---------- */
+.title-wrapper-with-link .title,
+.collection__title .title {
+  position: relative;
+  padding-bottom: 1.2rem;
+}
+
+.title-wrapper-with-link .title::after,
+.collection__title .title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 6.4rem;
+  height: 2px;
+  background: var(--brams-gold);
+}
+
+.title-wrapper--self-padded-tablet-down .title::after {
+  left: 1.5rem;
+}
+
+/* Bij gecentreerde koppen ook de streep centreren. */
+.center .title-wrapper-with-link .title::after,
+.title-wrapper--no-top-margin.center .title::after {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* ---------- Knoppen ---------- */
+.button,
+.shopify-challenge__button,
+.customer button {
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  font-family: var(--font-heading-family);
+  font-weight: 700;
+}
+
+/* ---------- Prijzen ---------- */
+/* Poppins bold met vaste cijferbreedte, zodat prijzen in een raster uitlijnen. */
+.price,
+.price__container,
+.price-item {
+  font-family: var(--font-body-family);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.price__regular .price-item--regular,
+.price__sale .price-item--sale {
+  font-weight: 700;
+}
+
+/* ---------- Productkaarten: het gouden plateau ---------- */
+/* Zelfde gedachte als op de advertentiesjablonen: het product staat
+   op een randje goud. Subtiel, alleen onder de afbeelding. */
+.card--standard .card__inner .card__media,
+.card--card .card__inner .card__media {
+  border-bottom: 2px solid var(--brams-gold);
+}
+
+.card__heading {
+  font-size: 1.6rem;
+  line-height: 1.2;
+}
+
+/* ---------- Badges ---------- */
+.badge {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-family: var(--font-heading-family);
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+/* ---------- Aankondigingsbalk ---------- */
+.announcement-bar__message {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+/* ---------- Koptekstbalk ---------- */
+.header__heading-logo {
+  border-radius: 50%;
+}
+
+.header__menu-item,
+.header__inline-menu .list-menu__item {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-family: var(--font-heading-family);
+  font-weight: 600;
+}
+
+/* ---------- Voettekst ---------- */
+.footer-block__heading {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
+
+.footer__content-bottom {
+  border-top: 1px solid rgba(201, 162, 75, 0.35);
+}
+
+/* ---------- Formulieren ---------- */
+.field__label,
+.customer .field label {
+  font-size: 1.4rem;
+}
+
+/* ---------- Toegankelijkheid ---------- */
+/* Dawn's focusring valt weg op navy; hier een gouden ring die overal leesbaar is. */
+*:focus-visible {
+  outline: 2px solid var(--brams-gold);
+  outline-offset: 2px;
+  box-shadow: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
