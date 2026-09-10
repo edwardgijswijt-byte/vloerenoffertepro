@@ -11,7 +11,7 @@ wegsnijdt. Een acrylcase is doorzichtig en spiegelt, dus de terugval maakt
 het masker bewust ruim en trekt hem daarna weer aan.
 """
 import sys, pathlib
-from PIL import Image, ImageFilter, ImageOps
+from PIL import Image, ImageEnhance, ImageFilter, ImageOps
 import numpy as np
 
 UIT = pathlib.Path('fotos/uitgesneden')
@@ -28,6 +28,40 @@ def masker_rembg(im):
                  alpha_matting_background_threshold=15,
                  alpha_matting_erode_size=8)
     return np.array(uit.convert('RGBA'))[:, :, 3]
+
+
+def vulling(a):
+    """Hoe vol het masker zijn eigen omhullende rechthoek maakt.
+
+    Alles wat we fotograferen is een doos, en een doos vult zijn rechthoek voor
+    ongeveer negentig procent. Blijft er de helft over, dan heeft rembg er een
+    hap uit genomen. Gaten tellen werkt hier niet: bij een zwarte doos op zwarte
+    stof loopt het weggevallen deel tot aan de rand door, en dan is het geen gat
+    meer maar een inham."""
+    m = a > 128
+    if not m.any():
+        return 0.0
+    ys, xs = np.nonzero(m)
+    vlak = (ys.max() - ys.min() + 1) * (xs.max() - xs.min() + 1)
+    return float(m.sum()) / float(vlak)
+
+
+def masker_dubbelslag(im):
+    """Eerst gewoon. Zit het masker vol gaten, dan nog eens op een opgehelderde
+    kopie — het masker komt dan wel goed, en leggen we op het origineel.
+
+    Reden: matzwart karton op zwart satijn geeft rembg te weinig verschil. Op
+    driemaal helderder met wat extra contrast vindt hij de doos in zijn geheel.
+    De kleuren van de uitvoer blijven die van de originele opname."""
+    a = masker_rembg(im)
+    vol = vulling(a)
+    if vol >= 0.70:
+        return a, 'rembg'
+    op = ImageEnhance.Contrast(ImageEnhance.Brightness(im).enhance(3.0)).enhance(1.4)
+    b = masker_rembg(op)
+    if vulling(b) > vol:
+        return b, f'rembg opgehelderd ({vol:.0%} -> {vulling(b):.0%} gevuld)'
+    return a, f'rembg ({vol:.0%} gevuld, ophelderen hielp niet)'
 
 
 def masker_terugval(im):
@@ -140,8 +174,7 @@ def verwerk(pad):
         im.thumbnail((2600, 2600), Image.LANCZOS)
 
     try:
-        a = masker_rembg(im)
-        hoe = 'rembg'
+        a, hoe = masker_dubbelslag(im)
     except Exception as e:
         print(f'   rembg niet gebruikt ({e.__class__.__name__}), terugval', file=sys.stderr)
         a = masker_terugval(im)
