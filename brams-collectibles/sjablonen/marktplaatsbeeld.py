@@ -27,9 +27,12 @@ def datauri(pad):
 
 
 def bedrag(waarde):
-    """Nederlands: komma als decimaalteken, hele bedragen als 599,-"""
+    """Nederlands: punt voor de duizendtallen, komma als decimaalteken, en hele
+    bedragen als 1.740,- in plaats van 1.740,00."""
     n = float(waarde)
-    return f'{n:.0f},-'.replace('.', ',') if n == int(n) else f'{n:.2f}'.replace('.', ',')
+    heel, cent = divmod(round(n * 100), 100)
+    duizend = f'{heel:,}'.replace(',', '.')
+    return f'{duizend},-' if cent == 0 else f'{duizend},{cent:02d}'
 
 
 def blad(sku, fotopad):

@@ -143,6 +143,7 @@ elite-trainer-boxes    TYPE = Elite Trainer Box
 booster-boxes          TYPE = Booster Box
 booster-bundles        TYPE = Booster Bundle
 premium-collections    TYPE = Premium Collection
+displays               TYPE = Display
 chaos-rising           TAG = chaos rising
 prismatic-evolutions   TAG = prismatic evolutions
 scarlet-violet-151     TAG = 151
@@ -223,6 +224,16 @@ cijferbreedte. Georgia voor lopende tekst. Geen Pokémon-logo's in het merk zelf
 productnamen alleen als tekst.
 
 ## Prijzen
+
+Een prijs uit de ene set zegt niets over een andere. Ik hield 30 euro voor een
+Chaos Rising-bundel aan als maat voor een 151-bundel; die kost 170. Chaos Rising
+loopt nog, 151 is uit productie. Wil je weten of een bedrag klopt, kijk dan naar
+diezelfde set en niet naar wat er verder in het register staat.
+
+Meet niets op aan foto's van verschillende opnames. Ik heb een doos gemeten door
+zijn breedte in pixels af te zetten tegen die van een andere doos, in de aanname
+dat beide van dezelfde afstand zijn gefotografeerd. Dat weet je niet, en de
+conclusie was dan ook fout. Wil je het formaat weten, leg er een liniaal naast.
 
 Cardmarket is de maat. Noteer per artikel vier getallen met de datum erbij:
 trendprijs, 30-daags, 7-daags en 1-daags gemiddelde, plus hoeveel stuks er in de
