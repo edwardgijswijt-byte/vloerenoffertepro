@@ -26,9 +26,15 @@ def datauri(pad):
     return 'data:image/png;base64,' + base64.b64encode(pathlib.Path(pad).read_bytes()).decode()
 
 
+def bedrag(waarde):
+    """Nederlands: komma als decimaalteken, hele bedragen als 599,-"""
+    n = float(waarde)
+    return f'{n:.0f},-'.replace('.', ',') if n == int(n) else f'{n:.2f}'.replace('.', ',')
+
+
 def blad(sku, fotopad):
     r = REGISTER[sku]
-    prijs = f"&euro; {r['prijs']},-" if r['prijs'] else '&euro; [PRIJS]'
+    prijs = f"&euro; {bedrag(r['prijs'])}" if r['prijs'] else '&euro; [PRIJS]'
     regel = 'Sealed &middot; Verzekerd verzonden &middot; Ophalen mogelijk'
     if r['hoes'] == 'ja':
         regel = 'Sealed &middot; In acrylhoes &middot; Verzekerd verzonden'

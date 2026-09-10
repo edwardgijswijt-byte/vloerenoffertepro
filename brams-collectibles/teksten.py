@@ -41,8 +41,14 @@ def settekst(slug):
     return blokken(pad).get('tekst', '')
 
 
+def bedrag(waarde):
+    """Nederlands: komma als decimaalteken, en hele bedragen als 599,-"""
+    n = float(waarde)
+    return f'{n:.0f},-'.replace('.', ',') if n == int(n) else f'{n:.2f}'.replace('.', ',')
+
+
 def prijs(r):
-    return f"€ {r['prijs']}" if r['prijs'] else '€ [PRIJS]'
+    return f'€ {bedrag(r["prijs"])}' if r['prijs'] else '€ [PRIJS]'
 
 
 def hoogtepunten(r):
@@ -51,11 +57,12 @@ def hoogtepunten(r):
 
 def bundel(r, alles):
     """Bram biedt een bundelprijs als er meer uit dezelfde set ligt."""
-    anderen = [a['soort'] for a in alles
-               if a['set'] == r['set'] and a['sku'] != r['sku'] and a['aantal']]
+    anderen = list(dict.fromkeys(
+        a['soort'] for a in alles
+        if a['set'] == r['set'] and a['sku'] != r['sku'] and a['aantal'] and a['prijs']))
     if not anderen:
         return ''
-    lijst = ' en '.join([', '.join(anderen[:-1]), anderen[-1]]) if len(anderen) > 1 else anderen[0]
+    lijst = ' of '.join([', '.join(anderen[:-1]), anderen[-1]]) if len(anderen) > 1 else anderen[0]
     return (f'Koop je hem in combinatie met een {lijst}, dan maken wij een '
             f'mooie bundelprijs voor je!')
 
@@ -68,6 +75,8 @@ def marktplaats(r, alles):
         d += [f'• In perfecte staat en sealed.'] if r['staat'] == 'sealed' else []
         d += [f'• {h}' for h in hp]
         d += ['En nog veel meer!', '']
+    if r['publiek']:
+        d += [r['publiek'], '']
     d += [settekst(r['set']), '']
     if r['hoes'] == 'ja':
         d += ['Zit in een acryl beschermhoes, die gaat mee bij verkoop.', '']
@@ -91,6 +100,16 @@ def socials(r):
     ])
 
 
+def fotoregel(r):
+    """Bij meerdere identieke sealed dozen zijn de foto's van een exemplaar uit
+    de voorraad, niet van het exemplaar dat de koper krijgt. Dat moet er staan,
+    anders klopt de advertentie niet met wat er in de doos gaat."""
+    if (int(r['aantal'] or 0)) > 1:
+        return ("De foto's zijn van een exemplaar uit de voorraad; alle exemplaren zijn "
+                "ongeopend en identiek.")
+    return "De foto's zijn van dit exemplaar."
+
+
 def webshop(r):
     d = [settekst(r['set']), '']
     if r['hoes'] == 'ja':
@@ -100,11 +119,33 @@ def webshop(r):
         d += ['Inhoud:', '']
         d += [f'- {h}' for h in hp]
         d += ['']
-    if r['notitie']:
-        d += [r['notitie'], '']
-    d += [f'Staat: {r["staat"]}. De foto\'s zijn van dit exemplaar.', '',
+    if r['publiek']:
+        d += [r['publiek'], '']
+    d += [f'Staat: {r["staat"]}. {fotoregel(r)}', '',
           MERK['verzenden']]
     return '\n'.join(d)
+
+
+def naar_html(tekst):
+    """De webshoptekst omzetten naar de HTML die Shopify in het product zet.
+    Alleen wat webshop() ook echt maakt: alinea's, een opsomming en een kop."""
+    uit, lijst = [], []
+    for blok in tekst.split('\n\n'):
+        blok = blok.strip()
+        if not blok:
+            continue
+        if blok.startswith('- '):
+            lijst = [r[2:].strip() for r in blok.split('\n') if r.startswith('- ')]
+            uit.append('<ul>\n' + '\n'.join(f'<li>{h}</li>' for h in lijst) + '\n</ul>')
+        elif blok.startswith('**') and blok.endswith('**'):
+            uit.append(f'<h3>{blok.strip("*")}</h3>')
+        else:
+            regel = ' '.join(blok.split('\n'))
+            if regel.endswith(':') and len(regel) < 40:
+                uit.append(f'<p><strong>{regel}</strong></p>')
+            else:
+                uit.append(f'<p>{regel}</p>')
+    return '\n\n'.join(uit)
 
 
 def schrijf(r, alles):
@@ -112,7 +153,7 @@ def schrijf(r, alles):
     doel = UIT / f'{r["sku"]}.md'
     doel.write_text('\n'.join([
         f'# {r["naam"]}', '',
-        f'`{r["sku"]}` · set {r["set"]} · {r["aantal"] or 0} op voorraad · {prijs(r)}',
+        f'`{r["sku"]}` · set {r["set"]} · {prijs(r)}',
         '', '---', '', '## Marktplaats', '', '```', marktplaats(r, alles), '```',
         '', '## Instagram / TikTok', '', '```', socials(r), '```',
         '', '## Webshop', '', '```', webshop(r), '```', '',
