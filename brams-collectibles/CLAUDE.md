@@ -58,6 +58,12 @@ zo blijven — daar is elk exemplaar anders.
 **Map per artikel in Drive, genoemd naar de sku.** Anders ben je een dag kwijt aan
 uitzoeken welke `IMG_xxxx.JPG` bij wat hoort.
 
+**Lees de naam van de doos, niet uit de lijst.** Brams invullijst koppelde
+fotogroep 9 aan een Pitch Black Elite Trainer Box; op die dozen staat Mega
+Evolution Chaos Rising met het Pokemon Center-logo. Een groep verderop klopte
+weer wel. Zo'n verschuiving zet een prijs van zestig euro op een artikel dat er
+honderden waard is. Zoom in op het logo voordat je een sku aanmaakt.
+
 **Inhoudslijsten van de doos lezen, niet van een webshop.** Fotografeer het
 achterpaneel scherp genoeg om te lezen; daar staat precies wat erin zit. Zo kwam
 aan het licht dat de Pokémon Center-ETB elf packs heeft en twee Eevee-promo's,
@@ -166,6 +172,7 @@ displays               TYPE = Display
 chaos-rising           TAG = chaos rising
 prismatic-evolutions   TAG = prismatic evolutions
 scarlet-violet-151     TAG = 151
+pitch-black            TAG = pitch black
 ```
 
 Dus: `soort` in het register wordt het producttype, `set` wordt een tag. Zet die
