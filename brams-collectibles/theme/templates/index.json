@@ -63,12 +63,6 @@
             "collection": "booster-bundles"
           }
         },
-        "premium": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "premium-collections"
-          }
-        },
         "displays": {
           "type": "featured_collection",
           "settings": {
@@ -79,17 +73,16 @@
       "block_order": [
         "etb",
         "bundles",
-        "premium",
         "displays"
       ],
       "settings": {
         "title": "Waar zoek je naar",
         "heading_size": "h2",
         "image_ratio": "square",
-        "columns_desktop": 4,
+        "columns_desktop": 3,
         "color_scheme": "scheme-5",
         "show_view_all": true,
-        "columns_mobile": "2",
+        "columns_mobile": "1",
         "swipe_on_mobile": false,
         "padding_top": 52,
         "padding_bottom": 44
