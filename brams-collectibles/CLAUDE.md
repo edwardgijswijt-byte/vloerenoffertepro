@@ -63,6 +63,16 @@ achterpaneel scherp genoeg om te lezen; daar staat precies wat erin zit. Zo kwam
 aan het licht dat de Pokémon Center-ETB elf packs heeft en twee Eevee-promo's,
 tegen negen en één bij de gewone versie. Dat verschil verklaart de prijs.
 
+## Pdf maken van een pagina
+
+Chromium haalt tijdens het printen niets van Google Fonts op. Een pagina die
+zijn lettertypes via een `<link>` laadt valt in de pdf terug op Liberation Sans
+en ziet er nergens naar uit. Bak ze in als data-URI; de woff2-bestanden staan in
+`sjablonen/fonts-b64.json` (Oswald 500/600/700, Poppins 400/500/600/700).
+
+Een gepubliceerde pagina is bovendien privé en vraagt toegang tot dezelfde
+Claude-omgeving. Voor een externe klant is een pdf de weg.
+
 ## Teksten staan in lagen
 
 ```
