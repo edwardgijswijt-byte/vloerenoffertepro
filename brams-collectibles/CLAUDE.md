@@ -134,6 +134,81 @@ kopieer daarheen, push beide. Deze repo blijft de bron.
 Het logo in de kopregel kan niet vanuit het thema worden gezet: Shopify verwacht
 daar een bestand uit de winkel, niet uit `assets/`. Dat is handwerk, één keer.
 
+## Collecties
+
+Alles slim, niets handmatig — dan vullen ze zichzelf zodra er een product bijkomt.
+
+```
+elite-trainer-boxes    TYPE = Elite Trainer Box
+booster-boxes          TYPE = Booster Box
+booster-bundles        TYPE = Booster Bundle
+premium-collections    TYPE = Premium Collection
+chaos-rising           TAG = chaos rising
+prismatic-evolutions   TAG = prismatic evolutions
+scarlet-violet-151     TAG = 151
+```
+
+Dus: `soort` in het register wordt het producttype, `set` wordt een tag. Zet die
+twee goed bij het aanmaken en het product landt vanzelf in twee collecties.
+
+Elke collectie heeft een eigen afbeelding gekregen. Dat moest: Dawn valt terug
+op de eerste productfoto, maar conceptproducten staan niet op de winkel, dus een
+collectie met alleen concepten kreeg Dawn's placeholder van een T-shirt. De
+sjabloonbeelden van 1600x1600 doen het als tegel prima.
+
+Let op bij `create-collection`: de titel wordt letterlijk overgenomen, dus een
+`&` in de titel wordt `&amp;` en de handle `scarlet-amp-violet-151`. De
+`descriptionHtml` juist niet — die wil gewone HTML, geen entiteiten. Achteraf
+rechtzetten met `collectionUpdate`.
+
+## Verzenden
+
+De kosten zijn voor de koper — dat staat in Brams eigen tekst en zo staat het nu
+ook in Shopify. In de winkel stond een regel "gratis verzenden boven de 55
+euro"; die is eruit, anders ging een doos van 599 euro voor niets de deur uit.
+
+Drempels op ordertotaal, niet op gewicht: het gewicht van een doos plus
+verzenddoos is nog niet gewogen, de waarde weten we wel.
+
+```
+Nederland     € 6,95    t/m € 100
+              € 9,95    € 100 - € 500
+              € 14,95   vanaf € 500      extra verzekerd
+EU            € 14,95 / € 24,95
+Buiten de EU  € 24,95 / € 49,95          invoerrechten voor de koper
+Ophalen       gratis, op afspraak
+```
+
+Deze bedragen zijn een voorstel op basis van PostNL-tarieven, niet Brams eigen
+cijfers. Zodra er een doos op de weegschaal is geweest en er een
+verzendcontract ligt, moeten ze langs de meetlat.
+
+## Startpagina
+
+Zeven secties, van boven naar beneden:
+
+```
+image-banner          kopbeeld uit sjablonen/hero.py, kop en twee knoppen
+collection-list       de drie soortcollecties met voorraad
+featured-collection   nieuw op voorraad
+multicolumn           waar je op kunt rekenen, vier kolommen zonder beeld
+rich-text             Brams verhaal, ingekort uit teksten/merk.md
+collapsible-content   veelgestelde vragen, inclusief de verzendtarieven
+newsletter            mailadres voor nieuwe voorraad
+```
+
+Het kopbeeld is een eigen render en geen Dawn-placeholder. `hero.py` zet vier
+dozen op een gouden lijn tegen navy en houdt de onderste helft leeg, want daar
+zet Shopify de kop en de knoppen overheen. Verandert de voorraad, dan pas je
+`RIJ` aan en upload je het beeld opnieuw als `brams-hero.png`.
+
+Multicolumn zonder afbeelding is veilig — die laat het beeld gewoon weg.
+Collection-list niet: die zet er een placeholder neer. Vandaar de eigen
+collectiebeelden.
+
+De verzendtarieven staan op twee plekken: in Shopify en in de vragenlijst op de
+startpagina. Wijzig je ze, wijzig ze dan allebei.
+
 ## Kleuren en letters
 
 ```
@@ -162,3 +237,5 @@ kopers vandaag betalen — bij de Prismatic scheelde dat 60 euro.
 - Inkoop staat uit; Bram pakt dat later op. Het blok staat in de geschiedenis.
 - De waardevermindering-clausule moet langs een jurist voordat de kassa opengaat.
 - Alles tussen `[haken]` moet nog worden ingevuld: KvK, btw-id, adres, contact.
+- Verzendtarieven zijn een voorstel; nog wegen en langs een verzendcontract leggen.
+- Het menu is nog Dawn's standaard. Bewust: eerst vullen, dan indelen.

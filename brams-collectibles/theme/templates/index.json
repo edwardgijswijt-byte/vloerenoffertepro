@@ -29,10 +29,14 @@
           }
         }
       },
-      "block_order": ["heading", "tekst", "button"],
+      "block_order": [
+        "heading",
+        "tekst",
+        "button"
+      ],
       "settings": {
         "image": "shopify://shop_images/brams-hero.png",
-        "image_overlay_opacity": 15,
+        "image_overlay_opacity": 20,
         "image_height": "large",
         "desktop_content_position": "bottom-center",
         "show_text_box": false,
@@ -49,18 +53,28 @@
       "blocks": {
         "etb": {
           "type": "featured_collection",
-          "settings": { "collection": "elite-trainer-boxes" }
+          "settings": {
+            "collection": "elite-trainer-boxes"
+          }
         },
         "bundles": {
           "type": "featured_collection",
-          "settings": { "collection": "booster-bundles" }
+          "settings": {
+            "collection": "booster-bundles"
+          }
         },
         "premium": {
           "type": "featured_collection",
-          "settings": { "collection": "premium-collections" }
+          "settings": {
+            "collection": "premium-collections"
+          }
         }
       },
-      "block_order": ["etb", "bundles", "premium"],
+      "block_order": [
+        "etb",
+        "bundles",
+        "premium"
+      ],
       "settings": {
         "title": "Waar zoek je naar",
         "heading_size": "h2",
@@ -79,7 +93,7 @@
       "settings": {
         "title": "Nieuw op voorraad",
         "heading_size": "h2",
-        "description": "Alles wat je hier ziet ligt bij mij op de plank. Verzekerd verzonden of ophalen.",
+        "description": "<p>Alles wat je hier ziet ligt bij mij op de plank. Verzekerd verzonden of ophalen.</p>",
         "show_description": true,
         "description_style": "body",
         "collection": "all",
@@ -134,7 +148,12 @@
           }
         }
       },
-      "block_order": ["voorraad", "sealed", "verzenden", "ophalen"],
+      "block_order": [
+        "voorraad",
+        "sealed",
+        "verzenden",
+        "ophalen"
+      ],
       "settings": {
         "title": "Waar je op kunt rekenen",
         "heading_size": "h2",
@@ -188,7 +207,12 @@
           }
         }
       },
-      "block_order": ["caption", "heading", "text", "button"],
+      "block_order": [
+        "caption",
+        "heading",
+        "text",
+        "button"
+      ],
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
@@ -242,7 +266,13 @@
           }
         }
       },
-      "block_order": ["verzenden", "kosten", "sealed", "meerdere", "voorraad"],
+      "block_order": [
+        "verzenden",
+        "kosten",
+        "sealed",
+        "meerdere",
+        "voorraad"
+      ],
       "settings": {
         "caption": "Voor je bestelt",
         "heading": "Veelgestelde vragen",
@@ -279,7 +309,11 @@
           "settings": {}
         }
       },
-      "block_order": ["heading", "paragraph", "email_form"],
+      "block_order": [
+        "heading",
+        "paragraph",
+        "email_form"
+      ],
       "settings": {
         "color_scheme": "scheme-2",
         "full_width": true,
