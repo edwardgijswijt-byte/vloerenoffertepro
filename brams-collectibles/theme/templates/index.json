@@ -16,9 +16,9 @@
             "button_label_1": "Bekijk de voorraad",
             "button_link_1": "/collections/all",
             "button_style_secondary_1": false,
-            "button_label_2": "Verkoop je verzameling",
-            "button_link_2": "/pages/inkoop",
-            "button_style_secondary_2": true
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
           }
         }
       },
@@ -66,50 +66,10 @@
         "padding_top": 44,
         "padding_bottom": 36
       }
-    },
-    "inkoop": {
-      "type": "rich-text",
-      "blocks": {
-        "kop": {
-          "type": "heading",
-          "settings": {
-            "heading": "Wij kopen jouw verzameling",
-            "heading_size": "h1"
-          }
-        },
-        "tekst": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Zolderdoos, verzamelmap of complete collectie. Taxatie op de actuele marktwaarde, direct betaald per bank, met een inkoopovereenkomst op papier. Stuur een foto, dan kijk ik graag mee.</p>"
-          }
-        },
-        "knop": {
-          "type": "button",
-          "settings": {
-            "button_label": "Stuur een foto",
-            "button_link": "/pages/inkoop",
-            "button_style_secondary": false
-          }
-        }
-      },
-      "block_order": [
-        "kop",
-        "tekst",
-        "knop"
-      ],
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "scheme-2",
-        "full_width": true,
-        "padding_top": 52,
-        "padding_bottom": 52
-      }
     }
   },
   "order": [
     "image_banner",
-    "featured_collection",
-    "inkoop"
+    "featured_collection"
   ]
 }
