@@ -3,3 +3,10 @@ export/
 *.dc.html
 canvas.json
 __pycache__/
+
+# Ruwe opnames. Die staan in Google Drive; hier zouden ze de repo alleen maar
+# opblazen. Wat we bewaren is het resultaat: fotos/uitgesneden/.
+fotos/*.JPG
+fotos/*.jpg
+fotos/nieuw/
+fotos/_*.png
