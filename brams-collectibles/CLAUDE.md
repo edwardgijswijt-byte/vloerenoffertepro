@@ -186,50 +186,42 @@ verzendcontract ligt, moeten ze langs de meetlat.
 
 ## Startpagina
 
-Zeven secties, van boven naar beneden:
+Negen secties, naar het voorbeeld dat Bram aandroeg (pocketgames.nl):
 
 ```
-image-banner          kopbeeld uit sjablonen/hero.py, kop en twee knoppen
-collection-list       de drie soortcollecties met voorraad
+image-banner          kopbeeld uit sjablonen/hero.py, kop en een knop
+custom-liquid         doorlopende balk met de vaste beloften
+collection-list       vier soortcollecties als vierkante tegels
+collage               uitgelicht: drie sets, een groot en twee klein
 featured-collection   nieuw op voorraad
-multicolumn           waar je op kunt rekenen, vier kolommen zonder beeld
+multicolumn           waarom bij Brams, vier gouden pictogrammen
 rich-text             Brams verhaal, ingekort uit teksten/merk.md
 collapsible-content   veelgestelde vragen, inclusief de verzendtarieven
-newsletter            mailadres voor nieuwe voorraad
+newsletter            mailadres voor nieuwe voorraad, op goud
 ```
 
 Het kopbeeld is een eigen render en geen Dawn-placeholder. `hero.py` zet vier
 dozen op een gouden lijn tegen navy en houdt de onderste helft leeg, want daar
-zet Shopify de kop en de knoppen overheen. Verandert de voorraad, dan pas je
-`RIJ` aan en upload je het beeld opnieuw als `brams-hero.png`.
+zet Shopify de kop en de knop overheen. Verandert de voorraad, dan pas je `RIJ`
+aan en upload je het beeld opnieuw als `brams-hero.png`.
+
+De pictogrammen komen uit `sjablonen/pictogrammen.py`: dunne gouden lijnen op
+transparant, 240x240. Dawn's multicolumn wil een bestand uit de winkel, dus ze
+staan in Shopify Files als `brams-icoon-*.png`. Zonder de regel in `brams.css`
+rekt Dawn ze op tot kolombreedte.
+
+**Alleen collecties in de tegels en in het uitgelicht-blok.** Producten die op
+concept staan bestaan niet op de winkelkant, dus een tegel die naar zo'n product
+wijst blijft leeg. Collecties bestaan altijd en hebben een eigen afbeelding.
+Een collectie zonder producten hoort er ook niet in — die leidt naar een lege
+pagina. Booster Boxes staat er daarom nog niet bij.
 
 Multicolumn zonder afbeelding is veilig — die laat het beeld gewoon weg.
-Collection-list niet: die zet er een placeholder neer. Vandaar de eigen
-collectiebeelden.
+Collection-list niet: die zet er Dawn's placeholder van een T-shirt neer.
+Vandaar de eigen collectiebeelden.
 
 De verzendtarieven staan op twee plekken: in Shopify en in de vragenlijst op de
 startpagina. Wijzig je ze, wijzig ze dan allebei.
-
-De rij "nieuw op voorraad" trekt uit de collectie `frontpage`, die nu "Uitgelicht"
-heet. Handmatig gevuld en op prijs aflopend gesorteerd, zodat de volgorde vastligt.
-Stond hij op `all`, dan bepaalde Shopify de volgorde en dat is bij nul verkopen
-willekeurig.
-
-## Kop- en voetregel
-
-Die zitten niet in `templates/index.json` maar in `sections/header-group.json` en
-`sections/footer-group.json`. Dawn levert ze met Engelse standaardtekst: er stond
-maandenlang "Welcome to our store" in de balk en "Subscribe to our emails" in de
-voet. Kijk daar dus apart, een nieuwe startpagina raakt ze niet.
-
-De land- en taalkiezers staan uit, op alle drie de plekken waar Dawn ze aanbiedt.
-Eén land, één munt, één taal — anders staat er een keuzemenu dat niets doet.
-
-De nieuwsbrief staat in de voet uit, want hij staat al als eigen sectie op de
-startpagina. Twee keer hetzelfde formulier onder elkaar leest als een fout.
-
-`show_social` staat uit zolang er geen accounts in `settings_data.json` staan;
-aan levert het een rij lege iconen op.
 
 ## Kleuren en letters
 

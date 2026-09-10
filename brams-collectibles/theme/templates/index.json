@@ -7,7 +7,7 @@
           "type": "heading",
           "settings": {
             "heading": "Sealed Pokémon TCG, uit eigen voorraad",
-            "heading_size": "h1"
+            "heading_size": "h0"
           }
         },
         "tekst": {
@@ -23,17 +23,13 @@
             "button_label_1": "Bekijk de voorraad",
             "button_link_1": "/collections/all",
             "button_style_secondary_1": false,
-            "button_label_2": "Elite Trainer Boxes",
-            "button_link_2": "/collections/elite-trainer-boxes",
-            "button_style_secondary_2": true
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
           }
         }
       },
-      "block_order": [
-        "heading",
-        "tekst",
-        "button"
-      ],
+      "block_order": ["heading", "tekst", "button"],
       "settings": {
         "image": "shopify://shop_images/brams-hero.png",
         "image_overlay_opacity": 20,
@@ -48,61 +44,71 @@
         "show_text_below": false
       }
     },
+    "loopbalk": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<style>\n  .brams-loop{overflow:hidden;border-block:1px solid rgba(201,162,75,.3)}\n  .brams-loop__spoor{display:flex;width:max-content;animation:brams-loop 38s linear infinite}\n  .brams-loop__reeks{display:flex;flex:none;align-items:center;gap:2.8rem;padding:1.2rem 1.4rem 1.2rem 0;font-family:'Oswald','Arial Narrow',Arial,sans-serif;font-weight:600;font-size:1.25rem;letter-spacing:.22em;text-transform:uppercase;color:#c9a24b;white-space:nowrap}\n  .brams-loop__reeks span::after{content:'\\25C6';margin-left:2.8rem;opacity:.5}\n  @keyframes brams-loop{from{transform:translateX(0)}to{transform:translateX(-50%)}}\n  @media (prefers-reduced-motion:reduce){.brams-loop__spoor{animation:none}}\n</style>\n<div class=\"brams-loop\">\n  <div class=\"brams-loop__spoor\">\n    <div class=\"brams-loop__reeks\"><span>Sealed uit eigen voorraad</span><span>Verzekerd verzonden</span><span>Ophalen op afspraak</span><span>Gestart als fan, voor de verzamelaar</span></div>\n    <div class=\"brams-loop__reeks\" aria-hidden=\"true\"><span>Sealed uit eigen voorraad</span><span>Verzekerd verzonden</span><span>Ophalen op afspraak</span><span>Gestart als fan, voor de verzamelaar</span></div>\n  </div>\n</div>",
+        "color_scheme": "scheme-5",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
     "soorten": {
       "type": "collection-list",
       "blocks": {
-        "etb": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "elite-trainer-boxes"
-          }
-        },
-        "bundles": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "booster-bundles"
-          }
-        },
-        "displays": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "displays"
-          }
-        }
+        "etb": { "type": "featured_collection", "settings": { "collection": "elite-trainer-boxes" } },
+        "bundles": { "type": "featured_collection", "settings": { "collection": "booster-bundles" } },
+        "premium": { "type": "featured_collection", "settings": { "collection": "premium-collections" } },
+        "displays": { "type": "featured_collection", "settings": { "collection": "displays" } }
       },
-      "block_order": [
-        "etb",
-        "bundles",
-        "displays"
-      ],
+      "block_order": ["etb", "bundles", "premium", "displays"],
       "settings": {
         "title": "Waar zoek je naar",
         "heading_size": "h2",
         "image_ratio": "square",
-        "columns_desktop": 3,
-        "color_scheme": "scheme-5",
+        "columns_desktop": 4,
+        "color_scheme": "scheme-1",
         "show_view_all": true,
-        "columns_mobile": "1",
+        "columns_mobile": "2",
         "swipe_on_mobile": false,
-        "padding_top": 52,
+        "padding_top": 56,
         "padding_bottom": 44
       }
     },
-    "featured_collection": {
+    "uitgelicht": {
+      "type": "collage",
+      "blocks": {
+        "prismatic": { "type": "collection", "settings": { "collection": "prismatic-evolutions" } },
+        "chaos": { "type": "collection", "settings": { "collection": "chaos-rising" } },
+        "s151": { "type": "collection", "settings": { "collection": "scarlet-violet-151" } }
+      },
+      "block_order": ["prismatic", "chaos", "s151"],
+      "settings": {
+        "heading": "Uitgelicht",
+        "heading_size": "h2",
+        "desktop_layout": "left",
+        "mobile_layout": "column",
+        "card_styles": "product-card-wrapper",
+        "color_scheme": "scheme-5",
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    },
+    "nieuw": {
       "type": "featured-collection",
       "settings": {
         "title": "Nieuw op voorraad",
         "heading_size": "h2",
-        "description": "<p>Alles wat je hier ziet ligt bij mij op de plank. Verzekerd verzonden of ophalen.</p>",
+        "description": "<p>Alles wat je hier ziet ligt bij mij op de plank. Verzekerd verzonden of ophalen op afspraak.</p>",
         "show_description": true,
         "description_style": "body",
-        "collection": "frontpage",
+        "collection": "all",
         "products_to_show": 4,
         "columns_desktop": 4,
         "color_scheme": "scheme-1",
         "full_width": false,
         "show_view_all": true,
-        "view_all_style": "outline",
+        "view_all_style": "solid",
         "enable_desktop_slider": false,
         "swipe_on_mobile": false,
         "image_ratio": "square",
@@ -112,16 +118,17 @@
         "show_rating": false,
         "quick_add": "none",
         "columns_mobile": "2",
-        "padding_top": 44,
-        "padding_bottom": 36
+        "padding_top": 48,
+        "padding_bottom": 48
       }
     },
-    "waarborg": {
+    "waarom": {
       "type": "multicolumn",
       "blocks": {
-        "voorraad": {
+        "plank": {
           "type": "column",
           "settings": {
+            "image": "shopify://shop_images/brams-icoon-plank.png",
             "title": "Alles ligt hier op de plank",
             "text": "<p>Geen dropshipping, geen pre-orders en geen wachtlijst. Wat je hier ziet staat bij mij thuis in de kast.</p>"
           }
@@ -129,46 +136,44 @@
         "sealed": {
           "type": "column",
           "settings": {
+            "image": "shopify://shop_images/brams-icoon-sealed.png",
             "title": "Sealed en ongeopend",
-            "text": "<p>Elke doos is nog dicht en zit in de originele folie. Niet gewogen, niet doorzocht, niet opnieuw geseald.</p>"
+            "text": "<p>Nog in de originele fabrieksfolie. Niet gewogen, niet doorzocht, niet opnieuw geseald.</p>"
+          }
+        },
+        "prijs": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/brams-icoon-prijs.png",
+            "title": "Eerlijke prijzen",
+            "text": "<p>Ik kijk mee op Cardmarket en vraag wat het daar waard is. Geen verzamelaarsprijs voor een gewone doos.</p>"
           }
         },
         "verzenden": {
           "type": "column",
           "settings": {
+            "image": "shopify://shop_images/brams-icoon-verzenden.png",
             "title": "Verzekerd verzonden",
-            "text": "<p>Stevig verpakt en met track &amp; trace. De verzendkosten zijn voor de koper, de zorg komt van ons.</p>"
-          }
-        },
-        "ophalen": {
-          "type": "column",
-          "settings": {
-            "title": "Of kom het halen",
-            "text": "<p>Liever zelf even kijken voor je koopt? Ophalen kan op afspraak. Ik maak graag een keer kennis.</p>"
+            "text": "<p>Stevig verpakt en met track &amp; trace. De kosten zijn voor de koper, de zorg komt van ons.</p>"
           }
         }
       },
-      "block_order": [
-        "voorraad",
-        "sealed",
-        "verzenden",
-        "ophalen"
-      ],
+      "block_order": ["plank", "sealed", "prijs", "verzenden"],
       "settings": {
-        "title": "Waar je op kunt rekenen",
+        "title": "Waarom bij Brams Collectibles",
         "heading_size": "h2",
         "image_width": "third",
-        "image_ratio": "adapt",
-        "button_label": "",
-        "button_link": "",
+        "image_ratio": "square",
+        "button_label": "Neem contact op",
+        "button_link": "/pages/contact",
         "columns_desktop": 4,
         "column_alignment": "left",
         "background_style": "primary",
         "color_scheme": "scheme-2",
         "columns_mobile": "1",
         "swipe_on_mobile": false,
-        "padding_top": 52,
-        "padding_bottom": 52
+        "padding_top": 56,
+        "padding_bottom": 56
       }
     },
     "verhaal": {
@@ -184,42 +189,23 @@
         },
         "heading": {
           "type": "heading",
-          "settings": {
-            "heading": "Gestart als fan",
-            "heading_size": "h2"
-          }
+          "settings": { "heading": "Gestart als fan", "heading_size": "h1" }
         },
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>Vol passie voor de nostalgie, het vuur voor die ene chase — het was eigenlijk nooit ver weg. Voor vrienden regelde ik de mooiste parels en probeerde ik er vroeg bij te zijn voor de nieuwe drop. Na veel aandringen gaat het nu eindelijk beginnen.</p><p>In een tijd waarin Pokémon TCG willen kopen niet meer genoeg lijkt, wil ik dit voor jullie mogelijk maken. Ik ben benieuwd naar jullie verhalen en zoek graag mee naar het nieuwste klapstuk voor jullie verzameling.</p>"
-          }
-        },
-        "button": {
-          "type": "button",
-          "settings": {
-            "button_label": "Neem contact op",
-            "button_link": "/pages/contact",
-            "button_style_secondary": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "text": "<p>Vol passie voor de nostalgie, het vuur voor die ene chase — het was eigenlijk nooit ver weg. Voor vrienden regelde ik de mooiste parels en probeerde ik er vroeg bij te zijn voor de nieuwe drop. Na veel aandringen gaat het nu eindelijk beginnen.</p><p>Ik ben benieuwd naar jullie verhalen en zoek graag mee naar het nieuwste klapstuk voor jullie verzameling.</p>"
           }
         }
       },
-      "block_order": [
-        "caption",
-        "heading",
-        "text",
-        "button"
-      ],
+      "block_order": ["caption", "heading", "text"],
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
         "color_scheme": "scheme-5",
         "full_width": true,
-        "padding_top": 60,
-        "padding_bottom": 60
+        "padding_top": 64,
+        "padding_bottom": 64
       }
     },
     "vragen": {
@@ -246,7 +232,7 @@
           "settings": {
             "heading": "Zijn de dozen echt sealed?",
             "icon": "lock",
-            "row_content": "<p>Ja. Alles wat hier als sealed staat is ongeopend en zit nog in de originele fabrieksfolie. Geen gewogen packs, geen opnieuw geseald materiaal.</p><p>Van artikelen waar er meerdere van zijn, zijn de foto’s van een exemplaar uit de voorraad — ze zijn allemaal ongeopend en identiek. Wil je een extra foto van een hoek of van het achterpaneel, vraag het gerust.</p>"
+            "row_content": "<p>Ja. Alles wat hier als sealed staat is ongeopend en zit nog in de originele fabrieksfolie. Geen gewogen packs, geen opnieuw geseald materiaal.</p><p>Heb je meerdere dezelfde dozen voor je? Dan is de foto van een exemplaar uit de voorraad. Bij singles en graded kaarten is de foto altijd van het exemplaar dat je krijgt.</p>"
           }
         },
         "meerdere": {
@@ -266,13 +252,7 @@
           }
         }
       },
-      "block_order": [
-        "verzenden",
-        "kosten",
-        "sealed",
-        "meerdere",
-        "voorraad"
-      ],
+      "block_order": ["verzenden", "kosten", "sealed", "meerdere", "voorraad"],
       "settings": {
         "caption": "Voor je bestelt",
         "heading": "Veelgestelde vragen",
@@ -284,8 +264,8 @@
         "open_first_collapsible_row": false,
         "image_ratio": "adapt",
         "desktop_layout": "image_second",
-        "padding_top": 52,
-        "padding_bottom": 52
+        "padding_top": 56,
+        "padding_bottom": 56
       }
     },
     "nieuwsbrief": {
@@ -293,10 +273,7 @@
       "blocks": {
         "heading": {
           "type": "heading",
-          "settings": {
-            "heading": "Als eerste weten wat er binnenkomt",
-            "heading_size": "h2"
-          }
+          "settings": { "heading": "Als eerste weten wat er binnenkomt", "heading_size": "h2" }
         },
         "paragraph": {
           "type": "paragraph",
@@ -304,18 +281,11 @@
             "text": "<p>Nieuwe voorraad is er vaak maar één of twee keer. Laat je mailadres achter, dan hoor je het voordat het online staat.</p>"
           }
         },
-        "email_form": {
-          "type": "email_form",
-          "settings": {}
-        }
+        "email_form": { "type": "email_form", "settings": {} }
       },
-      "block_order": [
-        "heading",
-        "paragraph",
-        "email_form"
-      ],
+      "block_order": ["heading", "paragraph", "email_form"],
       "settings": {
-        "color_scheme": "scheme-2",
+        "color_scheme": "scheme-4",
         "full_width": true,
         "padding_top": 56,
         "padding_bottom": 56
@@ -324,9 +294,11 @@
   },
   "order": [
     "image_banner",
+    "loopbalk",
     "soorten",
-    "featured_collection",
-    "waarborg",
+    "uitgelicht",
+    "nieuw",
+    "waarom",
     "verhaal",
     "vragen",
     "nieuwsbrief"
