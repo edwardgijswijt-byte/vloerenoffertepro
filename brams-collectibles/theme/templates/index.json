@@ -68,21 +68,28 @@
           "settings": {
             "collection": "premium-collections"
           }
+        },
+        "displays": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "displays"
+          }
         }
       },
       "block_order": [
         "etb",
         "bundles",
-        "premium"
+        "premium",
+        "displays"
       ],
       "settings": {
         "title": "Waar zoek je naar",
         "heading_size": "h2",
         "image_ratio": "square",
-        "columns_desktop": 3,
+        "columns_desktop": 4,
         "color_scheme": "scheme-5",
         "show_view_all": true,
-        "columns_mobile": "1",
+        "columns_mobile": "2",
         "swipe_on_mobile": false,
         "padding_top": 52,
         "padding_bottom": 44
@@ -96,7 +103,7 @@
         "description": "<p>Alles wat je hier ziet ligt bij mij op de plank. Verzekerd verzonden of ophalen.</p>",
         "show_description": true,
         "description_style": "body",
-        "collection": "all",
+        "collection": "frontpage",
         "products_to_show": 4,
         "columns_desktop": 4,
         "color_scheme": "scheme-1",
@@ -105,7 +112,7 @@
         "view_all_style": "outline",
         "enable_desktop_slider": false,
         "swipe_on_mobile": false,
-        "image_ratio": "adapt",
+        "image_ratio": "square",
         "image_shape": "default",
         "show_secondary_image": true,
         "show_vendor": false,
@@ -246,7 +253,7 @@
           "settings": {
             "heading": "Zijn de dozen echt sealed?",
             "icon": "lock",
-            "row_content": "<p>Ja. Alles wat hier als sealed staat is ongeopend en zit nog in de originele fabrieksfolie. Geen gewogen packs, geen opnieuw geseald materiaal.</p><p>De foto's zijn van het exemplaar dat je krijgt. Zie je iets op de foto dat je niet duidelijk is, vraag het gerust.</p>"
+            "row_content": "<p>Ja. Alles wat hier als sealed staat is ongeopend en zit nog in de originele fabrieksfolie. Geen gewogen packs, geen opnieuw geseald materiaal.</p><p>Van artikelen waar er meerdere van zijn, zijn de foto’s van een exemplaar uit de voorraad — ze zijn allemaal ongeopend en identiek. Wil je een extra foto van een hoek of van het achterpaneel, vraag het gerust.</p>"
           }
         },
         "meerdere": {

@@ -210,6 +210,27 @@ collectiebeelden.
 De verzendtarieven staan op twee plekken: in Shopify en in de vragenlijst op de
 startpagina. Wijzig je ze, wijzig ze dan allebei.
 
+De rij "nieuw op voorraad" trekt uit de collectie `frontpage`, die nu "Uitgelicht"
+heet. Handmatig gevuld en op prijs aflopend gesorteerd, zodat de volgorde vastligt.
+Stond hij op `all`, dan bepaalde Shopify de volgorde en dat is bij nul verkopen
+willekeurig.
+
+## Kop- en voetregel
+
+Die zitten niet in `templates/index.json` maar in `sections/header-group.json` en
+`sections/footer-group.json`. Dawn levert ze met Engelse standaardtekst: er stond
+maandenlang "Welcome to our store" in de balk en "Subscribe to our emails" in de
+voet. Kijk daar dus apart, een nieuwe startpagina raakt ze niet.
+
+De land- en taalkiezers staan uit, op alle drie de plekken waar Dawn ze aanbiedt.
+Eén land, één munt, één taal — anders staat er een keuzemenu dat niets doet.
+
+De nieuwsbrief staat in de voet uit, want hij staat al als eigen sectie op de
+startpagina. Twee keer hetzelfde formulier onder elkaar leest als een fout.
+
+`show_social` staat uit zolang er geen accounts in `settings_data.json` staan;
+aan levert het een rij lege iconen op.
+
 ## Kleuren en letters
 
 ```

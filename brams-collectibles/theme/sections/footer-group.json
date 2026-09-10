@@ -4,16 +4,42 @@
   "sections": {
     "footer": {
       "type": "footer",
-      "blocks": {},
-      "block_order": [],
+      "blocks": {
+        "over": {
+          "type": "text",
+          "settings": {
+            "heading": "Brams Collectibles",
+            "subtext": "<p>Sealed Pokémon TCG uit eigen voorraad. Gestart als fan. Voor de verzamelaar. Voor de community.</p>"
+          }
+        },
+        "verzenden": {
+          "type": "text",
+          "settings": {
+            "heading": "Verzenden en ophalen",
+            "subtext": "<p>Verzekerd verzonden met track &amp; trace, stevig verpakt. De verzendkosten zijn voor de koper. Ophalen kan op afspraak.</p>"
+          }
+        },
+        "vragen": {
+          "type": "text",
+          "settings": {
+            "heading": "Vragen over een doos?",
+            "subtext": "<p>Stel ze gerust via de <a href=\"/pages/contact\">contactpagina</a>. Wil je een extra foto van een hoek of van het achterpaneel, vraag het.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "over",
+        "verzenden",
+        "vragen"
+      ],
       "settings": {
         "color_scheme": "scheme-1",
-        "newsletter_enable": true,
+        "newsletter_enable": false,
         "newsletter_heading": "Subscribe to our emails",
-        "enable_follow_on_shop": true,
-        "show_social": true,
-        "enable_country_selector": true,
-        "enable_language_selector": true,
+        "enable_follow_on_shop": false,
+        "show_social": false,
+        "enable_country_selector": false,
+        "enable_language_selector": false,
         "payment_enable": true,
         "show_policy": true,
         "margin_top": 0,
