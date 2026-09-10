@@ -83,10 +83,17 @@
           "settings": {
             "collection": "displays"
           }
+        },
+        "boxes": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "booster-boxes"
+          }
         }
       },
       "block_order": [
         "etb",
+        "boxes",
         "bundles",
         "premium",
         "displays"
@@ -95,7 +102,7 @@
         "title": "Waar zoek je naar",
         "heading_size": "h2",
         "image_ratio": "square",
-        "columns_desktop": 4,
+        "columns_desktop": 5,
         "color_scheme": "scheme-1",
         "show_view_all": true,
         "columns_mobile": "2",

@@ -20,13 +20,22 @@ MAXZIJ = 2000          # langste zijde van de uitvoer
 LUCHT  = 0.06          # marge rondom het product, als deel van de langste zijde
 
 
-def masker_rembg(im):
+def masker_rembg(im, matting=True):
+    """Met alpha matting voor een zachte rand; zonder voor alleen de vorm.
+
+    Op een opgehelderde kopie is matting niet alleen overbodig maar ook
+    onbetrouwbaar: de oplosser loopt op een bijna wit beeld minutenlang te
+    ploeteren op een matrix die niet positief-definiet wil worden. De rand van
+    dat masker doet er niet toe, want rechtzetten.py trekt hem daarna toch aan."""
     from rembg import remove, new_session
     sess = new_session('isnet-general-use')
-    uit = remove(im, session=sess, alpha_matting=True,
-                 alpha_matting_foreground_threshold=250,
-                 alpha_matting_background_threshold=15,
-                 alpha_matting_erode_size=8)
+    if matting:
+        uit = remove(im, session=sess, alpha_matting=True,
+                     alpha_matting_foreground_threshold=250,
+                     alpha_matting_background_threshold=15,
+                     alpha_matting_erode_size=8)
+    else:
+        uit = remove(im, session=sess, alpha_matting=False)
     return np.array(uit.convert('RGBA'))[:, :, 3]
 
 
@@ -58,7 +67,7 @@ def masker_dubbelslag(im):
     if vol >= 0.70:
         return a, 'rembg'
     op = ImageEnhance.Contrast(ImageEnhance.Brightness(im).enhance(3.0)).enhance(1.4)
-    b = masker_rembg(op)
+    b = masker_rembg(op, matting=False)
     if vulling(b) > vol:
         return b, f'rembg opgehelderd ({vol:.0%} -> {vulling(b):.0%} gevuld)'
     return a, f'rembg ({vol:.0%} gevuld, ophelderen hielp niet)'
