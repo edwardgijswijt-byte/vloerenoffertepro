@@ -115,6 +115,25 @@ Dat mag daar; een gewone JSON-lezer struikelt erover.
 
 **Wat de koppeling niet mag:** een thema publiceren, en terecht. Dat doe je zelf.
 
+**Controleer de status na elke productbewerking.** Op 10 september sprongen drie
+producten van concept naar actief tijdens het bijwerken van hun webshoptekst,
+zonder dat daar om gevraagd was. Welke aanroep het deed is niet te achterhalen:
+een vierde product kreeg in dezelfde bewerking dezelfde wijziging en bleef wel
+op concept. Geef `status` daarom altijd expliciet mee, en kijk erna of hij staat
+waar je hem wilt hebben.
+
+Verandert er iets dat je niet hebt gedaan, ga dan niet uit van wat je aanneemt.
+Het logboek weet het:
+
+```
+query { product(id: "gid://shopify/Product/...") {
+  status
+  events(first: 20, sortKey: CREATED_AT, reverse: true) {
+    nodes { createdAt message appTitle attributeToUser } } } }
+```
+
+Wijzigingen van deze koppeling staan er als "Shopify Claude Connector App".
+
 ## Thema
 
 Dawn 16.0.0 met vier afwijkingen, verder ongewijzigd zodat Dawn-updates schoon
