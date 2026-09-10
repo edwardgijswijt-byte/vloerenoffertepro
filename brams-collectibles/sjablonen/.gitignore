@@ -1,0 +1,5 @@
+# Uitvoer is in seconden opnieuw te maken uit de sjablonen en het register.
+export/
+*.dc.html
+canvas.json
+__pycache__/

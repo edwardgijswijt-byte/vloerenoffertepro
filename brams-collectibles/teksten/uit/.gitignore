@@ -1,0 +1,3 @@
+# Gegenereerd door teksten.py — bron is register.csv plus de blokken.
+*.md
+!.gitignore
