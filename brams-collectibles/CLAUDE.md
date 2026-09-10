@@ -162,6 +162,26 @@ Let op bij `create-collection`: de titel wordt letterlijk overgenomen, dus een
 `descriptionHtml` juist niet — die wil gewone HTML, geen entiteiten. Achteraf
 rechtzetten met `collectionUpdate`.
 
+**Aanmaken is niet hetzelfde als op de winkel zetten.** Een nieuwe collectie of
+een nieuw product staat op geen enkel verkoopkanaal, ook al zegt de koppeling
+dat hij naar de webshop publiceert. Op de winkelkant bestaat hij dan niet, en
+Dawn zet er zijn eigen opvulplaatje van een T-shirt neer. Dat kostte een middag
+zoeken naar een fout in het thema die er niet was.
+
+Controleren en rechtzetten:
+
+```
+query  { collections(first: 20) { nodes { handle resourcePublicationsCount { count } } } }
+query  { products(first: 20)    { nodes { handle status resourcePublicationsCount { count } } } }
+query  { publications(first: 10) { nodes { id name } } }
+
+mutation { publishablePublish(id: "gid://shopify/Collection/...",
+  input: [{publicationId: "<Webshop>"}, {publicationId: "<Shop>"}]) { userErrors { message } } }
+```
+
+Staat het aantal op nul, dan is dat de oorzaak — niet het sjabloon. Een product
+op concept kan niet gepubliceerd worden; die telt pas mee zodra hij actief is.
+
 ## Verzenden
 
 De kosten zijn voor de koper — dat staat in Brams eigen tekst en zo staat het nu

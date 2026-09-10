@@ -1,23 +1,27 @@
 #!/usr/bin/env python3
-"""Kopbeeld voor de homepage, 2400x1200.
+"""Kopbeeld voor de homepage, 2400x1000.
 
 Geen tekst in het beeld: de kop en de knop komen uit Shopify's image-banner
-en staan daar overheen. Het beeld levert alleen de opstelling — vijf dozen op
+en staan daar overheen. Het beeld levert alleen de opstelling — vier dozen op
 een lijn, navy grond, een gouden gloed erachter — en onderin een donkere
 verloop zodat de witte tekst leesbaar blijft.
+
+De onderste 44 procent blijft leeg. Zet het beeld in de banner op "aanpassen
+aan afbeelding": bij een vaste bandhoogte snijdt Dawn boven en onder weg, en
+dan valt de kop over de dozen heen.
 """
 import base64, pathlib, subprocess, shutil, tempfile
 from PIL import Image
 
 from huisstijl import NAVY, GOLD, FONTS, BASE
 
-BREED, HOOG = 2400, 1200
+BREED, HOOG = 2400, 1000
 CHROME = '/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell'
 HIER = pathlib.Path(__file__).parent
 BRON = HIER / 'fotos' / 'uitgesneden' / 'strak' / 'recht'
 
 # opname, hoogte in pixels, naar voren of naar achteren
-BASIS = 700               # de lijn waar alle dozen op staan
+BASIS = 555               # de lijn waar alle dozen op staan
 RIJ = [('IMG_3700', 350, 2), ('IMG_3754', 415, 3), ('IMG_3709', 300, 1),
        ('IMG_3758', 335, 2)]
 MAX_VERGROTING = 1.15
