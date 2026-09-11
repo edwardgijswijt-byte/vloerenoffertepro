@@ -13,24 +13,19 @@ foto bij welke serie hoort is niet vast te stellen — het etiket op IMG_3785
 Zonder die koppeling kan een advertentie van 500 euro de foto van een doos van
 320 krijgen. Kun je bij de nieuwe opnames per doos de serie erbij noteren?
 
-**2. Foto's van de Ascended Heroes Pokémon Center ETB.** Daar is nog geen enkele
-opname van. Tien stuks à 525 euro, dus de grootste post die nu nog niet online
-kan.
+**2. Een vooraanzicht van de gewone Pitch Black ETB.** Er zijn twee opnames van
+gevonden (het achterpaneel en een zijkant), genoeg om te plaatsen, maar geen
+voorkant.
 
-**3. Een vooraanzicht van de gewone Pitch Black ETB.** Er zijn er twee opnames
-van gevonden (het achterpaneel en een zijkant), genoeg om te plaatsen, maar geen
-voorkant. Zie hieronder bij "Beantwoord" — die dozen zaten verstopt in fotogroep
-9.
-
-**4. De Chaos Rising Booster Box, voorkant met het logo.** IMG_3712 is niet uit
+**3. De Chaos Rising Booster Box, voorkant met het logo.** IMG_3712 is niet uit
 te snijden: zwarte doos op zwart satijn.
 
-**5. Het display versus de losse bundels bij Ascended Heroes.** Tien losse
+**4. Het display versus de losse bundels bij Ascended Heroes.** Tien losse
 bundels kosten 899,50, het display 1140. Dat is 240 euro meer voor dezelfde
 zestig packs. Bij een verzegeld display is een opslag normaal, maar we zetten ze
 wel naast elkaar in dezelfde webshop. Bewust zo?
 
-**6. De verkoop als privécollectie.** Je geeft aan dat dit voorlopig als verkoop
+**5. De verkoop als privécollectie.** Je geeft aan dat dit voorlopig als verkoop
 uit privécollectie geldt, dus zonder btw. Dat verklaart ook waarom de marges zo
 krap kunnen. Het gaat wel om ongeveer 66.000 euro aan voorraad in circa 300
 dozen, met inkoop, een webshop en advertenties. Leg dat één keer voor aan een
@@ -39,10 +34,10 @@ maar omdat het bedrag en de opzet groot genoeg zijn dat je het antwoord zwart op
 wit wilt hebben. Datzelfde gesprek kan meteen over het moment van de
 KvK-inschrijving gaan.
 
-**7. De waardevermindering-clausule** in de algemene voorwaarden moet langs een
+**6. De waardevermindering-clausule** in de algemene voorwaarden moet langs een
 jurist voordat de kassa opengaat.
 
-**8. Adres en contactgegevens.** Staan nog als lege haken in de voorwaarden. Je
+**7. Adres en contactgegevens.** Staan nog als lege haken in de voorwaarden. Je
 gaf aan daar nog over na te denken. Een postadres of het adres van een
 KvK-inschrijving volstaat; een webshop moet een bereikbaar adres tonen.
 
@@ -62,10 +57,16 @@ KvK-inschrijving volstaat; een webshop moet een bereikbaar adres tonen.
   die groep klopte dus half — de Pitch Black zit er wel degelijk in.
 - **Het Pokémon Center-blok gaat uit de Super Premium Collection.** Dat blok gaat
   alleen over Elite Trainer Boxen. Het stond er al niet in; nu ook bevestigd.
-- **Geen btw**, voorlopig verkoop uit privécollectie. Zie punt 6 hierboven.
+- **Geen btw**, voorlopig verkoop uit privécollectie. Zie punt 5 hierboven.
 - **PostNL-tarieven zijn akkoord.** Ze staan in de webshop en in de vragenlijst
   op de startpagina. Nog wel een doos wegen zodra dat kan.
 - **Btw-identificatienummer** is niet nodig zolang het privéverkoop is.
-- **Twee inhoudslijsten van de doos gelezen** en in het register gezet: de Chaos
+- **De Ascended Heroes PC ETB heeft wel foto's**, IMG_3746 tot en met IMG_3751.
+  Ik had gezegd dat die er niet waren; die groep had ik simpelweg nog niet
+  opgehaald. De doos staat er in zijn acryl hoes op, dus dat is nu ook in beeld
+  te zien en niet alleen in de tekst. Het achterpaneel op IMG_3750 bevestigt elf
+  packs en twee N's Zekrom-promo's.
+- **Drie inhoudslijsten van de doos gelezen** en in het register gezet: de Chaos
   Rising PC ETB heeft elf packs en twee Fennekin-promo's, de gewone Pitch Black
-  ETB negen packs en één Zarude-promo.
+  ETB negen packs en één Zarude-promo, de Ascended Heroes PC ETB elf packs en
+  twee N's Zekrom-promo's.
