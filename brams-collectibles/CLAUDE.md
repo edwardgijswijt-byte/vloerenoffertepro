@@ -58,6 +58,13 @@ zo blijven — daar is elk exemplaar anders.
 **Map per artikel in Drive, genoemd naar de sku.** Anders ben je een dag kwijt aan
 uitzoeken welke `IMG_xxxx.JPG` bij wat hoort.
 
+**Lees het etiket op de carton.** Bij een case zit alles wat je moet weten op
+het verzendetiket: artikelnummer, de volledige productnaam, hoeveel er in de
+doos zit en de releasedatum. De Paldean Fates-case bleek zo `SV4.5 ELITE TRAINER
+BOX EN, QTY 10 per Carton`. Wat er per Elite Trainer Box in zit staat er niet
+op, en dat mag je dus ook niet invullen naar het gewone Scarlet & Violet-format
+— dat is gokken, geen lezen.
+
 **Lees de naam van de doos, niet uit de lijst.** Brams invullijst koppelde
 fotogroep 9 aan een Pitch Black Elite Trainer Box; op die dozen staat Mega
 Evolution Chaos Rising met het Pokemon Center-logo. Een groep verderop klopte
@@ -178,10 +185,13 @@ booster-boxes          TYPE = Booster Box
 booster-bundles        TYPE = Booster Bundle
 premium-collections    TYPE = Premium Collection
 displays               TYPE = Display
+cases                  TYPE = Case
 chaos-rising           TAG = chaos rising
 prismatic-evolutions   TAG = prismatic evolutions
 scarlet-violet-151     TAG = 151
 pitch-black            TAG = pitch black
+destined-rivals        TAG = destined rivals
+paldean-fates          TAG = paldean fates
 ```
 
 Dus: `soort` in het register wordt het producttype, `set` wordt een tag. Zet die
