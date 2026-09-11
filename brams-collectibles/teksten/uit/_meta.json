@@ -1,4 +1,8 @@
 {
+  "startpagina": {
+    "titel": "Sealed Pokémon TCG kopen",
+    "tekst": "Sealed Pokémon TCG: Elite Trainer Boxen, Pokémon Center-uitgaven, booster boxes, displays en complete cases. Fabrieksverzegeld en verzekerd verzonden."
+  },
   "producten": {
     "BC-PE-PCETB": {
       "titel": "Prismatic Evolutions Pokémon Center Elite Trainer Box kopen",
@@ -129,6 +133,28 @@
     "alle-dozen": {
       "titel": "Alle sealed Pokémon-dozen",
       "tekst": "Het volledige assortiment verzegelde Pokémon-dozen dat nu op de plank ligt, van Elite Trainer Box tot complete case. Verzekerd verzonden met PostNL."
+    }
+  },
+  "artikelen": {
+    "wat-is-een-elite-trainer-box": {
+      "titel": "Wat is een Elite Trainer Box?",
+      "tekst": "Een Elite Trainer Box bevat negen packs, een promokaart, 65 sleeves, energiekaarten en een verzameldoos. De Pokémon Center-uitvoering heeft elf packs."
+    },
+    "pokemon-center-uitgaven": {
+      "titel": "Wat maakt een Pokémon Center-uitgave anders?",
+      "tekst": "Pokémon Center-dozen verschijnen alleen via de officiële kanalen, in een vaste oplage, met meer packs en een extra promokaart. Ze worden niet herdrukt."
+    },
+    "booster-bundle-booster-box-of-elite-trainer-box": {
+      "titel": "Booster bundle, booster box of Elite Trainer Box?",
+      "tekst": "Een booster bundle heeft zes packs, een booster box 36 en een Elite Trainer Box negen plus sleeves en een promo. Per pack is de box het voordeligst."
+    },
+    "verzegelde-pokemon-dozen-bewaren": {
+      "titel": "Verzegelde Pokémon-dozen bewaren",
+      "tekst": "Bewaar verzegelde dozen rechtop, donker, bij 15 tot 22 graden en onder 55 procent luchtvochtigheid. Een acryl hoes voorkomt deuken en houdt de folie strak."
+    },
+    "is-verzegelde-pokemon-tcg-een-goede-investering": {
+      "titel": "Is verzegelde Pokémon TCG een goede investering?",
+      "tekst": "Verzegeld materiaal uit sets die uit productie zijn steeg historisch in waarde, maar het is geen spaarrekening. Oplage, folie en geduld bepalen het."
     }
   }
 }

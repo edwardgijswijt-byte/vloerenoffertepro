@@ -190,21 +190,73 @@ COLLECTIES = {
 }
 
 
+# De gidsartikelen. Shopify heeft voor een artikel geen seo-veld zoals bij een
+# product; daar gaat het via de metavelden global.title_tag en
+# global.description_tag. De omschrijving begint met het antwoord zelf, want
+# dat is wat een AI-zoekmachine overneemt als samenvatting.
+ARTIKELEN = {
+    'wat-is-een-elite-trainer-box': (
+        'Wat is een Elite Trainer Box?',
+        'Een Elite Trainer Box bevat negen packs, een promokaart, 65 '
+        'sleeves, energiekaarten en een verzameldoos. De Pokémon '
+        'Center-uitvoering heeft elf packs.'),
+    'pokemon-center-uitgaven': (
+        'Wat maakt een Pokémon Center-uitgave anders?',
+        'Pokémon Center-dozen verschijnen alleen via de officiële kanalen, in '
+        'een vaste oplage, met meer packs en een extra promokaart. Ze worden '
+        'niet herdrukt.'),
+    'booster-bundle-booster-box-of-elite-trainer-box': (
+        'Booster bundle, booster box of Elite Trainer Box?',
+        'Een booster bundle heeft zes packs, een booster box 36 en een Elite '
+        'Trainer Box negen plus sleeves en een promo. Per pack is de box het '
+        'voordeligst.'),
+    'verzegelde-pokemon-dozen-bewaren': (
+        'Verzegelde Pokémon-dozen bewaren',
+        'Bewaar verzegelde dozen rechtop, donker, bij 15 tot 22 graden en '
+        'onder 55 procent luchtvochtigheid. Een acryl hoes voorkomt deuken en '
+        'houdt de folie strak.'),
+    'is-verzegelde-pokemon-tcg-een-goede-investering': (
+        'Is verzegelde Pokémon TCG een goede investering?',
+        'Verzegeld materiaal uit sets die uit productie zijn steeg historisch in '
+        'waarde, maar het is geen spaarrekening. Oplage, folie en geduld '
+        'bepalen het.'),
+}
+
+# De startpagina. Deze twee zijn niet via de Admin API te zetten — Shopify
+# bewaart ze onder Onlinewinkel > Voorkeuren — dus ze staan als terugval in
+# theme.liquid. Hier voor de volledigheid, zodat alle metateksten op één plek
+# staan en je ze kunt vergelijken.
+STARTPAGINA = (
+    'Sealed Pokémon TCG kopen',
+    'Sealed Pokémon TCG: Elite Trainer Boxen, Pokémon Center-uitgaven, '
+    'booster boxes, displays en complete cases. Fabrieksverzegeld en '
+    'verzekerd verzonden.')
+
+
 def main():
     alles = list(csv.DictReader(open(HIER / 'register.csv', encoding='utf-8')))
     producten = {r['sku']: {'titel': metatitel(r), 'tekst': metatekst(r)}
                  for r in alles if r['aantal'] and r['prijs']}
     collecties = {h: {'titel': t, 'tekst': o} for h, (t, o) in COLLECTIES.items()}
+    artikelen = {h: {'titel': t, 'tekst': o} for h, (t, o) in ARTIKELEN.items()}
+    start = {'titel': STARTPAGINA[0], 'tekst': STARTPAGINA[1]}
 
     UIT.mkdir(parents=True, exist_ok=True)
     doel = UIT / '_meta.json'
-    doel.write_text(json.dumps({'producten': producten, 'collecties': collecties},
+    doel.write_text(json.dumps({'startpagina': start, 'producten': producten,
+                                'collecties': collecties, 'artikelen': artikelen},
                                ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
 
-    for groep, items in (('product', producten), ('collectie', collecties)):
+    for groep, items in (('start', {'startpagina': start}), ('product', producten),
+                         ('collectie', collecties), ('artikel', artikelen)):
         for sleutel, m in items.items():
             print(f'{groep:9} {sleutel:14} titel {len(m["titel"]):>3}  tekst {len(m["tekst"]):>3}')
             print(f'{"":9} {"":14} {m["tekst"]}')
+    te_lang = [(g, k) for g, items in (('product', producten), ('collectie', collecties),
+                                      ('artikel', artikelen), ('start', {'startpagina': start}))
+               for k, m in items.items() if len(m['tekst']) > 155]
+    if te_lang:
+        raise SystemExit(f'Te lang voor Google (boven 155 tekens): {te_lang}')
     print(f'\n-> {doel.relative_to(HIER)}')
 
 

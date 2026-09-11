@@ -15,15 +15,35 @@
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
     {%- endunless -%}
 
+    {%- liquid
+      # De titel en de metaomschrijving van de startpagina staan in Shopify
+      # onder Onlinewinkel > Voorkeuren, en zijn niet via de Admin API te
+      # zetten. Zolang daar niets is ingevuld toont Shopify alleen de
+      # winkelnaam en helemaal geen omschrijving. Hieronder staat de terugval.
+      # Vult iemand de voorkeuren alsnog in, dan wint die vanzelf: page_title
+      # is dan niet meer gelijk aan de winkelnaam en page_description is dan
+      # niet meer leeg.
+      assign brams_titel = page_title
+      assign brams_omschrijving = page_description
+      if request.page_type == 'index'
+        if brams_titel == shop.name
+          assign brams_titel = 'Sealed Pokémon TCG kopen'
+        endif
+        if brams_omschrijving == blank
+          assign brams_omschrijving = 'Sealed Pokémon TCG: Elite Trainer Boxen, Pokémon Center-uitgaven, booster boxes, displays en complete cases. Fabrieksverzegeld en verzekerd verzonden.'
+        endif
+      endif
+    -%}
+
     <title>
-      {{ page_title }}
+      {{ brams_titel }}
       {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
       {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
-      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+      {%- unless brams_titel contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
     </title>
 
-    {% if page_description %}
-      <meta name="description" content="{{ page_description | escape }}">
+    {% if brams_omschrijving %}
+      <meta name="description" content="{{ brams_omschrijving | escape }}">
     {% endif %}
 
     {% render 'meta-tags' %}
