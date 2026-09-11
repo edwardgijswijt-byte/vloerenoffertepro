@@ -291,19 +291,42 @@ verzendcontract ligt, moeten ze langs de meetlat.
 
 ## Startpagina
 
-Negen secties, naar het voorbeeld dat Bram aandroeg (pocketgames.nl):
+Negen zichtbare secties plus een onzichtbaar scriptblok:
 
 ```
 image-banner          kopbeeld uit sjablonen/hero.py, kop en een knop
 custom-liquid         doorlopende balk met de vaste beloften
+featured-collection   de carrousel: alle dozen, slider op desktop, veegbaar
+custom-liquid         het script dat de carrousel laat doorschuiven
 collection-list       zes soortcollecties als vierkante tegels
-collage               uitgelicht: drie sets, een groot en twee klein
-featured-collection   nieuw op voorraad
 multicolumn           waarom bij Brams, vier gouden pictogrammen
+collection-list       zeven setcollecties als vierkante tegels
 rich-text             Brams verhaal, ingekort uit teksten/merk.md
 collapsible-content   veelgestelde vragen, inclusief de verzendtarieven
 newsletter            mailadres voor nieuwe voorraad, op goud
 ```
+
+**Geen twee blokken naast elkaar met dezelfde vorm.** Dat is de regel waar de
+volgorde op rust. De pagina toonde op 11 september vijf blokken achter elkaar
+die op elkaar leken — producten, tegels, tegels, tegels, producten — en dat
+leest als één muur waar een bezoeker doorheen scrollt zonder iets te zien.
+
+Twee blokken zijn er toen uit gegaan omdat ze dubbel waren:
+
+- **"Nieuw op voorraad"** haalde vier producten uit `all`. Dat zijn dezelfde
+  producten die vlak erboven al in de carrousel staan, in dezelfde kaartvorm.
+  De titel klopte bovendien niet: er is niets nieuwer dan de rest.
+- **"Uitgelicht"** toonde drie sets, die even verderop compleet in "Of zoek op
+  set" staan. Een willekeurige greep naast een volledige lijst.
+
+De twee tegelrijen die overblijven staan niet tegen elkaar aan: `waarom` staat
+ertussen, en dat is als enige blok vier tekstkolommen met pictogrammen in
+plaats van beeldkaarten. Zet je er iets tussen, kies dan een blok met een
+andere vorm — niet nog een rij kaarten.
+
+Wil je een blok toevoegen, kijk dan eerst naar de vorm van zijn buren. Een
+collection-list naast een collection-list is altijd te veel van hetzelfde, hoe
+verschillend de inhoud ook is.
 
 Het kopbeeld is een eigen render en geen Dawn-placeholder. `hero.py` zet vier
 dozen op een gouden lijn tegen navy en houdt de onderste helft leeg, want daar
@@ -487,9 +510,6 @@ voor te leggen; dat staat als punt in `teksten/vragen-aan-bram.md`.
 - De waardevermindering-clausule moet langs een jurist voordat de kassa opengaat.
 - Adres en contactgegevens staan nog als lege haken in de voorwaarden.
 - PostNL-tarieven zijn akkoord bevonden; nog wel een doos wegen.
-- Het menu is nog Dawn's standaard. Bewust: eerst vullen, dan indelen.
-- De Cases-tegel staat alleen in deze repo; nog kopiëren naar de themarepo.
-- Het uitgelicht-blok toont drie sets; er zijn er zeven met actieve producten.
 - De drie First Partner-cases staan nog niet in Shopify: geen foto's, en het is
   niet vastgesteld welke doos serie 1, 2 of 3 is. Dat is een prijsverschil van
   500 om 320.

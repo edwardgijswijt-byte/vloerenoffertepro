@@ -118,72 +118,6 @@
         "padding_bottom": 44
       }
     },
-    "uitgelicht": {
-      "type": "collage",
-      "blocks": {
-        "prismatic": {
-          "type": "collection",
-          "settings": {
-            "collection": "prismatic-evolutions"
-          }
-        },
-        "chaos": {
-          "type": "collection",
-          "settings": {
-            "collection": "chaos-rising"
-          }
-        },
-        "s151": {
-          "type": "collection",
-          "settings": {
-            "collection": "scarlet-violet-151"
-          }
-        }
-      },
-      "block_order": [
-        "prismatic",
-        "chaos",
-        "s151"
-      ],
-      "settings": {
-        "heading": "Uitgelicht",
-        "heading_size": "h2",
-        "desktop_layout": "left",
-        "mobile_layout": "column",
-        "card_styles": "product-card-wrapper",
-        "color_scheme": "scheme-5",
-        "padding_top": 56,
-        "padding_bottom": 56
-      }
-    },
-    "nieuw": {
-      "type": "featured-collection",
-      "settings": {
-        "title": "Nieuw op voorraad",
-        "heading_size": "h2",
-        "description": "<p>Alles wat je hier ziet ligt bij mij op de plank. Verzekerd verzonden of ophalen op afspraak.</p>",
-        "show_description": true,
-        "description_style": "body",
-        "collection": "all",
-        "products_to_show": 4,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
-        "image_ratio": "square",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "padding_top": 48,
-        "padding_bottom": 48
-      }
-    },
     "waarom": {
       "type": "multicolumn",
       "blocks": {
@@ -441,7 +375,7 @@
         "heading_size": "h2",
         "image_ratio": "square",
         "columns_desktop": 4,
-        "color_scheme": "scheme-2",
+        "color_scheme": "scheme-1",
         "show_view_all": false,
         "columns_mobile": "2",
         "swipe_on_mobile": false,
@@ -490,10 +424,8 @@
     "carrousel",
     "carrousel_beweging",
     "soorten",
-    "sets",
-    "uitgelicht",
-    "nieuw",
     "waarom",
+    "sets",
     "verhaal",
     "vragen",
     "nieuwsbrief"
