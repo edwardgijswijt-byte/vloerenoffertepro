@@ -139,7 +139,20 @@ De teksten zijn van Bram. Niet herschrijven zonder overleg.
 
 ## Shopify
 
-Winkel `mwbxzp-qm.myshopify.com`, plan Basic, EUR, Nederland.
+Winkel op `bramscollectibles.nl` sinds 11 september, plan Basic, EUR,
+Nederland. Het interne adres blijft `mwbxzp-qm.myshopify.com` — dat verandert
+nooit en is waar je in de API naar verwijst.
+
+Het domein staat bij Hostnet, niet bij Shopify: een A-record op 23.227.38.65
+en een CNAME van `www` naar `shops.myshopify.com.` Let op die punt achteraan,
+want Hostnet werkt met absolute namen en zonder punt plakt hij er de zone
+achter. En neem het A-record niet over uit een lookup van
+`shops.myshopify.com`: dat geeft een roterend adres van de loadbalancer
+(23.227.38.74 toen we het deden), niet het vaste apex-adres.
+
+Nergens in het thema of in de teksten staat een hardgecodeerd winkeldomein.
+De structured data gebruikt `request.origin` en alle interne links zijn
+relatief, dus een domeinwissel werkt vanzelf door.
 
 De Shopify-koppeling kan producten aanmaken en bijwerken, voorraad zetten en via
 GraphQL vrijwel alles wat de Admin API kan.

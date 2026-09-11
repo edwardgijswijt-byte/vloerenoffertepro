@@ -45,9 +45,6 @@ KvK-inschrijving volstaat; een webshop moet een bereikbaar adres tonen.
 actief in de winkel, wat erop wijst dat er nog geen betaalmethode is ingesteld.
 Zonder dit kan niemand afrekenen, ook niet als het wachtwoord eraf gaat.
 
-**9. De winkel heeft nog geen eigen domein.** Hij staat op
-mwbxzp-qm.myshopify.com. Dat kost vindbaarheid en vertrouwen.
-
 **10. De winkelmail staat op edward@sozials.com.** Bestelbevestigingen en
 klantmail komen daardoor bij Edward binnen in plaats van bij jou.
 

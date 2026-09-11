@@ -86,7 +86,6 @@ Duitsland is de veilige route.
 
 - Er staat **geen betaalprovider** aan. Geen enkele digitale wallet is actief.
   Zonder dit kan niemand afrekenen.
-- De winkel heeft **geen eigen domein**; hij staat op `mwbxzp-qm.myshopify.com`.
 - Negen van de vijftien producten hebben **gewicht 0**. Dat raakt de
   verzendtarieven níet — die gaan op orderbedrag, niet op gewicht — maar het
   werkt wel door in PostNL-labels.
