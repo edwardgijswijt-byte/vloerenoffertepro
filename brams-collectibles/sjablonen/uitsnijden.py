@@ -81,20 +81,24 @@ def masker_dubbelslag(im):
     de matting een stuk opgegeten en nemen we het ruwe masker."""
     a = masker_rembg(im)
     ruw = masker_rembg(im, matting=False)
-    vol = vulling(a)
     krimp = omvang(a) / omvang(ruw) if omvang(ruw) else 1.0
     if krimp < 0.90:
-        return ruw, f'rembg zonder matting (matting sneed tot {krimp:.0%} weg)'
-    if vol >= 0.70:
-        return a, 'rembg'
+        beste, hoe = ruw, f'zonder matting (matting sneed tot {krimp:.0%} weg)'
+    else:
+        beste, hoe = a, 'gewoon'
+    if vulling(beste) >= 0.70:
+        return beste, f'rembg {hoe} ({vulling(beste):.0%} gevuld)'
+
     op = ImageEnhance.Contrast(ImageEnhance.Brightness(im).enhance(3.0)).enhance(1.4)
     b = masker_rembg(op, matting=False)
-    beste, hoe = (b, 'opgehelderd') if vulling(b) > vol else (a, 'gewoon')
+    if vulling(b) > vulling(beste):
+        beste, hoe = b, 'opgehelderd'
     if vulling(beste) >= 0.70:
-        return beste, f'rembg {hoe} ({vol:.0%} -> {vulling(beste):.0%} gevuld)'
+        return beste, f'rembg {hoe} ({vulling(beste):.0%} gevuld)'
+
     c = masker_omhullende(im, beste)
     if vulling(c) > vulling(beste):
-        return c, f'omhullende ({vulling(beste):.0%} -> {vulling(c):.0%} gevuld)'
+        return c, f'omhullende na rembg {hoe} ({vulling(beste):.0%} -> {vulling(c):.0%} gevuld)'
     return beste, f'rembg {hoe} ({vulling(beste):.0%} gevuld, niets hielp)'
 
 

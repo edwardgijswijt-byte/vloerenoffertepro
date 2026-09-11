@@ -89,6 +89,12 @@
           "settings": {
             "collection": "booster-boxes"
           }
+        },
+        "cases": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "cases"
+          }
         }
       },
       "block_order": [
@@ -96,13 +102,14 @@
         "boxes",
         "bundles",
         "premium",
-        "displays"
+        "displays",
+        "cases"
       ],
       "settings": {
         "title": "Waar zoek je naar",
         "heading_size": "h2",
         "image_ratio": "square",
-        "columns_desktop": 5,
+        "columns_desktop": 6,
         "color_scheme": "scheme-1",
         "show_view_all": true,
         "columns_mobile": "2",

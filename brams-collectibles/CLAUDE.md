@@ -268,7 +268,7 @@ Negen secties, naar het voorbeeld dat Bram aandroeg (pocketgames.nl):
 ```
 image-banner          kopbeeld uit sjablonen/hero.py, kop en een knop
 custom-liquid         doorlopende balk met de vaste beloften
-collection-list       vier soortcollecties als vierkante tegels
+collection-list       zes soortcollecties als vierkante tegels
 collage               uitgelicht: drie sets, een groot en twee klein
 featured-collection   nieuw op voorraad
 multicolumn           waarom bij Brams, vier gouden pictogrammen
@@ -291,7 +291,19 @@ rekt Dawn ze op tot kolombreedte.
 concept staan bestaan niet op de winkelkant, dus een tegel die naar zo'n product
 wijst blijft leeg. Collecties bestaan altijd en hebben een eigen afbeelding.
 Een collectie zonder producten hoort er ook niet in — die leidt naar een lege
-pagina. Booster Boxes staat er daarom nog niet bij.
+pagina. En let op: het gaat om producten die **actief** zijn. Een collectie vol
+concepten telt in de beheerkant wel mee maar staat op de winkelkant leeg. Op dit
+moment geldt dat voor Premium Collections, dat wel als tegel op de startpagina
+staat: die tegel leidt naar niets tot de Super Premium Collection of de Mega
+Greninja actief wordt. Cases, Paldean Fates en Ascended Heroes hebben hetzelfde,
+en staan daarom nog niet in het uitgelicht-blok.
+
+Nakijken welke collecties echt gevuld zijn:
+
+```
+query { collections(first: 25) { nodes { handle
+  products(first: 30) { nodes { status } } } } }
+```
 
 Multicolumn zonder afbeelding is veilig — die laat het beeld gewoon weg.
 Collection-list niet: die zet er Dawn's placeholder van een T-shirt neer.
