@@ -1,75 +1,71 @@
 # Vragen aan Bram
 
-Bijgewerkt 11 september 2026. Wat hier beantwoord is gaat naar `register.csv`
-en verdwijnt uit deze lijst.
+Bijgewerkt 11 september 2026, na Brams antwoorden. Wat beantwoord is staat
+onderaan onder "Beantwoord", zodat je kunt terugzien waarop een beslissing rust.
 
-## Blokkeert het plaatsen
+## Nog open
 
-**1. Aantal en prijs voor vijf artikelen.** Je hebt hier wel advertentieteksten
-voor gestuurd, maar ze staan niet met een aantal en een prijs in je
-voorraadlijst. Zonder die twee kan de advertentie niet online.
+**1. Welke First Partner-case is serie 1, 2 en 3?** Er liggen er vier per serie,
+en de prijzen lopen uiteen: serie 1 kost 500, serie 2 en 3 kosten 320. Fotogroep
+12 (IMG_3773 tot en met IMG_3785) bevat drie verschillende dozen, maar welke
+foto bij welke serie hoort is niet vast te stellen — het etiket op IMG_3785
+(ITEM# 10-10395-101, EAN 0196214139763, zes per carton) noemt de serie niet.
+Zonder die koppeling kan een advertentie van 500 euro de foto van een doos van
+320 krijgen. Kun je bij de nieuwe opnames per doos de serie erbij noteren?
 
-- Chaos Rising Pokémon Center Elite Trainer Box
-- Ascended Heroes Pokémon Center Elite Trainer Box
-- First Partner Illustration Collection Case, serie 1
-- First Partner Illustration Collection Case, serie 2
-- First Partner Illustration Collection Case, serie 3
+**2. Foto's van de Ascended Heroes Pokémon Center ETB.** Daar is nog geen enkele
+opname van. Tien stuks à 525 euro, dus de grootste post die nu nog niet online
+kan.
 
-**2. De Pitch Black Elite Trainer Box — is dit jouw regel?** In je lijst staat
-één stuk voor zestig euro met de omschrijving "Promo met 9 Boosterpacks". Die
-omschrijving past op dit artikel, maar de fotogroep die eraan hing was die van
-de Chaos Rising Pokémon Center-ETB. Klopt het dat die 1 stuk en die zestig euro
-bij de gewone Pitch Black ETB horen? En heb je er foto's van? Die zijn er nu
-niet.
+**3. Een vooraanzicht van de gewone Pitch Black ETB.** Er zijn er twee opnames
+van gevonden (het achterpaneel en een zijkant), genoeg om te plaatsen, maar geen
+voorkant. Zie hieronder bij "Beantwoord" — die dozen zaten verstopt in fotogroep
+9.
 
-## Prijzen
+**4. De Chaos Rising Booster Box, voorkant met het logo.** IMG_3712 is niet uit
+te snijden: zwarte doos op zwart satijn.
 
-**3. De Ascended Heroes Booster Bundle: 82 of 110 euro inkoop?** Je noteert 82
-euro per losse bundel. Zes packs per bundel, dus 13,67 per pack. Maar het
-display kost 1100 voor tien bundels, en dat is 110 per bundel. Die twee kunnen
-niet allebei kloppen, en het gaat om 144 stuks — de grootste post in de
-voorraad.
+**5. Het display versus de losse bundels bij Ascended Heroes.** Tien losse
+bundels kosten 899,50, het display 1140. Dat is 240 euro meer voor dezelfde
+zestig packs. Bij een verzegeld display is een opslag normaal, maar we zetten ze
+wel naast elkaar in dezelfde webshop. Bewust zo?
 
-**4. De Mega Greninja ex Premium Collection staat op nul marge.** Inkoop 49,95
-en verkoop 49,95. Bewust, of een typefout?
+**6. De verkoop als privécollectie.** Je geeft aan dat dit voorlopig als verkoop
+uit privécollectie geldt, dus zonder btw. Dat verklaart ook waarom de marges zo
+krap kunnen. Het gaat wel om ongeveer 66.000 euro aan voorraad in circa 300
+dozen, met inkoop, een webshop en advertenties. Leg dat één keer voor aan een
+boekhouder voordat de kassa opengaat — niet omdat wij denken dat het niet mag,
+maar omdat het bedrag en de opzet groot genoeg zijn dat je het antwoord zwart op
+wit wilt hebben. Datzelfde gesprek kan meteen over het moment van de
+KvK-inschrijving gaan.
 
-**5. Weet je zeker dat de marges zo mogen blijven?** Over de hele voorraad komt
-het uit op 5,3 procent bruto: 54.510 verkoop tegen 51.627 inkoop. Bij de Chaos
-Rising Booster Box hou je 4,95 over op een doos van 194,95. Eén iDEAL-transactie
-plus een verzenddoos is dat al. Edward zei dat je dit doet om snel om te zetten
-en later te verhogen — dan is het goed, maar we willen het één keer bevestigd
-hebben voordat er driehonderd dozen de deur uit gaan.
+**7. De waardevermindering-clausule** in de algemene voorwaarden moet langs een
+jurist voordat de kassa opengaat.
 
-## Teksten
+**8. Adres en contactgegevens.** Staan nog als lege haken in de voorwaarden. Je
+gaf aan daar nog over na te denken. Een postadres of het adres van een
+KvK-inschrijving volstaat; een webshop moet een bereikbaar adres tonen.
 
-**6. Het Pokémon Center-blok onder de Super Premium Collection.** Dat blok gaat
-over gelimiteerde oplages van Elite Trainer Boxen, en de Super Premium
-Collection is geen ETB en ook geen Pokémon Center-exclusive. Eruit, of wil je
-hem laten staan?
+## Beantwoord op 11 september
 
-Ter info, twee dingen die we hebben rechtgezet aan de hand van de doos zelf:
-
-- De Mega Greninja heeft **8** booster packs, niet 4. Staat twee keer op het
-  achterpaneel. Je lijst zei 4.
-- De Super Premium Collection heeft **15** packs, een pluche Eevee-deckbox en
-  een speelmat. Je eigen advertentietekst zei dat al; het register stond nog
-  op 9 packs.
-
-## Foto's
-
-**7. Twee opnames opnieuw.** De lila muur die je bij de Destined Rivals hebt
-gebruikt werkt goed — zwart satijn onder een zwarte doos niet.
-
-- Chaos Rising Booster Box, de voorkant met het logo
-- Pitch Black Elite Trainer Box, er is nog geen enkele opname van
-
-## Zakelijk, nog open
-
-- **Btw:** zijn de prijzen inclusief of exclusief, en valt dit onder de
-  margeregeling? Dat bepaalt of die 5,3 procent bruto ook echt 5,3 procent is.
-- **Verzendtarieven:** die in de webshop staan zijn een voorstel op
-  PostNL-tarieven. Er is nog geen doos gewogen en geen verzendcontract.
-- **Waardevermindering-clausule** in de algemene voorwaarden moet langs een
-  jurist voordat de kassa opengaat.
-- **KvK-nummer, btw-identificatienummer, adres en contactgegevens** staan nog
-  als lege haken in de voorwaarden.
+- **Aantallen en prijzen** voor de Chaos Rising PC ETB (10 × 155), de Ascended
+  Heroes PC ETB (10 × 525, inclusief acryl hoes), en de drie First Partner-cases
+  (4 × 500, 4 × 320, 4 × 320). Allemaal in het register gezet.
+- **De Ascended Heroes-bundel blijft op 82 inkoop.** Onze eerdere twijfel berustte
+  op een rekenfout van ons: we lazen de inkoop van het display, 1100 voor tien
+  bundels, als 110. Per bundel is het display dus 110 en de losse bundel 82.
+- **De Mega Greninja staat bewust op nul marge.**
+- **Pitch Black: één gewone ETB en tien Pokémon Center.** Dat klopt met wat er in
+  het register stond. En fotogroep 9 bleek twee verschillende dozen te bevatten:
+  IMG_3733 is het achterpaneel van de gewone Pitch Black ETB en IMG_3734 de
+  zijkant; de andere zes zijn de Chaos Rising Pokémon Center-doos. Je etiket op
+  die groep klopte dus half — de Pitch Black zit er wel degelijk in.
+- **Het Pokémon Center-blok gaat uit de Super Premium Collection.** Dat blok gaat
+  alleen over Elite Trainer Boxen. Het stond er al niet in; nu ook bevestigd.
+- **Geen btw**, voorlopig verkoop uit privécollectie. Zie punt 6 hierboven.
+- **PostNL-tarieven zijn akkoord.** Ze staan in de webshop en in de vragenlijst
+  op de startpagina. Nog wel een doos wegen zodra dat kan.
+- **Btw-identificatienummer** is niet nodig zolang het privéverkoop is.
+- **Twee inhoudslijsten van de doos gelezen** en in het register gezet: de Chaos
+  Rising PC ETB heeft elf packs en twee Fennekin-promo's, de gewone Pitch Black
+  ETB negen packs en één Zarude-promo.

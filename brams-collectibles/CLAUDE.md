@@ -85,11 +85,17 @@ BOX EN, QTY 10 per Carton`. Wat er per Elite Trainer Box in zit staat er niet
 op, en dat mag je dus ook niet invullen naar het gewone Scarlet & Violet-format
 — dat is gokken, geen lezen.
 
-**Lees de naam van de doos, niet uit de lijst.** Brams invullijst koppelde
-fotogroep 9 aan een Pitch Black Elite Trainer Box; op die dozen staat Mega
-Evolution Chaos Rising met het Pokemon Center-logo. Een groep verderop klopte
-weer wel. Zo'n verschuiving zet een prijs van zestig euro op een artikel dat er
-honderden waard is. Zoom in op het logo voordat je een sku aanmaakt.
+**Een fotogroep kan meer dan een doos bevatten.** Fotogroep 9 leek eerst
+helemaal Chaos Rising Pokemon Center, omdat de drie opnames die als eerste waren
+opgehaald dat waren. Haal je de hele groep op, dan blijken IMG_3733 en IMG_3734
+de gewone Pitch Black ETB te zijn — het achterpaneel noemt negen packs en een
+Zarude-promo, de andere zes dozen elf packs en twee Fennekin-promo's. Brams
+etiket op die groep klopte dus half, en mijn conclusie dat hij zich vergist had
+ook. Werk een groep helemaal af voordat je er iets over concludeert.
+
+**Lees de naam van de doos, niet uit de lijst.** Zo'n verschuiving zet een prijs
+van zestig euro op een artikel dat er honderden waard is. Zoom in op het logo
+voordat je een sku aanmaakt.
 
 **Inhoudslijsten van de doos lezen, niet van een webshop.** Fotografeer het
 achterpaneel scherp genoeg om te lezen; daar staat precies wat erin zit. Zo kwam
@@ -353,13 +359,25 @@ markt staan.
 De trendprijs loopt achter. Bij een dalende markt is het 7-daags gemiddelde wat
 kopers vandaag betalen — bij de Prismatic scheelde dat 60 euro.
 
+## Btw en rechtsvorm
+
+Bram verkoopt dit voorlopig als **verkoop uit privécollectie**, dus zonder btw
+en zonder btw-identificatienummer. Daarom kunnen de marges zo krap: er gaat geen
+btw af. De KvK-inschrijving is aangevraagd maar bewust nog niet gepubliceerd.
+
+Reken dus nergens met btw, en zet geen btw-regel in de webshop of op een
+factuur zolang dit geldt. Verandert dit, dan verandert elke prijs mee.
+
+Het gaat om ongeveer 66.000 euro voorraad in circa 300 dozen. Die omvang plus
+inkoop, webshop en advertenties is groot genoeg om één keer aan een boekhouder
+voor te leggen; dat staat als punt in `teksten/vragen-aan-bram.md`.
+
 ## Nog open
 
 - Prijs Prismatic staat op € 599, bewust boven de markt. Herzien na zes weken.
-- Inkoop staat uit; Bram pakt dat later op. Het blok staat in de geschiedenis.
 - De waardevermindering-clausule moet langs een jurist voordat de kassa opengaat.
-- Alles tussen `[haken]` moet nog worden ingevuld: KvK, btw-id, adres, contact.
-- Verzendtarieven zijn een voorstel; nog wegen en langs een verzendcontract leggen.
+- Adres en contactgegevens staan nog als lege haken in de voorwaarden.
+- PostNL-tarieven zijn akkoord bevonden; nog wel een doos wegen.
 - Het menu is nog Dawn's standaard. Bewust: eerst vullen, dan indelen.
 - De tegel Premium Collections op de startpagina leidt naar een lege pagina
   zolang beide producten erin op concept staan.
