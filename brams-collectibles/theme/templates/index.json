@@ -380,12 +380,81 @@
         "padding_top": 56,
         "padding_bottom": 56
       }
+    },
+    "sets": {
+      "type": "collection-list",
+      "blocks": {
+        "chaos_rising": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "chaos-rising"
+          }
+        },
+        "pitch_black": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "pitch-black"
+          }
+        },
+        "ascended_heroes": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "ascended-heroes"
+          }
+        },
+        "prismatic_evolutions": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "prismatic-evolutions"
+          }
+        },
+        "destined_rivals": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "destined-rivals"
+          }
+        },
+        "scarlet_violet_151": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "scarlet-violet-151"
+          }
+        },
+        "paldean_fates": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "paldean-fates"
+          }
+        }
+      },
+      "block_order": [
+        "chaos_rising",
+        "pitch_black",
+        "ascended_heroes",
+        "prismatic_evolutions",
+        "destined_rivals",
+        "scarlet_violet_151",
+        "paldean_fates"
+      ],
+      "settings": {
+        "title": "Of zoek op set",
+        "heading_size": "h2",
+        "image_ratio": "square",
+        "columns_desktop": 4,
+        "color_scheme": "scheme-2",
+        "show_view_all": false,
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 40,
+        "padding_bottom": 56
+      }
     }
   },
   "order": [
     "image_banner",
     "loopbalk",
     "soorten",
+    "sets",
     "uitgelicht",
     "nieuw",
     "waarom",

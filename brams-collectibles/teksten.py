@@ -151,6 +151,43 @@ def fotoregel(r):
     return "De foto's zijn van dit exemplaar."
 
 
+GIDS = {
+    'wat-is-een-elite-trainer-box': 'Wat is een Elite Trainer Box en wat zit erin?',
+    'pokemon-center-uitgaven': 'Wat maakt een Pokémon Center-uitgave anders?',
+    'booster-bundle-booster-box-of-elite-trainer-box':
+        'Booster bundle, booster box of Elite Trainer Box — wat kun je het beste kopen?',
+    'verzegelde-pokemon-dozen-bewaren': 'Verzegelde Pokémon-dozen bewaren',
+    'is-verzegelde-pokemon-tcg-een-goede-investering':
+        'Is verzegelde Pokémon TCG een goede investering?',
+}
+
+
+def gidslinks(r):
+    """De gidsartikelen die bij dit artikel horen, hoogstens drie.
+
+    Losse artikelen over losse onderwerpen leveren weinig op; een groepje dat
+    naar elkaar en naar de producten verwijst wel. Dit is de kant van product
+    naar gids. Welke links je krijgt hangt af van `soort` en van de naam, zodat
+    een nieuw artikel in het register ze vanzelf meekrijgt en niemand ze met de
+    hand hoeft bij te plakken.
+
+    Bewaren staat er altijd bij: dat is de vraag die elke koper van verzegeld
+    materiaal een keer stelt, ongeacht wat hij koopt."""
+    keuze = []
+    if r['soort'] == 'ETB':
+        keuze.append('wat-is-een-elite-trainer-box')
+        if pokemon_center(r):
+            keuze.append('pokemon-center-uitgaven')
+    else:
+        keuze.append('booster-bundle-booster-box-of-elite-trainer-box')
+    if r['soort'] in ('Display', 'Case') or 'Pokémon Center' in r['naam']:
+        keuze.append('is-verzegelde-pokemon-tcg-een-goede-investering')
+    keuze.append('verzegelde-pokemon-dozen-bewaren')
+
+    uniek = list(dict.fromkeys(keuze))[:3]
+    return [(f'/blogs/gids/{h}', GIDS[h]) for h in uniek]
+
+
 def webshop(r):
     d = [settekst(r['set']), '']
     if pokemon_center(r):
@@ -164,14 +201,28 @@ def webshop(r):
         d += ['']
     if r['publiek']:
         d += [omslaan(r['publiek']), '']
-    d += [f'Staat: {r["staat"]}. {fotoregel(r)}', '',
-          MERK['verzenden']]
+    d += [f'Staat: {r["staat"]}. {fotoregel(r)}', '']
+    links = gidslinks(r)
+    if links:
+        d += ['Meer weten:', '']
+        d += [f'- [{titel}]({url})' for url, titel in links]
+        d += ['']
+    d += [MERK['verzenden']]
     return '\n'.join(d)
+
+
+def koppeling(t):
+    """[tekst](url) omzetten naar een anker.
+
+    Alleen in de webshoptekst: op Marktplaats en in de socialtekst zijn links
+    naar de eigen winkel niet klikbaar en soms niet eens toegestaan."""
+    return re.sub(r'\[([^\]]+)\]\(([^)]+)\)', r'<a href="\2">\1</a>', t)
 
 
 def naar_html(tekst):
     """De webshoptekst omzetten naar de HTML die Shopify in het product zet.
-    Alleen wat webshop() ook echt maakt: alinea's, een opsomming en een kop."""
+    Alleen wat webshop() ook echt maakt: alinea's, een opsomming, een kop en
+    de links naar de gidsartikelen."""
     uit, lijst = [], []
     for blok in tekst.split('\n\n'):
         blok = blok.strip()
@@ -179,7 +230,7 @@ def naar_html(tekst):
             continue
         if blok.startswith('- '):
             lijst = [r[2:].strip() for r in blok.split('\n') if r.startswith('- ')]
-            uit.append('<ul>\n' + '\n'.join(f'<li>{h}</li>' for h in lijst) + '\n</ul>')
+            uit.append('<ul>\n' + '\n'.join(f'<li>{koppeling(h)}</li>' for h in lijst) + '\n</ul>')
         elif blok.startswith('**') and blok.endswith('**'):
             uit.append(f'<h3>{blok.strip("*")}</h3>')
         else:
@@ -187,7 +238,7 @@ def naar_html(tekst):
             if regel.endswith(':') and len(regel) < 40:
                 uit.append(f'<p><strong>{regel}</strong></p>')
             else:
-                uit.append(f'<p>{regel}</p>')
+                uit.append(f'<p>{koppeling(regel)}</p>')
     return '\n\n'.join(uit)
 
 
