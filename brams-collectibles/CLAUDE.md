@@ -82,11 +82,20 @@ Claude-omgeving. Voor een externe klant is een pdf de weg.
 ## Teksten staan in lagen
 
 ```
-teksten/merk.md          verhaal en "verzenden of ophalen" — nooit anders
+teksten/merk.md          verhaal, "Pokemon Center" en "verzenden of ophalen"
 teksten/sets/<set>.md    de alinea over de set, gedeeld door alles uit die set
 register.csv             naam, hoogtepunten, staat, prijs
 teksten.py               stelt Marktplaats, socials en webshop samen
 ```
+
+Het blok **pokemon-center** gaat automatisch mee bij elk artikel met "Pokemon
+Center" in de naam. Vier artikelen delen die alinea; je kunt hem dus niet ergens
+vergeten.
+
+"En nog veel meer!" komt alleen onder de hoogtepunten bij een ETB of een Premium
+Collection. Daar zit meer in dan je opsomt. Bij een bundel, een booster box of
+een display is de lijst compleet en zou die regel een leugen zijn. Bram maakt
+dat onderscheid zelf ook.
 
 De settekst hoort bij de **set**, niet bij het product. Chaos Rising ETB, Booster
 Box en Bundle delen er één. In de oorspronkelijke Word-bestanden stond die drie

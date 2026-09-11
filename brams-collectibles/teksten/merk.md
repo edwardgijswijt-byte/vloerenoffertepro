@@ -28,6 +28,15 @@ verzameling.
 
 Gestart als fan. Voor de verzamelaar. Voor de community.
 
+## pokemon-center
+
+**Pokémon Center**
+
+Via de officiële Pokémon Center-kanalen worden er gelimiteerde oplages gemaakt
+van Elite Trainer Boxen. Uniek om in je verzameling te hebben en wat mij betreft
+een van de mooiste producten als het gaat om verzamelen voor de langere termijn.
+Heb jij er al één bemachtigd?
+
 ## verzenden
 
 **Verzenden of ophalen?**

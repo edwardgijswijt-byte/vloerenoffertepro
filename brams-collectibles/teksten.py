@@ -58,6 +58,15 @@ def hoogtepunten(r):
     return [h.strip() for h in r['hoogtepunten'].split('|') if h.strip()]
 
 
+def pokemon_center(r):
+    """Het blok over de Pokemon Center-oplages, als het er een is.
+
+    Staat in merk.md en is dus voor elk Pokemon Center-artikel hetzelfde:
+    Prismatic, Pitch Black, Chaos Rising, Ascended Heroes. Herkenning aan de
+    naam, zodat je het niet per artikel kunt vergeten aan te vinken."""
+    return 'Pokémon Center' in r['naam']
+
+
 def bundel(r, alles):
     """Bram biedt een bundelprijs als er meer uit dezelfde set ligt."""
     anderen = list(dict.fromkeys(
@@ -77,10 +86,14 @@ def marktplaats(r, alles):
         d += ['De hoogtepunten:']
         d += [f'• In perfecte staat en sealed.'] if r['staat'] == 'sealed' else []
         d += [f'• {h}' for h in hp]
-        d += ['En nog veel meer!', '']
+        if r['soort'] in ('ETB', 'Premium Collection'):
+            d += ['En nog veel meer!']      # in een ETB zit meer dan je opsomt
+        d += ['']
     if r['publiek']:
         d += [r['publiek'], '']
     d += [settekst(r['set']), '']
+    if pokemon_center(r):
+        d += [MERK['pokemon-center'].replace('**', ''), '']
     if r['hoes'] == 'ja':
         d += ['Zit in een acryl beschermhoes, die gaat mee bij verkoop.', '']
     b = bundel(r, alles)
@@ -115,6 +128,8 @@ def fotoregel(r):
 
 def webshop(r):
     d = [settekst(r['set']), '']
+    if pokemon_center(r):
+        d += [MERK['pokemon-center'], '']
     if r['hoes'] == 'ja':
         d += ['Geleverd in de acryl beschermhoes waarin hij op de foto staat.', '']
     hp = hoogtepunten(r)
