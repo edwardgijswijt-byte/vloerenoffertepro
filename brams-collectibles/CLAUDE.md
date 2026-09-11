@@ -191,6 +191,7 @@ prismatic-evolutions   TAG = prismatic evolutions
 scarlet-violet-151     TAG = 151
 pitch-black            TAG = pitch black
 destined-rivals        TAG = destined rivals
+ascended-heroes        TAG = ascended heroes
 paldean-fates          TAG = paldean fates
 ```
 

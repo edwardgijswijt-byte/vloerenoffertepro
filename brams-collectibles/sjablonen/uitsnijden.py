@@ -55,15 +55,36 @@ def vulling(a):
     return float(m.sum()) / float(vlak)
 
 
+def omvang(a):
+    """Het oppervlak van de omhullende rechthoek van het masker."""
+    m = a > 128
+    if not m.any():
+        return 0
+    ys, xs = np.nonzero(m)
+    return (ys.max() - ys.min() + 1) * (xs.max() - xs.min() + 1)
+
+
 def masker_dubbelslag(im):
-    """Eerst gewoon. Zit het masker vol gaten, dan nog eens op een opgehelderde
+    """Eerst gewoon. Deugt het masker niet, dan nog eens op een opgehelderde
     kopie — het masker komt dan wel goed, en leggen we op het origineel.
 
     Reden: matzwart karton op zwart satijn geeft rembg te weinig verschil. Op
     driemaal helderder met wat extra contrast vindt hij de doos in zijn geheel.
-    De kleuren van de uitvoer blijven die van de originele opname."""
+    De kleuren van de uitvoer blijven die van de originele opname.
+
+    Twee metingen, want ze vangen elk iets anders. `vulling` ziet een hap uit
+    de doos. Maar snijdt de matting een hele band weg — de lichte bovenrand van
+    de Ascended Heroes-bundel kreeg alpha 12, dwars over de volle breedte —
+    dan krimpt de omhullende rechthoek mee en blijft de vulling keurig hoog.
+    Daarom ernaast een masker zonder matting: dat is ruwer aan de rand maar
+    geeft wel de hele doos. Scheelt de rechthoek meer dan een tiende, dan heeft
+    de matting een stuk opgegeten en nemen we het ruwe masker."""
     a = masker_rembg(im)
+    ruw = masker_rembg(im, matting=False)
     vol = vulling(a)
+    krimp = omvang(a) / omvang(ruw) if omvang(ruw) else 1.0
+    if krimp < 0.90:
+        return ruw, f'rembg zonder matting (matting sneed tot {krimp:.0%} weg)'
     if vol >= 0.70:
         return a, 'rembg'
     op = ImageEnhance.Contrast(ImageEnhance.Brightness(im).enhance(3.0)).enhance(1.4)
