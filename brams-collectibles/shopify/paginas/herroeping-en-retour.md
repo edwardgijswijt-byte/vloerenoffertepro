@@ -21,10 +21,14 @@ Na je melding heb je **nog eens 14 dagen** om het product terug te sturen.
 ## Terugsturen
 
 - De **kosten van de retourzending zijn voor jou**.
-- Stuur het product terug in de originele verpakking, met alle meegeleverde
-  onderdelen.
-- Verstuur verzekerd en met track-en-trace. Tot wij het pakket hebben ontvangen
-  draag jij het risico van de retourzending.
+- **Tot wij het pakket hebben ontvangen draag jij het risico van de
+  retourzending.** Verstuur daarom verzekerd en met track-en-trace, en bewaar je
+  verzendbewijs. Dat is geen voorwaarde om te mogen retourneren, maar het
+  beschermt je als er onderweg iets misgaat.
+- Stuur het product zo terug als je het kreeg: in de originele verpakking en met
+  alle onderdelen erbij. Ook dit is geen voorwaarde — maar hoe verder het
+  afwijkt van de staat waarin je het ontving, hoe eerder er sprake is van
+  waardevermindering (zie hieronder).
 
 Retouradres: **[RETOURADRES]**
 

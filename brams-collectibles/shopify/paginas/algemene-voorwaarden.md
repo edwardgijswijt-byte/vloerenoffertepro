@@ -5,7 +5,7 @@
 **Brams Collectibles**
 [STRAAT EN HUISNUMMER], [POSTCODE] [PLAATS]
 E-mail: [EMAIL] · Telefoon: [TELEFOON]
-KvK-nummer: [KVK-NUMMER] · Btw-identificatienummer: [BTW-ID]
+KvK-nummer: [KVK-NUMMER]
 
 Wij zijn bereikbaar op werkdagen en reageren in de regel binnen één werkdag.
 
@@ -19,8 +19,9 @@ opslaan.
 ## 3. Ons aanbod
 
 Wij beschrijven onze producten zo volledig en nauwkeurig mogelijk. De foto's bij
-een product zijn foto's van het daadwerkelijke exemplaar, tenzij er uitdrukkelijk
-bij staat dat het een voorbeeldfoto is.
+een product zijn foto's van het daadwerkelijke exemplaar. Liggen er meerdere
+identieke exemplaren van hetzelfde artikel op voorraad, dan zijn de foto's van een
+van die exemplaren en krijg je er daar een van.
 
 Kennelijke vergissingen of fouten in het aanbod binden ons niet. Zie je een prijs
 die overduidelijk niet klopt, dan mogen wij de bestelling annuleren en betalen wij
@@ -44,16 +45,15 @@ geldt voor verzegelde producten, staat op de pagina
 
 ## 6. Prijzen
 
-Alle prijzen zijn in euro's en inclusief btw, exclusief verzendkosten. De
-verzendkosten worden vóór het afronden van de bestelling getoond.
+Alle prijzen zijn in euro's en zijn de prijs die je betaalt. Verzendkosten komen
+daar apart bij en worden vóór het afronden van de bestelling getoond.
 
-Op een deel van onze producten passen wij de **margeregeling** toe. Dat zijn
-producten die wij zonder btw hebben ingekocht, bijvoorbeeld van particulieren. Bij
-die producten staat de btw niet apart op de factuur en kun je de btw niet
-terugvorderen. Bij de overige producten staat de btw wel apart vermeld.
+Wij brengen op dit moment **geen btw in rekening**. Deze producten komen uit een
+privéverzameling en worden niet als btw-ondernemer verkocht. Op de factuur staat
+daarom geen btw apart vermeld, en je kunt als zakelijke koper geen btw
+terugvorderen.
 
-Wij wijzigen prijzen niet gedurende de looptijd van een aanbod, behalve bij
-wijzigingen in het btw-tarief.
+Wij wijzigen prijzen niet gedurende de looptijd van een aanbod.
 
 ## 7. Conformiteit en garantie
 
@@ -64,17 +64,11 @@ staan ervoor in dat onze producten:
 - **authentiek** zijn. Wij verkopen geen namaak. Blijkt een product ondanks onze
   controle toch niet authentiek, dan nemen wij het terug en betalen wij het
   volledige aankoopbedrag inclusief verzendkosten terug;
-- bij sealed product **fabrieksverzegeld** zijn en niet zijn geopend of opnieuw
-  verzegeld.
+- **fabrieksverzegeld** zijn en niet zijn geopend of opnieuw verzegeld.
 
-Bij losse kaarten beschrijven wij de conditie. Wij hanteren daarbij de gangbare
-schaal (Near Mint, Excellent, Good, Light Played, Played, Poor). Twijfel je of de
-ontvangen conditie klopt met de omschrijving? Neem binnen zeven dagen na ontvangst
-contact op met foto's, dan lossen wij het op.
-
-Bij gegradeerde kaarten geldt het oordeel van het gradingbedrijf zoals dat op het
-label staat. Wij zijn niet verantwoordelijk voor het oordeel zelf, wel voor het
-correct vermelden ervan.
+Een doos kan lichte gebruikssporen aan de buitenkant hebben — een deukje in een
+hoek, een kreukje in de folie. Waar dat zo is, staat het bij het product en zie je
+het op de foto's.
 
 Deze afspraken laten je wettelijke rechten onverlet.
 
@@ -113,5 +107,14 @@ Op onze overeenkomsten is Nederlands recht van toepassing.
 
 > **Laat dit nakijken.** Dit is een zorgvuldig opgestelde set voorwaarden voor
 > een Nederlandse webshop, maar het is geen juridisch advies. Laat het door een
-> jurist toetsen voordat je de kassa openzet — met name artikel 6 (margeregeling)
-> en artikel 7 (conformiteit bij graded kaarten).
+> jurist toetsen voordat je de kassa openzet. Twee punten springen eruit:
+>
+> 1. **Artikel 6 staat of valt met het antwoord van de boekhouder.** Het zegt nu
+>    dat er geen btw wordt gerekend omdat dit verkoop uit privéverzameling is.
+>    Luidt het antwoord dat hier sprake is van ondernemerschap, dan moet dit
+>    artikel om én moet elke prijs op de site opnieuw worden bekeken, want de btw
+>    komt dan uit de huidige marge.
+> 2. **Deze voorwaarden zijn geschreven voor verzegeld product.** Zodra er losse
+>    of gegradeerde kaarten bij komen moet artikel 7 worden uitgebreid met
+>    conditiebeschrijving en met wat er geldt voor het oordeel van een
+>    gradingbedrijf.

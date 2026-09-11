@@ -28,7 +28,7 @@ geautomatiseerde besluitvorming of profilering.
 Alleen met partijen die nodig zijn om je bestelling uit te voeren:
 
 - **[BETAALDIENST]** voor de betaling
-- **[VERVOERDER]** voor de bezorging
+- **PostNL** voor de bezorging
 - **Shopify** als leverancier van onze webwinkel
 - Onze boekhouder, voor de administratie
 
@@ -86,3 +86,8 @@ Toegang tot bestelgegevens is beperkt tot wie ze nodig heeft.
 ---
 
 *Laatst bijgewerkt: [DATUM]*
+
+> **Nog in te vullen.** [BETAALDIENST] kan pas worden ingevuld als de
+> betaalprovider gekozen is. Bij cookies moet [WEL/GEEN] worden beslist: Shopify
+> zet standaard eigen analytische cookies, dus als die aanblijven is het "wel" en
+> hoort er een toestemmingsbanner bij.

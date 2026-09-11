@@ -41,6 +41,26 @@ jurist voordat de kassa opengaat.
 gaf aan daar nog over na te denken. Een postadres of het adres van een
 KvK-inschrijving volstaat; een webshop moet een bereikbaar adres tonen.
 
+**8. Er staat nog geen betaalprovider aan.** Geen enkele digitale wallet is
+actief in de winkel, wat erop wijst dat er nog geen betaalmethode is ingesteld.
+Zonder dit kan niemand afrekenen, ook niet als het wachtwoord eraf gaat.
+
+**9. De winkel heeft nog geen eigen domein.** Hij staat op
+mwbxzp-qm.myshopify.com. Dat kost vindbaarheid en vertrouwen.
+
+**10. De winkelmail staat op edward@sozials.com.** Bestelbevestigingen en
+klantmail komen daardoor bij Edward binnen in plaats van bij jou.
+
+**11. Verzenden buiten de EU.** De winkel staat op veertig landen, waaronder
+Japan en de Verenigde Staten, tegen 24,95 of 49,95 vast. Een case van 3999 euro
+werkelijk verzekerd naar Japan sturen kost meer dan dat, en er komen
+invoerrechten bij die de koper niet verwacht. Wil je dat aanbieden, of beginnen
+met Nederland, België en Duitsland?
+
+De vragen 5 tot en met 11 staan met achtergrond uitgewerkt in
+`shopify/paginas/LEES-DIT-EERST.md`, samen met wat de jurist precies moet
+beoordelen.
+
 ## Beantwoord op 11 september
 
 - **Aantallen en prijzen** voor de Chaos Rising PC ETB (10 × 155), de Ascended
