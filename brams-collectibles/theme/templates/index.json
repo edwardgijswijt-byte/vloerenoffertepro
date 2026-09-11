@@ -448,11 +448,47 @@
         "padding_top": 40,
         "padding_bottom": 56
       }
+    },
+    "carrousel": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Nu op voorraad",
+        "heading_size": "h2",
+        "collection": "alle-dozen",
+        "products_to_show": 15,
+        "columns_desktop": 4,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "link",
+        "enable_desktop_slider": true,
+        "swipe_on_mobile": true,
+        "columns_mobile": "2",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "color_scheme": "scheme-2",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "carrousel_beweging": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<script>\n  (function () {\n    var wortel = document.getElementById('shopify-section-carrousel');\n    if (!wortel) return;\n    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;\n\n    var spoor = wortel.querySelector('.slider');\n    var verder = wortel.querySelector('.slider-button--next');\n    if (!spoor || !verder) return;\n\n    var klok = null;\n    var gestopt = false;\n\n    function stap() {\n      if (verder.hasAttribute('disabled')) {\n        spoor.scrollTo({ left: 0, behavior: 'smooth' });\n      } else {\n        verder.click();\n      }\n    }\n\n    function loop() {\n      if (klok || gestopt || document.hidden) return;\n      klok = setInterval(stap, 5000);\n    }\n\n    function pauze() {\n      clearInterval(klok);\n      klok = null;\n    }\n\n    function stop() {\n      gestopt = true;\n      pauze();\n    }\n\n    wortel.addEventListener('mouseenter', pauze);\n    wortel.addEventListener('mouseleave', loop);\n    wortel.addEventListener('focusin', pauze);\n    wortel.addEventListener('focusout', loop);\n    wortel.addEventListener('pointerdown', stop);\n    wortel.addEventListener('touchstart', stop, { passive: true });\n    document.addEventListener('visibilitychange', function () {\n      document.hidden ? pauze() : loop();\n    });\n\n    loop();\n  })();\n</script>",
+        "color_scheme": "scheme-2",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
     }
   },
   "order": [
     "image_banner",
     "loopbalk",
+    "carrousel",
+    "carrousel_beweging",
     "soorten",
     "sets",
     "uitgelicht",
