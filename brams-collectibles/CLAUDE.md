@@ -42,6 +42,22 @@ dat is waar `productbeeld.py` uit leest.
 
 De eerste opname die je aan `productbeeld.py` meegeeft wordt het hoofdbeeld.
 
+**Die volgorde staat nergens machinaal vast, en dat is een gat.** Welke opnames
+in welk product gaan en in welke volgorde was per artikel een aanroep op de
+opdrachtregel. Alleen de kolom `notitie` noemt bij sommige artikelen welke
+IMG-nummers het waren, in proza. Draai je `productbeeld.py` opnieuw zonder die
+volgorde, dan gok je — en dat is in dit project al een keer misgegaan: ik heb
+correcte productbeelden overschreven met verzonnen volgordes, en dat kwam pas
+aan het licht door de verschillen per pixel te meten.
+
+Daarom staat `export/marktplaats/` sinds 11 september wél in de repo. Die
+vijftien beelden staan nergens anders: de advertenties zijn nog niet geplaatst,
+dus dit is de enige kopie. `export/webshop/` blijft eruit — 49 MB, en die
+beelden staan al in Shopify, wat de duurzame kopie is.
+
+Wil je dit gat echt dichten, dan hoort er een kolom `opnames` in het register
+met de geordende lijst per sku. Dan is de pijplijn pas echt reproduceerbaar.
+
 ## Regels die uit schade zijn geleerd
 
 **Nooit opblazen.** Foto's van 2048×1536 bevatten ongeveer 920 pixels product.

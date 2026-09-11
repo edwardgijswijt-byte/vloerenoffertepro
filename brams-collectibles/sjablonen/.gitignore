@@ -1,5 +1,20 @@
-# Uitvoer is in seconden opnieuw te maken uit de sjablonen en het register.
-export/
+# Uitvoer uit de sjablonen. Grotendeels opnieuw te maken, met een uitzondering.
+#
+# Let op: dit is NIET volledig reproduceerbaar uit het register. Welke opnames
+# in welk product gaan en in welke volgorde was per artikel een aanroep op de
+# opdrachtregel (`productbeeld.py <sku> IMG_3754 IMG_3753 ...`) en die volgorde
+# staat nergens machinaal vast — hooguit in proza in de kolom notitie. Draai je
+# het opnieuw zonder die volgorde, dan gok je, en dat is in dit project al een
+# keer misgegaan.
+#
+# Daarom blijft export/marktplaats/ wel in de repo: die vijftien beelden staan
+# nergens anders. De advertenties zijn nog niet geplaatst, dus dit is de enige
+# kopie.
+#
+# export/webshop/ blijft er bewust buiten: 49 MB, en die beelden staan al in
+# Shopify. Dat is de duurzame kopie.
+export/*
+!export/marktplaats/
 *.dc.html
 canvas.json
 __pycache__/
