@@ -28,6 +28,12 @@ python3 build.py && python3 export.py                       advertenties
 python3 plaatslijst.py                                      alles om te plaatsen
 ```
 
+`advertentiepakket.py` maakt één zip waar je per advertentie een map uit pakt:
+de foto's genummerd op uploadvolgorde en de tekst ernaast, mappen op vraagprijs
+aflopend. Dat is wat je doorstuurt aan wie de advertenties plaatst. De beelden
+gaan als JPEG mee en niet als PNG — Marktplaats hercodeert ze toch, en zo is het
+pakket 7 MB in plaats van 54.
+
 `controlepagina.py` zet alle artikelen op een rij met hun opnames, de feiten
 en de webshoptekst, om door Bram te laten nakijken. Via `drukklaar.py` wordt
 dat een pdf die je kunt doorsturen. De opnamenummers staan bij elke foto, dus
