@@ -23,8 +23,17 @@ Vier stappen, in deze volgorde. Draaien vanuit `sjablonen/`.
 python3 uitsnijden.py fotos/IMG_*.JPG          achtergrond eruit
 python3 rechtzetten.py fotos/uitgesneden/strak/IMG_*.png    scheefstand en rand
 python3 productbeeld.py <sku> IMG_3754 IMG_3753 ...         sjabloon eromheen
+python3 marktplaatsbeeld.py <sku> IMG_3754                  hoofdfoto Marktplaats
 python3 build.py && python3 export.py                       advertenties
+python3 plaatslijst.py                                      alles om te plaatsen
 ```
+
+`plaatslijst.py` zet de complete advertenties onder elkaar in
+`teksten/uit/_marktplaats-plaatsen.md`, op vraagprijs gesorteerd, met per stuk
+het fotobestand erbij. Wat niet compleet is komt onderaan met de reden. Handig
+naast het scherm tijdens het plaatsen, en het voorkomt dat je halverwege
+ontdekt dat er van één artikel nog geen Marktplaats-beeld is — dat was er bij
+vier artikelen niet.
 
 `uitsnijden.py` levert twee uitvoeren: `uitgesneden/` (vierkant doek, voor waar
 een vaste verhouding nodig is) en `uitgesneden/strak/` (precies om het product,
@@ -352,3 +361,8 @@ kopers vandaag betalen — bij de Prismatic scheelde dat 60 euro.
 - Alles tussen `[haken]` moet nog worden ingevuld: KvK, btw-id, adres, contact.
 - Verzendtarieven zijn een voorstel; nog wegen en langs een verzendcontract leggen.
 - Het menu is nog Dawn's standaard. Bewust: eerst vullen, dan indelen.
+- De tegel Premium Collections op de startpagina leidt naar een lege pagina
+  zolang beide producten erin op concept staan.
+- De Cases-tegel staat alleen in deze repo; nog kopiëren naar de themarepo.
+
+De openstaande vragen aan Bram staan in `teksten/vragen-aan-bram.md`.

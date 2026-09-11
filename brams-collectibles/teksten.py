@@ -68,14 +68,27 @@ def pokemon_center(r):
 
 
 def bundel(r, alles):
-    """Bram biedt een bundelprijs als er meer uit dezelfde set ligt."""
-    anderen = list(dict.fromkeys(
-        a['soort'] for a in alles
-        if a['set'] == r['set'] and a['sku'] != r['sku'] and a['aantal'] and a['prijs']))
-    if not anderen:
+    """Bram biedt een bundelprijs als er meer uit dezelfde set ligt.
+
+    Normaal noemen we de soorten: "in combinatie met een Booster Box of
+    Booster Bundle". Maar Pitch Black heeft twee Elite Trainer Boxen, de
+    gewone en die van het Pokemon Center, en dan kwam er "koop je hem in
+    combinatie met een ETB" te staan onder een advertentie voor een ETB.
+    Zijn eigen soort telt daarom niet mee, en blijft er niets over, dan
+    noemen we het andere artikel bij naam — dat is toch duidelijker."""
+    zelfde_set = [a for a in alles
+                  if a['set'] == r['set'] and a['sku'] != r['sku'] and a['aantal'] and a['prijs']]
+    if not zelfde_set:
         return ''
-    lijst = ' of '.join([', '.join(anderen[:-1]), anderen[-1]]) if len(anderen) > 1 else anderen[0]
-    return (f'Koop je hem in combinatie met een {lijst}, dan maken wij een '
+    soorten = list(dict.fromkeys(a['soort'] for a in zelfde_set if a['soort'] != r['soort']))
+    if soorten:
+        lijst = (' of '.join([', '.join(soorten[:-1]), soorten[-1]])
+                 if len(soorten) > 1 else soorten[0])
+        return (f'Koop je hem in combinatie met een {lijst}, dan maken wij een '
+                f'mooie bundelprijs voor je!')
+    namen = [a['naam'] for a in zelfde_set]
+    lijst = ' of de '.join([', de '.join(namen[:-1]), namen[-1]]) if len(namen) > 1 else namen[0]
+    return (f'Koop je hem samen met de {lijst}, dan maken wij een '
             f'mooie bundelprijs voor je!')
 
 
