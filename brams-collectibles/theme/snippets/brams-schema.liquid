@@ -22,6 +22,13 @@
                     boven de link en is het goedkoopste wat je kunt toevoegen.
     ItemList        op collectiepagina's, zodat de volgorde van de tegels
                     leesbaar is in plaats van een hoop losse links.
+    BlogPosting     op de gidsartikelen. Die hadden alleen een kruimelpad, dus
+                    een antwoordmachine kon wel de tekst lezen maar niet zien
+                    wie hem geschreven heeft of wanneer. Auteur en uitgever
+                    wijzen allebei naar de Organization: deze artikelen zijn
+                    door de winkel geschreven, niet op naam van een persoon.
+                    Het FAQPage-schema staat niet hier maar in de artikeltekst
+                    zelf, want de vragen komen uit de markdown-bron.
 
   Het merk is Pokémon, niet Brams Collectibles. Dat laatste is de verkoper en
   staat als `seller` in de offer. Ze door elkaar halen is een feitelijke fout
@@ -177,6 +184,22 @@
           { "@type": "ListItem", "position": 2, "name": {{ blog.title | json }}, "item": {{ request.origin | append: blog.url | json }} },
           { "@type": "ListItem", "position": 3, "name": {{ article.title | json }} }
         ]
+      }
+      ,{
+        "@type": "BlogPosting",
+        "@id": {{ request.origin | append: article.url | append: '#artikel' | json }},
+        "headline": {{ article.title | truncate: 110 | json }},
+        "description": {{ article.excerpt_or_content | strip_html | truncate: 300 | json }},
+        "url": {{ request.origin | append: article.url | json }},
+        "mainEntityOfPage": {{ request.origin | append: article.url | json }},
+        "datePublished": {{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%z' | json }},
+        "inLanguage": "nl-NL",
+        {%- if article.image %}
+        "image": {{ article.image | image_url: width: 1200 | prepend: 'https:' | json }},
+        {%- endif %}
+        "author": { "@id": {{ org_id | json }} },
+        "publisher": { "@id": {{ org_id | json }} },
+        "isPartOf": { "@id": {{ site_id | json }} }
       }
 
     {%- when 'page' -%}

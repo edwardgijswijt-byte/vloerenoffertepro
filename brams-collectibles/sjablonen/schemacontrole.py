@@ -13,8 +13,10 @@ voorwaardelijk veld dat de laatste is in zijn blok, een `{%- case -%}` die op ee
 paginatype niets teruggeeft en het `@graph` leeg laat. Allemaal fouten die pas
 zichtbaar worden als Search Console er weken later over klaagt.
 """
+import datetime
 import json
 import pathlib
+import re
 import sys
 
 from liquid import Environment
@@ -28,11 +30,13 @@ def zetop(env):
     """De Shopify-filters die in het snippet voorkomen."""
     env.filters['json'] = lambda v, *a: json.dumps(v, ensure_ascii=False)
     env.filters['image_url'] = lambda v, **kw: f'//cdn.example/{v}_1600x.png'
-    env.filters['strip_html'] = lambda v: str(v)
+    env.filters['strip_html'] = lambda v: re.sub(r'<[^>]+>', '', str(v))
     env.filters['truncate'] = lambda v, n=50, end='...': str(v)[:n]
     env.filters['divided_by'] = lambda v, d: v / d if isinstance(d, float) else v // d
     env.filters['append'] = lambda v, s: f'{v}{s}'
     env.filters['prepend'] = lambda v, s: f'{s}{v}'
+    env.filters['date'] = lambda v, f=None: (v.strftime(f) if hasattr(v, 'strftime')
+                                             else str(v))
 
 
 class Ding(dict):
@@ -56,6 +60,14 @@ PRODUCT = Ding(
     selected_or_first_available_variant=Ding(sku='BC-CR-PCETB', price=15500, available=True),
 )
 
+ARTIKEL = Ding(
+    title='Wat is een Elite Trainer Box en wat zit erin?',
+    url='/blogs/gids/wat-is-een-elite-trainer-box',
+    excerpt_or_content='<p>Een Elite Trainer Box bevat negen booster packs.</p>',
+    published_at=datetime.datetime(2026, 9, 10, 14, 30, tzinfo=datetime.timezone.utc),
+    image='artikel.png',
+)
+
 COLLECTIE = Ding(
     title='Elite Trainer Boxes',
     description='<p>Alle ETB\'s uit voorraad.</p>',
@@ -69,8 +81,12 @@ GEVALLEN = {
     'product':    dict(product=PRODUCT, collection=COLLECTIE),
     'product (los, geen collectie)': dict(product=PRODUCT, collection=None, _type='product'),
     'collection': dict(product=None, collection=COLLECTIE),
-    'article':    dict(blog=Ding(title='Blog', url='/blogs/gids'),
-                       article=Ding(title='Wat zit er in een ETB?')),
+    'article':    dict(blog=Ding(title='Gids', url='/blogs/gids'), article=ARTIKEL),
+    # Een artikel zonder afbeelding: dat veld staat tussen komma's en is het
+    # soort veld waar een schema op stukloopt als de guard ontbreekt.
+    'article (zonder afbeelding)': dict(
+        blog=Ding(title='Gids', url='/blogs/gids'),
+        article=Ding(ARTIKEL, image=None), _type='article'),
     'page':       dict(page=Ding(title='Over Brams')),
     'cart':       dict(),
     '404':        dict(),

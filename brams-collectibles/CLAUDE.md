@@ -358,15 +358,22 @@ artikel. Voor een winkel die alleen verzegelde dozen verkoopt is juist
 
 ```
 snippets/brams-schema.liquid       Organization met @id, Product, BreadcrumbList,
-                                   CollectionPage met ItemList
+                                   CollectionPage met ItemList, BlogPosting
 snippets/brams-faq-schema.liquid   gegenereerd, niet met de hand bijwerken
 sjablonen/faqschema.py             genereert dat uit templates/index.json
 sjablonen/schemacontrole.py        rendert alles en toetst of het geldige JSON is
 ```
 
 Draai `schemacontrole.py` na elke wijziging aan het snippet. Hij rendert met
-python-liquid voor acht paginatypes en parst de uitvoer als JSON. Dat vangt de
+python-liquid voor negen paginatypes en parst de uitvoer als JSON. Dat vangt de
 komma te veel die je pas weken later in Search Console terugziet.
+
+Let bij het uitbreiden op de stubs: een filter dat niets doet laat elke toets
+slagen. `strip_html` gaf eerst de tekst ongewijzigd terug, dus de controle zei
+"geldig" terwijl er HTML in een `description` had kunnen staan. En een
+testgeval met alleen een titel bewijst niets over velden die daarna komen —
+vandaar dat er nu een artikel mét en een artikel zónder afbeelding in staat.
+Een voorwaardelijk veld tussen komma's is precies waar een schema op stukloopt.
 
 Het merk is **Pokémon**, niet Brams Collectibles. Dat laatste is de verkoper en
 staat als `seller` in de offer. Ze door elkaar halen is een feitelijke fout die
