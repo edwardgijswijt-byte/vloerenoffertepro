@@ -1,0 +1,30 @@
+{
+  "handle": "etb-boosterbox-of-bundle",
+  "titel": "Booster bundle, booster box of Elite Trainer Box — wat kun je het beste kopen?",
+  "samenvatting": "Een booster bundle heeft zes packs en is de goedkoopste manier om te proeven. Een booster box heeft er 36 en is per pack het voordeligst. Een Elite Trainer Box heeft er negen plus een promokaart, sleeves en een verzameldoos.",
+  "tags": [
+    "booster box",
+    "booster bundle",
+    "elite trainer box",
+    "vergelijking"
+  ],
+  "soort": "vergelijking",
+  "vragen": [
+    {
+      "vraag": "Hoeveel packs zitten er in een booster box?",
+      "antwoord": "36 packs. Elk pack bevat tien kaarten, een basisenergie en een code card voor Pokémon TCG Live."
+    },
+    {
+      "vraag": "Wat is een display?",
+      "antwoord": "Een display is een verzegelde doos vol kleinere dozen — bijvoorbeeld tien booster bundles. Het is bedoeld voor winkels om uit te verkopen, maar verzamelaars kopen hem ook verzegeld als geheel."
+    },
+    {
+      "vraag": "Is een booster box altijd goedkoper per pack?",
+      "antwoord": "Meestal wel, omdat je er 36 in één keer koopt. Reken het na: deel de prijs van de doos door 36 en vergelijk dat met wat een los pack kost."
+    },
+    {
+      "vraag": "Welke koop je als je een specifieke kaart zoekt?",
+      "antwoord": "Geen van drie. Zoek je één bepaalde kaart, dan koop je die los. De kans dat je hem uit packs trekt is klein, en meestal betaal je meer aan packs dan de kaart zelf kost."
+    }
+  ]
+}

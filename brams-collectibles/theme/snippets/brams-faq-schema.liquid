@@ -1,0 +1,52 @@
+{%- comment -%}
+  Gegenereerd door sjablonen/faqschema.py uit templates/index.json.
+  Niet met de hand bijwerken: wijzig de sectie `vragen` en draai het
+  script opnieuw, anders loopt de structured data uit de pas met wat
+  er op de pagina staat.
+{%- endcomment -%}
+,{
+  "@type": "FAQPage",
+  "@id": {{ request.origin | append: '/#vragen' | json }},
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Verzenden of ophalen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ik weet hoe belangrijk het is. Het verzenden van jouw nieuwe aanwinst wordt daarom met veel aandacht behandeld: stevig verpakt, verzekerd en met track & trace. De kosten zijn voor de koper, de zorg komt van ons. Liever ophalen? Dat kan natuurlijk ook. Kies bij het afrekenen voor ophalen; ik neem contact op om een moment af te spreken."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wat kost verzenden?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Binnen Nederland: € 6,95 tot € 100, € 9,95 tot € 500 en € 14,95 daarboven — dan gaat het pakket extra verzekerd de deur uit. Binnen de EU: € 14,95, en € 24,95 vanaf € 500. Daarbuiten € 24,95 en € 49,95. Invoerrechten zijn voor de koper. Ophalen is gratis."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Zijn de dozen echt sealed?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja. Alles wat hier als sealed staat is ongeopend en zit nog in de originele fabrieksfolie. Geen gewogen packs, geen opnieuw geseald materiaal. Heb je meerdere dezelfde dozen voor je? Dan is de foto van een exemplaar uit de voorraad. Bij singles en graded kaarten is de foto altijd van het exemplaar dat je krijgt."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kan ik meerdere dozen samen laten sturen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Dat kan. Zet ze samen in één bestelling, dan gaan ze in één pakket en betaal je één keer verzendkosten."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ik zoek iets dat er niet tussen staat",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Stuur me een bericht. Er ligt meer op de plank dan er online staat, en wat er niet is zoek ik graag voor je op."
+      }
+    }
+  ]
+}

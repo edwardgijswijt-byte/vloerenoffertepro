@@ -1,0 +1,29 @@
+{
+  "handle": "pokemon-center-uitgaven",
+  "titel": "Wat maakt een Pokémon Center-uitgave anders?",
+  "samenvatting": "Pokémon Center-dozen verschijnen alleen via de officiële kanalen, in een vaste oplage, met meer packs en een extra promokaart met het Pokémon Center-logo. Ze worden niet herdrukt.",
+  "tags": [
+    "pokemon center",
+    "elite trainer box",
+    "uitleg"
+  ],
+  "soort": "uitleg",
+  "vragen": [
+    {
+      "vraag": "Zijn Pokémon Center-dozen in Nederland te koop?",
+      "antwoord": "Niet rechtstreeks — er is geen Nederlandse Pokémon Center-winkel. Ze komen hier via importeurs en verzamelaars."
+    },
+    {
+      "vraag": "Zit er meer kans op een goede kaart in?",
+      "antwoord": "Niet per pack. Wel twee packs meer, dus twee kansen extra."
+    },
+    {
+      "vraag": "Komen ze terug in productie?",
+      "antwoord": "Nee. Dat is het hele punt van een gelimiteerde oplage."
+    },
+    {
+      "vraag": "Wat is een Pokémon Center-stempel precies?",
+      "antwoord": "Een klein Poké Ball-logo met \"Pokémon Center\" eronder, gedrukt op de kaart zelf. Verder is de kaart identiek aan de gewone promo."
+    }
+  ]
+}

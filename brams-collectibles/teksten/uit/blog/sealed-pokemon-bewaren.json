@@ -1,0 +1,29 @@
+{
+  "handle": "sealed-pokemon-bewaren",
+  "titel": "Verzegelde Pokémon-dozen bewaren: zo blijft de folie heel",
+  "samenvatting": "Bewaar verzegelde dozen rechtop, donker, tussen 15 en 22 graden en onder de 55 procent luchtvochtigheid. Een acryl beschermhoes voorkomt deuken en houdt de krimpfolie strak.",
+  "tags": [
+    "bewaren",
+    "sealed",
+    "onderhoud"
+  ],
+  "soort": "handleiding",
+  "vragen": [
+    {
+      "vraag": "Mag ik een verzegelde doos op zijn kant leggen?",
+      "antwoord": "Liever niet. Rechtop verdeelt het gewicht over de stevigste kant. Op de kant gaat de inhoud schuiven en kan de doos gaan bollen."
+    },
+    {
+      "vraag": "Hoe lang blijft krimpfolie goed?",
+      "antwoord": "Bij stabiele omstandigheden decennia. Wat hem sloopt is niet de tijd maar zonlicht, vocht en druk."
+    },
+    {
+      "vraag": "Vermindert het de waarde als de folie beschadigd is?",
+      "antwoord": "Ja. Een scheur in de folie maakt van een verzegelde doos een doos waarvan niemand meer kan controleren of hij dicht is gebleven. Dat is het verschil tussen sealed en niet-sealed, en dat verschil is groot."
+    },
+    {
+      "vraag": "Kan ik een doos zelf opnieuw sealen?",
+      "antwoord": "Technisch wel, maar dan verkoop je hem niet meer als sealed. Dat is misleiding, en kopers in deze hoek herkennen het."
+    }
+  ]
+}

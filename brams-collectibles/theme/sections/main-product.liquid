@@ -746,9 +746,12 @@
         endif
       -%}
 
-      <script type="application/ld+json">
-        {{ product | structured_data }}
-      </script>
+      {%- comment -%}
+        Dawn zette hier `{{ product | structured_data }}`. Die knoop is
+        vervangen door de volledige Product in snippets/brams-schema.liquid,
+        die ook merk, sku, staat en verzendgegevens meegeeft. Twee
+        Product-knopen op één pagina geeft waarschuwingen in Search Console.
+      {%- endcomment -%}
     </div>
   </product-component>
 </product-info>

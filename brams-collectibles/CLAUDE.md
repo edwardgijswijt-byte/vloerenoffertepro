@@ -332,6 +332,80 @@ Vandaar de eigen collectiebeelden.
 De verzendtarieven staan op twee plekken: in Shopify en in de vragenlijst op de
 startpagina. Wijzig je ze, wijzig ze dan allebei.
 
+## Vindbaarheid
+
+Twee dingen die los van elkaar staan: klassieke zoekmachines, en
+antwoordmachines die een antwoord samenstellen en daarbij bronnen noemen
+(ChatGPT, Perplexity, Google's AI-overzichten). Het tweede vraagt om andere
+tekst: eerst het antwoord, dan de uitleg.
+
+### Structured data
+
+Dawn levert een dunne Organization, een WebSite met SearchAction, en op
+productpagina's `{{ product | structured_data }}`. Dat laatste dekt naam, prijs,
+beschikbaarheid en url en verder niets — geen merk, geen sku, geen staat van het
+artikel. Voor een winkel die alleen verzegelde dozen verkoopt is juist
+`itemCondition` het veld dat telt.
+
+```
+snippets/brams-schema.liquid       Organization met @id, Product, BreadcrumbList,
+                                   CollectionPage met ItemList
+snippets/brams-faq-schema.liquid   gegenereerd, niet met de hand bijwerken
+sjablonen/faqschema.py             genereert dat uit templates/index.json
+sjablonen/schemacontrole.py        rendert alles en toetst of het geldige JSON is
+```
+
+Draai `schemacontrole.py` na elke wijziging aan het snippet. Hij rendert met
+python-liquid voor acht paginatypes en parst de uitvoer als JSON. Dat vangt de
+komma te veel die je pas weken later in Search Console terugziet.
+
+Het merk is **Pokémon**, niet Brams Collectibles. Dat laatste is de verkoper en
+staat als `seller` in de offer. Ze door elkaar halen is een feitelijke fout die
+in de rijke zoekresultaten terechtkomt.
+
+`hasMerchantReturnPolicy` staat er bewust niet in. Het retourbeleid is niet
+vastgesteld; een retourtermijn in de structured data zetten die niet in de
+voorwaarden staat is een toezegging doen die niemand heeft gedaan.
+
+### robots.txt
+
+Niet aangeraakt, en dat is een besluit. Er circuleren veel stukken die zeggen
+dat Shopify AI-crawlers blokkeert en dat je een eigen `robots.txt.liquid` moet
+schrijven. Dat klopt in 2026 niet meer: Shopify's standaard laat GPTBot,
+ClaudeBot, PerplexityBot, OAI-SearchBot en Google-Extended gewoon toe en
+blokkeert alleen admin, cart, checkout en account. Een eigen bestand schrijven
+levert dus niets op en kan wel de sitemapverwijzing of de filterregels slopen.
+
+Controleer het wel als er ooit een SEO- of beveiligingsapp bijkomt: die zetten
+er soms blanket disallow-regels in.
+
+### Blogartikelen
+
+```
+teksten/blog/<naam>.md      bron, met kopblok
+sjablonen/blog.py           markdown naar Shopify-HTML plus FAQ-schema
+teksten/uit/blog/           uitvoer
+```
+
+Elk artikel volgt dezelfde opbouw, en die opbouw is het hele punt:
+
+1. **De samenvatting uit het kopblok** komt vetgedrukt bovenaan. Dat is het
+   eerste wat een taalmodel te pakken krijgt, dus die moet op zichzelf een
+   antwoord zijn en niet "in dit artikel bespreken we".
+2. **"Het korte antwoord"** als eerste kop, veertig tot zestig woorden.
+3. Daarna pas uitleg, tabellen en nuance.
+4. **"Veelgestelde vragen"** als laatste kop. `blog.py` herkent de vetgedrukte
+   regels daaronder als vragen en maakt er FAQPage-schema van. Dat blok moet er
+   dus staan, anders krijgt het artikel geen schema.
+
+Shopify laat `<script type="application/ld+json">` in de artikeltekst staan;
+dat is nagekeken op het eerste artikel.
+
+De artikelen staan in de blog `gids`. Vijf stuks, drie soorten: uitleg,
+vergelijking en handleiding. Dat is bewust een cluster rond één onderwerp met
+onderlinge links — losse artikelen over losse onderwerpen leveren minder op dan
+een paar die naar elkaar verwijzen.
+
 ## Kleuren en letters
 
 ```
