@@ -49,13 +49,34 @@ def hoek(alpha):
     return float(np.degrees(np.arctan(a)))
 
 
-def rand_aantrekken(im, krimp=1.5, hardheid=150):
-    """De half-doorzichtige zoom eraf snijden en de rand hard maken."""
-    a = im.getchannel('A')
-    a = a.filter(ImageFilter.MinFilter(3)) if krimp >= 1 else a
-    n = np.asarray(a, dtype=np.float32)
-    n = np.clip((n - hardheid) * (255.0 / (255 - hardheid)), 0, 255)
-    im.putalpha(Image.fromarray(n.astype(np.uint8)))
+def rand_aantrekken(im, ondergrens=64):
+    """De half-doorzichtige zoom eraf snijden en de rand hard maken.
+
+    Eerder stond hier een drempel op 150: alles daaronder werd doorzichtig.
+    Dat werkt zolang rembg de doos vol ondoorzichtig maakt, maar dat doet hij
+    niet altijd. Bij de Ascended Heroes-bundel lag de alpha van de doos zelf
+    voor een kwart onder de 150, en die stukken verdwenen dus — het masker
+    ging van 72 naar 47 procent dekking en de navy achtergrond scheen dwars
+    door het product heen. Vijf van de 47 uitsnedes hadden dat.
+
+    Nu eerst de vorm bepalen op een ruime drempel, daar de gaten in vullen en
+    alleen de grootste vlek houden, en die vorm helemaal ondoorzichtig maken.
+    De zoom verdwijnt doordat de vorm binair is, niet doordat we hem
+    wegdrempelen. MinFilter krimpt hem daarna een pixel, zodat er geen
+    achtergrond op de rand blijft plakken."""
+    from scipy.ndimage import binary_fill_holes, label
+    a = np.asarray(im.getchannel('A'))
+    m = a > ondergrens
+    if not m.any():
+        return im
+    m = binary_fill_holes(m)
+    lab, n = label(m)
+    if n > 1:
+        tel = np.bincount(lab.ravel())
+        tel[0] = 0
+        m = lab == tel.argmax()
+    hard = Image.fromarray(np.where(m, 255, 0).astype(np.uint8))
+    im.putalpha(hard.filter(ImageFilter.MinFilter(3)))
     return im
 
 

@@ -79,6 +79,18 @@ def bundel(r, alles):
             f'mooie bundelprijs voor je!')
 
 
+def omslaan(tekst, breedte=78):
+    """Regels afbreken op dezelfde breedte als de vaste tekstblokken.
+
+    De blokken uit merk.md en teksten/sets/ zijn met de hand op 78 tekens
+    gezet. Wat we er zelf bij schrijven — de bundelregel, Brams zin uit de
+    kolom publiek — kwam als één lange regel mee, tot 164 tekens. In het
+    invulveld van Marktplaats valt dat niet op, in de geplaatste advertentie
+    wel: één alinea die anders uitloopt dan de rest."""
+    import textwrap
+    return '\n\n'.join(textwrap.fill(deel, breedte) for deel in tekst.split('\n\n'))
+
+
 def marktplaats(r, alles):
     d = ['Brams Collectibles', '', MERK['verhaal-lang'], '', r['naam'], '']
     hp = hoogtepunten(r)
@@ -90,7 +102,7 @@ def marktplaats(r, alles):
             d += ['En nog veel meer!']      # in een ETB zit meer dan je opsomt
         d += ['']
     if r['publiek']:
-        d += [r['publiek'], '']
+        d += [omslaan(r['publiek']), '']
     d += [settekst(r['set']), '']
     if pokemon_center(r):
         d += [MERK['pokemon-center'].replace('**', ''), '']
@@ -98,7 +110,7 @@ def marktplaats(r, alles):
         d += ['Zit in een acryl beschermhoes, die gaat mee bij verkoop.', '']
     b = bundel(r, alles)
     if b:
-        d += [b, '']
+        d += [omslaan(b), '']
     d += [MERK['verzenden'].replace('**', ''), '']
     d += [f'Prijs: {prijs(r)}']
     return '\n'.join(d)
@@ -138,7 +150,7 @@ def webshop(r):
         d += [f'- {h}' for h in hp]
         d += ['']
     if r['publiek']:
-        d += [r['publiek'], '']
+        d += [omslaan(r['publiek']), '']
     d += [f'Staat: {r["staat"]}. {fotoregel(r)}', '',
           MERK['verzenden']]
     return '\n'.join(d)
