@@ -184,6 +184,10 @@ Wijzigingen van deze koppeling staan er als "Shopify Claude Connector App".
 
 ## Thema
 
+Het merkthema is **live**: `brams-collectibles-theme/main` heeft de rol MAIN,
+Horizon staat ongepubliceerd. De winkel zit nog wel achter het wachtwoord, dus
+publiek is er niets te zien.
+
 Dawn 16.0.0 met vier afwijkingen, verder ongewijzigd zodat Dawn-updates schoon
 binnenkomen:
 
@@ -307,11 +311,12 @@ concept staan bestaan niet op de winkelkant, dus een tegel die naar zo'n product
 wijst blijft leeg. Collecties bestaan altijd en hebben een eigen afbeelding.
 Een collectie zonder producten hoort er ook niet in — die leidt naar een lege
 pagina. En let op: het gaat om producten die **actief** zijn. Een collectie vol
-concepten telt in de beheerkant wel mee maar staat op de winkelkant leeg. Op dit
-moment geldt dat voor Premium Collections, dat wel als tegel op de startpagina
-staat: die tegel leidt naar niets tot de Super Premium Collection of de Mega
-Greninja actief wordt. Cases, Paldean Fates en Ascended Heroes hebben hetzelfde,
-en staan daarom nog niet in het uitgelicht-blok.
+concepten telt in de beheerkant wel mee maar staat op de winkelkant leeg.
+
+Sinds 11 september staan alle vijftien producten actief en op beide
+verkoopkanalen, dus alle veertien collecties zijn gevuld. Het uitgelicht-blok
+toont nog maar drie sets terwijl er zeven zijn met actieve producten; daar is
+dus ruimte.
 
 Nakijken welke collecties echt gevuld zijn:
 
@@ -379,8 +384,12 @@ voor te leggen; dat staat als punt in `teksten/vragen-aan-bram.md`.
 - Adres en contactgegevens staan nog als lege haken in de voorwaarden.
 - PostNL-tarieven zijn akkoord bevonden; nog wel een doos wegen.
 - Het menu is nog Dawn's standaard. Bewust: eerst vullen, dan indelen.
-- De tegel Premium Collections op de startpagina leidt naar een lege pagina
-  zolang beide producten erin op concept staan.
 - De Cases-tegel staat alleen in deze repo; nog kopiëren naar de themarepo.
+- Het uitgelicht-blok toont drie sets; er zijn er zeven met actieve producten.
+- De drie First Partner-cases staan nog niet in Shopify: geen foto's, en het is
+  niet vastgesteld welke doos serie 1, 2 of 3 is. Dat is een prijsverschil van
+  500 om 320.
+- De winkel staat nog op wachtwoord. Dat eraf halen is de laatste stap, en pas
+  nadat de voorwaarden langs een jurist zijn en het adres is ingevuld.
 
 De openstaande vragen aan Bram staan in `teksten/vragen-aan-bram.md`.
