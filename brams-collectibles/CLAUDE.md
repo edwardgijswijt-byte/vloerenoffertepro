@@ -408,12 +408,26 @@ Elk artikel volgt dezelfde opbouw, en die opbouw is het hele punt:
    dus staan, anders krijgt het artikel geen schema.
 
 Shopify laat `<script type="application/ld+json">` in de artikeltekst staan;
-dat is nagekeken op het eerste artikel.
+dat is nagekeken op het eerste artikel. Dat blok staat sinds 11 september in het
+`.html`-bestand zelf. Daarvoor werd het met de hand achter de tekst geplakt bij
+het publiceren, en stond het op het punt te verdwijnen zodra de tekst opnieuw
+werd gegenereerd. Wat in `teksten/uit/blog/<naam>.html` staat is nu precies wat
+er in Shopify hoort te staan — niets meer met de hand erbij.
+
+De vraag- en antwoordtekst in het schema gaat door `plat()`: markdown-opmaak
+eruit. Een antwoord waar letterlijk `[booster box](/collections/booster-boxes)`
+in staat is wat een antwoordmachine voorleest.
 
 De artikelen staan in de blog `gids`. Vijf stuks, drie soorten: uitleg,
 vergelijking en handleiding. Dat is bewust een cluster rond één onderwerp met
 onderlinge links — losse artikelen over losse onderwerpen leveren minder op dan
 een paar die naar elkaar verwijzen.
+
+Het cluster loopt twee kanten op: de productbeschrijvingen linken naar de
+gidsartikelen (`gidslinks()` in `teksten.py`) en de artikelen linken terug naar
+collecties en naar elkaar. Achtentwintig links naar veertien bestemmingen.
+Link naar **collecties**, niet naar producten: een collectie blijft bestaan, een
+uitverkocht product ook maar een opgeheven artikel niet.
 
 ## Kleuren en letters
 

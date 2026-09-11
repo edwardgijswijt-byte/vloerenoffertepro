@@ -14,8 +14,9 @@ taalmodel te pakken krijgt, dus die moet op zichzelf een antwoord zijn en niet
 
 De kop "Veelgestelde vragen" krijgt een bijzondere behandeling: de vetgedrukte
 regels eronder worden vragen en de alinea erna het antwoord, en daar komt
-FAQPage-schema van. Dat is de reden dat elk artikel met zo'n blok eindigt —
-antwoordmachines pakken die paren er rechtstreeks uit.
+FAQPage-schema van, dat achter de tekst in het .html-bestand komt te staan. Dat
+is de reden dat elk artikel met zo'n blok eindigt — antwoordmachines pakken die
+paren er rechtstreeks uit.
 
 Markdown wordt met de hand omgezet en niet met een bibliotheek. Wat hier
 voorkomt is beperkt: koppen, alinea's, lijsten, tabellen, vet en links. Een
@@ -125,12 +126,46 @@ def tabel_html(regels):
     return f'<table>{h}{b}</table>'
 
 
+def plat(tekst):
+    """Markdown uit een zin halen, voor het schema.
+
+    De vragen en antwoorden komen rechtstreeks uit de markdown, dus er kan
+    opmaak in staan. In het FAQPage-schema hoort platte tekst: een antwoord met
+    "[booster box](/collections/booster-boxes)" erin is wat een antwoordmachine
+    letterlijk voorleest."""
+    tekst = re.sub(r'\[([^\]]+)\]\([^)]+\)', r'\1', tekst)
+    tekst = re.sub(r'\*\*([^*]+)\*\*', r'\1', tekst)
+    return re.sub(r'`([^`]+)`', r'\1', tekst)
+
+
+def faqschema(vragen):
+    """Het FAQPage-schema dat onderaan de artikeltekst mee de winkel in gaat.
+
+    Shopify laat een script-blok in de artikeltekst staan; dat is nagekeken.
+    Het hoort hier en niet in een los bestand: eerder werd het met de hand
+    achter de tekst geplakt bij het publiceren, en toen de tekst opnieuw werd
+    gegenereerd stond het schema op het punt ongemerkt te verdwijnen. Wat in
+    het .html-bestand staat is nu precies wat er in Shopify hoort te staan."""
+    if not vragen:
+        return ''
+    inhoud = {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        'mainEntity': [{'@type': 'Question', 'name': plat(v),
+                        'acceptedAnswer': {'@type': 'Answer', 'text': plat(a)}}
+                       for v, a in vragen],
+    }
+    return ('\n<script type="application/ld+json">'
+            + json.dumps(inhoud, ensure_ascii=False) + '</script>')
+
+
 def verwerk(pad):
     kop, lichaam = kopblok(pad.read_text(encoding='utf-8'))
     lijf, vragen = naar_html(lichaam)
 
     # De samenvatting bovenaan, zodat het antwoord vóór de uitleg staat.
     lijf = f'<p><strong>{inline(kop["samenvatting"])}</strong></p>\n' + lijf
+    lijf += faqschema(vragen)
 
     UIT.mkdir(parents=True, exist_ok=True)
     (UIT / f'{pad.stem}.html').write_text(lijf, encoding='utf-8')

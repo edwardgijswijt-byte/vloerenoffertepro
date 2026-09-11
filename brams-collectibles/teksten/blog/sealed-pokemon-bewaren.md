@@ -21,7 +21,8 @@ zwakke punt en een ingedeukte hoek krijg je er niet meer uit. Zet ze rechtop
 naast elkaar, zoals boeken in een kast.
 
 **Licht.** Direct zonlicht bleekt het karton binnen een seizoen zichtbaar. Bij
-de felgekleurde Pokémon Center-dozen zie je dat het snelst. Een gesloten kast of
+de felgekleurde [Pokémon Center-dozen](/blogs/gids/pokemon-center-uitgaven) zie
+je dat het snelst. Een gesloten kast of
 een kamer zonder zon op die muur is genoeg.
 
 **Vocht.** Boven de zestig procent luchtvochtigheid gaat karton bol staan en
@@ -52,8 +53,10 @@ uitstalt. De hoes vangt de stoten op, houdt de folie op zijn plek en je kunt de
 doos gewoon zien.
 
 Voor een doos die je binnen een jaar toch openmaakt is het overbodig. Voor een
-gelimiteerde Pokémon Center-uitgave of een verzegelde case is het de goedkoopste
-verzekering die er is.
+gelimiteerde [Pokémon Center-uitgave](/blogs/gids/pokemon-center-uitgaven) of
+een [verzegelde case](/collections/cases) is het de goedkoopste verzekering die
+er is. Een deel van onze Pokémon Center-dozen wordt met hoes en al geleverd; dat
+staat dan bij het product.
 
 ## Wat je niet moet doen
 
@@ -76,7 +79,8 @@ zonlicht, vocht en druk.
 **Vermindert het de waarde als de folie beschadigd is?**
 Ja. Een scheur in de folie maakt van een verzegelde doos een doos waarvan
 niemand meer kan controleren of hij dicht is gebleven. Dat is het verschil
-tussen sealed en niet-sealed, en dat verschil is groot.
+tussen sealed en niet-sealed, en dat verschil is groot. Zie ook
+[Is verzegelde Pokémon TCG een goede investering?](/blogs/gids/is-verzegelde-pokemon-tcg-een-goede-investering).
 
 **Kan ik een doos zelf opnieuw sealen?**
 Technisch wel, maar dan verkoop je hem niet meer als sealed. Dat is

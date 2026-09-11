@@ -21,8 +21,10 @@ winkels ligt, komen er dozen bij en blijft de prijs rond de winkelprijs hangen.
 Zodra de productie stopt, kan er alleen nog materiaal uit de markt verdwijnen —
 mensen openen dozen — en nooit meer bij.
 
-**De oplage.** Een gewone Elite Trainer Box is er in grote getale. Een Pokémon
-Center-uitgave of een verzegelde case is er in een bekend, klein aantal.
+**De oplage.** Een gewone [Elite Trainer Box](/collections/elite-trainer-boxes)
+is er in grote getale. Een
+[Pokémon Center-uitgave](/blogs/gids/pokemon-center-uitgaven) of een
+[verzegelde case](/collections/cases) is er in een bekend, klein aantal.
 
 **De staat van de folie.** Verzegeld of niet is een harde grens, geen glijdende
 schaal. Een scheurtje maakt van "sealed" iets waarvan niemand meer kan
@@ -77,8 +79,9 @@ Bij verzegelde dozen bestaat dat ook, maar het is een nichemarkt. Voor de meeste
 dozen wegen de kosten niet op tegen het verschil.
 
 **Is een display beter dan losse dozen?**
-Een verzegeld display is zeldzamer dan de dozen die erin zitten, omdat de meeste
-displays worden opengemaakt. Daar staat een hogere instap tegenover.
+Een verzegeld [display](/collections/displays) is zeldzamer dan de dozen die
+erin zitten, omdat de meeste displays worden opengemaakt. Daar staat een hogere
+instap tegenover.
 
 **Hoe weet ik wat iets nu waard is?**
 Kijk naar wat er recent daadwerkelijk voor betaald is, niet naar vraagprijzen.

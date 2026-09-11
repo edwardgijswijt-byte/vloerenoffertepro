@@ -15,7 +15,8 @@ nergens anders te krijgen en er komt geen herdruk.
 
 ## Waar het verschil in zit
 
-Neem de Chaos Rising-set. Daar bestaan twee Elite Trainer Boxen van:
+Neem de [Chaos Rising](/collections/chaos-rising)-set. Daar bestaan twee
+[Elite Trainer Boxen](/blogs/gids/wat-is-een-elite-trainer-box) van:
 
 | | Gewone ETB | Pokémon Center-ETB |
 |---|---|---|
@@ -25,9 +26,10 @@ Neem de Chaos Rising-set. Daar bestaan twee Elite Trainer Boxen van:
 | Verkoopkanaal | overal | alleen Pokémon Center |
 | Herdruk | zolang de set loopt | nee |
 
-Dezelfde verhouding geldt bij Pitch Black, Ascended Heroes en Prismatic
-Evolutions. Twee extra packs en een extra promokaart, en een doos in een eigen
-vormgeving.
+Dezelfde verhouding geldt bij [Pitch Black](/collections/pitch-black),
+[Ascended Heroes](/collections/ascended-heroes) en
+[Prismatic Evolutions](/collections/prismatic-evolutions). Twee extra packs en
+een extra promokaart, en een doos in een eigen vormgeving.
 
 ## Waarom verzamelaars erop letten
 
@@ -49,9 +51,9 @@ Dat hangt af van wat je ermee doet.
 uit wat twee losse packs kosten en kijk of het verschil daarmee gedekt is. Vaak
 is dat maar deels zo — je betaalt ook voor de exclusiviteit.
 
-**Bewaar je hem verzegeld**, dan koop je iets anders: een doos waarvan er een
-bekend aantal bestaat en waarvan er elke maand een paar uit de markt verdwijnen,
-omdat mensen ze openmaken. Dat is de reden dat het prijsverschil met de jaren
+**[Bewaar je hem verzegeld](/blogs/gids/verzegelde-pokemon-dozen-bewaren)**, dan
+koop je iets anders: een doos waarvan er een bekend aantal bestaat en waarvan
+er elke maand een paar uit de markt verdwijnen, omdat mensen ze openmaken. Dat is de reden dat het prijsverschil met de jaren
 groter wordt in plaats van kleiner.
 
 ## Hoe herken je een echte Pokémon Center-doos
@@ -69,7 +71,8 @@ inhoudslijst en die liegt niet.
 
 **Zijn Pokémon Center-dozen in Nederland te koop?**
 Niet rechtstreeks — er is geen Nederlandse Pokémon Center-winkel. Ze komen hier
-via importeurs en verzamelaars.
+via importeurs en verzamelaars. Wat wij ervan hebben staat bij
+[Elite Trainer Boxes](/collections/elite-trainer-boxes).
 
 **Zit er meer kans op een goede kaart in?**
 Niet per pack. Wel twee packs meer, dus twee kansen extra.

@@ -47,7 +47,8 @@ ETB in een gelimiteerde oplage. Die doos ziet er anders uit en bevat meer:
 
 Die tweede promokaart met het Pokémon Center-logo is wat de doos voor
 verzamelaars interessant maakt. Hij is alleen in die uitvoering te krijgen, de
-oplage ligt vast en er komt geen herdruk.
+oplage ligt vast en er komt geen herdruk. Meer daarover in
+[Wat maakt een Pokémon Center-uitgave anders?](/blogs/gids/pokemon-center-uitgaven).
 
 ## Is een ETB een goede eerste aankoop?
 
@@ -58,6 +59,9 @@ accessoires erbij te kopen.
 
 Voor wie verzegeld bewaart geldt iets anders: dan telt de oplage. Een gewone ETB
 blijft in productie zolang de set loopt, een Pokémon Center-uitvoering niet.
+
+Wat er bij ons op de plank ligt staat bij
+[Elite Trainer Boxes](/collections/elite-trainer-boxes).
 
 ## Veelgestelde vragen
 
@@ -71,11 +75,14 @@ In de promokaart wel — die is altijd full-art foil. In de packs geldt gewoon d
 pull rate van de set.
 
 **Wat is het verschil tussen een ETB en een booster box?**
-Een booster box bevat 36 packs en verder niets. Een ETB heeft er negen, maar
-dan met promokaart, sleeves, energie en de verzameldoos erbij. Per pack is een
-booster box goedkoper; per doos krijg je bij een ETB meer spullen.
+Een [booster box](/collections/booster-boxes) bevat 36 packs en verder niets.
+Een ETB heeft er negen, maar dan met promokaart, sleeves, energie en de
+verzameldoos erbij. Per pack is een booster box goedkoper; per doos krijg je bij
+een ETB meer spullen. De volledige vergelijking staat in
+[Booster bundle, booster box of Elite Trainer Box?](/blogs/gids/booster-bundle-booster-box-of-elite-trainer-box).
 
 **Kan ik een Elite Trainer Box verzegeld bewaren?**
 Ja, en dat is voor veel verzamelaars de reden om er twee te kopen: één om te
 openen en één om verzegeld te laten. Bewaar hem uit de zon en niet in een
-vochtige ruimte.
+vochtige ruimte — zie
+[Verzegelde Pokémon-dozen bewaren](/blogs/gids/verzegelde-pokemon-dozen-bewaren).
