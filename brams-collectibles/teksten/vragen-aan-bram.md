@@ -57,6 +57,14 @@ werkelijk verzekerd naar Japan sturen kost meer dan dat, en er komen
 invoerrechten bij die de koper niet verwacht. Wil je dat aanbieden, of beginnen
 met Nederland, België en Duitsland?
 
+**12. Weeg de Prismatic Evolutions Super Premium Collection even.** Van alle
+andere artikelen staat het gewicht nu in het register — bij negen ervan kon het
+uit een identiek artikel worden afgeleid — maar deze doos heeft geen
+tegenhanger. Een keukenweegschaal volstaat. Hetzelfde geldt voor de drie First
+Partner-cases zodra je die fotografeert. En weeg de Paldean Fates-case na voor
+het eerste PostNL-label: die staat nu op 10.500 gram, afgeleid uit tien ETB's
+plus de carton.
+
 De vragen 5 tot en met 11 staan met achtergrond uitgewerkt in
 `shopify/paginas/LEES-DIT-EERST.md`, samen met wat de jurist precies moet
 beoordelen.
