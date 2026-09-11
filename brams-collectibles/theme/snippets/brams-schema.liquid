@@ -105,9 +105,14 @@
         {%- if product.type != blank %}
           "category": {{ product.type | json }},
         {%- endif %}
+        {%- comment -%}
+          product.images en niet product.media: media kan ook video of een
+          3D-model bevatten, en image_url heeft daar niets aan. images geeft
+          altijd afbeeldingen.
+        {%- endcomment -%}
         "image": [
-          {%- for media in product.media limit: 5 -%}
-            {{ media | image_url: width: 1600 | prepend: "https:" | json }}{% unless forloop.last %},{% endunless %}
+          {%- for afbeelding in product.images limit: 5 -%}
+            {{ afbeelding | image_url: width: 1600 | prepend: "https:" | json }}{% unless forloop.last %},{% endunless %}
           {%- endfor -%}
         ],
         "offers": {

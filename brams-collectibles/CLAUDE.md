@@ -202,6 +202,15 @@ Het thema staat op twee plekken: hier in `theme/`, en in de losse repo
 `edwardgijswijt-byte/brams-collectibles-theme` die aan Shopify hangt. Wijzig hier,
 kopieer daarheen, push beide. Deze repo blijft de bron.
 
+**Kopieer per bestand, nooit de hele map.** Drie bestanden lopen structureel
+uiteen omdat Shopify ze zelf schrijft en er zijn auto-generated-banner boven
+plakt: `sections/footer-group.json`, `sections/header-group.json` en
+`templates/product.json`. De versie in de themarepo is daar de echte. Kopieer je
+de map in zijn geheel, dan draai je iemands werk uit de thema-editor terug.
+
+Doe dus altijd eerst `diff -rq` tussen de twee bomen, kijk per bestand of het
+verschil van jou is, en kopieer alleen die.
+
 Het logo in de kopregel kan niet vanuit het thema worden gezet: Shopify verwacht
 daar een bestand uit de winkel, niet uit `assets/`. Dat is handwerk, één keer.
 

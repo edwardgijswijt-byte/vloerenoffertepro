@@ -52,7 +52,7 @@ PRODUCT = Ding(
     description='<p>Elf packs en twee Fennekin-promo\'s.</p>',
     url='/products/chaos-rising-pokemon-center-elite-trainer-box',
     type='Elite Trainer Box',
-    media=['a.png', 'b.png'],
+    images=['a.png', 'b.png'],
     selected_or_first_available_variant=Ding(sku='BC-CR-PCETB', price=15500, available=True),
 )
 
