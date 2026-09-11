@@ -28,6 +28,11 @@ python3 build.py && python3 export.py                       advertenties
 python3 plaatslijst.py                                      alles om te plaatsen
 ```
 
+`controlepagina.py` zet alle artikelen op een rij met hun opnames, de feiten
+en de webshoptekst, om door Bram te laten nakijken. Via `drukklaar.py` wordt
+dat een pdf die je kunt doorsturen. De opnamenummers staan bij elke foto, dus
+als hij er een afkeurt weet je meteen welk bestand eruit moet.
+
 `plaatslijst.py` zet de complete advertenties onder elkaar in
 `teksten/uit/_marktplaats-plaatsen.md`, op vraagprijs gesorteerd, met per stuk
 het fotobestand erbij. Wat niet compleet is komt onderaan met de reden. Handig
@@ -42,21 +47,32 @@ dat is waar `productbeeld.py` uit leest.
 
 De eerste opname die je aan `productbeeld.py` meegeeft wordt het hoofdbeeld.
 
-**Die volgorde staat nergens machinaal vast, en dat is een gat.** Welke opnames
-in welk product gaan en in welke volgorde was per artikel een aanroep op de
-opdrachtregel. Alleen de kolom `notitie` noemt bij sommige artikelen welke
-IMG-nummers het waren, in proza. Draai je `productbeeld.py` opnieuw zonder die
-volgorde, dan gok je — en dat is in dit project al een keer misgegaan: ik heb
+**Die volgorde staat sinds 11 september in het register, in de kolom
+`opnames`.** Daarvoor stond hij nergens: welke opnames in welk product gingen en
+in welke volgorde was per artikel een aanroep op de opdrachtregel. Alleen de
+kolom `notitie` noemde bij veertien van de achttien artikelen wat IMG-nummers,
+in proza, inclusief opnames die juist waren afgekeurd. Opnieuw genereren
+betekende dus gokken, en dat is in dit project al een keer misgegaan: ik heb
 correcte productbeelden overschreven met verzonnen volgordes, en dat kwam pas
 aan het licht door de verschillen per pixel te meten.
 
-Daarom staat `export/marktplaats/` sinds 11 september wél in de repo. Die
-vijftien beelden staan nergens anders: de advertenties zijn nog niet geplaatst,
-dus dit is de enige kopie. `export/webshop/` blijft eruit — 49 MB, en die
-beelden staan al in Shopify, wat de duurzame kopie is.
+De kolom is niet ingevuld naar beste weten maar **teruggerekend door te meten**.
+Het sjabloon is deterministisch op renderruis na, dus alle 67 uitsnedes zijn
+opnieuw door `productbeeld.py` gehaald en elk bestaand galerijbeeld is daartegen
+vergeleken. De juiste bron ligt gemiddeld onder de 5 grijswaarden van het
+origineel, de eerstvolgende kandidaat op 10 of meer. Alle 51 beelden kwamen
+eruit met een marge van minstens twee keer; geen enkel twijfelgeval.
 
-Wil je dit gat echt dichten, dan hoort er een kolom `opnames` in het register
-met de geordende lijst per sku. Dan is de pijplijn pas echt reproduceerbaar.
+Dat leverde meteen een correctie op: de notitie bij de Chaos Rising Booster Box
+zei dat IMG_3712 "slecht blijft". Gemeten is hij 96 procent gevuld, de beste van
+zijn groep, en hij is het hoofdbeeld. Die notitie stamde van vóór de aangepaste
+`rand_aantrekken` en klopte niet meer.
+
+`export/marktplaats/` staat sinds diezelfde dag ook in de repo. Die vijftien
+beelden staan nergens anders: de advertenties zijn nog niet geplaatst.
+`export/webshop/` blijft eruit — 49 MB, en die beelden staan al in Shopify, wat
+de duurzame kopie is. Met de kolom `opnames` erbij zijn ze nu wel echt opnieuw
+te maken.
 
 ## Regels die uit schade zijn geleerd
 
