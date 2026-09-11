@@ -58,6 +58,17 @@ zo blijven — daar is elk exemplaar anders.
 **Map per artikel in Drive, genoemd naar de sku.** Anders ben je een dag kwijt aan
 uitzoeken welke `IMG_xxxx.JPG` bij wat hoort.
 
+**Een lichte achtergrond lost niet alles op.** De Destined Rivals-doos is
+opnieuw geschoten tegen een lila muur in plaats van zwart satijn, en rembg kreeg
+hem alsnog niet heel: het zwarte artwork op de doos las hij als achtergrond, dus
+Giovanni en Mewtwo stonden als gaten in het masker. Gaten vullen hielp maar
+half — Mewtwo loopt tot aan de doosrand door, en dan is het een inham. Wat wel
+werkt: alles wat we fotograferen is een doos, en een doos is convex, dus de
+omhullende van het masker. Het stukje achtergrond dat daarbij mee naar binnen
+glipt snijdt `masker_omhullende` er weer af op kleur, met de muur bemonsterd in
+de bovenhoeken van de opname. Die stap draait alleen als het masker onder de
+zeventig procent gevuld blijft, dus aan de goede opnames komt hij niet.
+
 **Lees het etiket op de carton.** Bij een case zit alles wat je moet weten op
 het verzendetiket: artikelnummer, de volledige productnaam, hoeveel er in de
 doos zit en de releasedatum. De Paldean Fates-case bleek zo `SV4.5 ELITE TRAINER

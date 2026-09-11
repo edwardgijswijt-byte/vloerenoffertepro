@@ -89,9 +89,48 @@ def masker_dubbelslag(im):
         return a, 'rembg'
     op = ImageEnhance.Contrast(ImageEnhance.Brightness(im).enhance(3.0)).enhance(1.4)
     b = masker_rembg(op, matting=False)
-    if vulling(b) > vol:
-        return b, f'rembg opgehelderd ({vol:.0%} -> {vulling(b):.0%} gevuld)'
-    return a, f'rembg ({vol:.0%} gevuld, ophelderen hielp niet)'
+    beste, hoe = (b, 'opgehelderd') if vulling(b) > vol else (a, 'gewoon')
+    if vulling(beste) >= 0.70:
+        return beste, f'rembg {hoe} ({vol:.0%} -> {vulling(beste):.0%} gevuld)'
+    c = masker_omhullende(im, beste)
+    if vulling(c) > vulling(beste):
+        return c, f'omhullende ({vulling(beste):.0%} -> {vulling(c):.0%} gevuld)'
+    return beste, f'rembg {hoe} ({vulling(beste):.0%} gevuld, niets hielp)'
+
+
+def masker_omhullende(im, a):
+    """Laatste redmiddel als rembg de doos niet heel krijgt.
+
+    Waarom dit mag: alles wat we fotograferen is een doos, en een doos is
+    convex. De omtrek die rembg vindt klopt meestal wel; wat misgaat zit
+    binnenin. Bij de Destined Rivals-doos las hij het zwarte artwork als
+    achtergrond en stond Giovanni als gat in het masker. Gaten vullen was
+    niet genoeg — Mewtwo loopt tot aan de doosrand door, dus dat is een
+    inham en geen gat. De omhullende trekt het in een keer recht.
+
+    De omhullende neemt wel wat achtergrond mee waar hij over een holle
+    hoek springt. Dat snijden we er weer af op kleur: de muur achter de
+    doos is egaal, dus bemonster hem in de hoeken van de opname en gooi
+    binnen de omhullende alles weg wat daar dicht bij ligt. Bij de
+    Destined Rivals-doos zat het eerste percentiel van de doos zelf op
+    afstand 16 en de rest op 194, dus een drempel van 30 raakt alleen het
+    randje."""
+    from scipy.ndimage import binary_fill_holes, label
+    from skimage.morphology import convex_hull_image
+    m = binary_fill_holes(a > 128)
+    if not m.any():
+        return a
+    lab, n = label(m)
+    if n > 1:
+        tel = np.bincount(lab.ravel())
+        tel[0] = 0
+        m = lab == tel.argmax()
+    h = convex_hull_image(m)
+    rgb = np.asarray(im.convert('RGB')).astype(np.int16)
+    hoek = np.concatenate([rgb[:80, :80].reshape(-1, 3), rgb[:80, -80:].reshape(-1, 3)])
+    muur = np.median(hoek, axis=0)
+    ver = np.sqrt(((rgb - muur) ** 2).sum(axis=2)) > 30
+    return np.where(binary_fill_holes(h & ver), 255, 0).astype(np.uint8)
 
 
 def masker_terugval(im):
