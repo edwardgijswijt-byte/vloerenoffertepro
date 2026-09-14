@@ -3,6 +3,11 @@
 
     python3 nieuwefotos.py            alles wat in fotos/nieuw/ staat
     python3 nieuwefotos.py BC-CR-ETB  alleen dat artikel
+    python3 nieuwefotos.py --opnieuw  ook wat al af is
+
+Hervatbaar: wat al een rechtgezette uitsnede en een Marktplaats-beeld heeft
+wordt overgeslagen. De reeks duurt drie kwartier en is een keer halverwege
+afgebroken; opnieuw beginnen vanaf nul is dan zonde.
 
 In september 2026 heeft Bram alles opnieuw gefotografeerd, op 5712x4284 tegen
 2048x1536 eerder. Hij levert per artikel een map met 1.HEIC en 2.HEIC, genoemd
@@ -70,8 +75,18 @@ def omzetten(sku, map_):
     return namen
 
 
+def af(sku, namen):
+    """Al gedaan? Dan moeten alle rechtgezette uitsnedes er zijn en het
+    Marktplaats-beeld ook."""
+    recht = HIER / 'fotos' / 'uitgesneden' / 'strak' / 'recht'
+    return ((HIER / 'export' / 'marktplaats' / f'{sku}.png').exists()
+            and all((recht / f'{n}.png').exists() for n in namen))
+
+
 def main():
     keuze = set(sys.argv[1:])
+    opnieuw = '--opnieuw' in keuze
+    keuze.discard('--opnieuw')
     gedaan, over = [], []
     for map_, sku in sorted(MAPPEN.items(), key=lambda kv: kv[1]):
         if keuze and sku not in keuze:
@@ -82,6 +97,9 @@ def main():
         namen = omzetten(sku, map_)
         if not namen:
             over.append((sku, 'geen HEIC in de map'))
+            continue
+        if af(sku, namen) and not opnieuw:
+            over.append((sku, 'stond al klaar'))
             continue
 
         draai('uitsnijden.py', *[f'fotos/{n}.JPG' for n in namen])
