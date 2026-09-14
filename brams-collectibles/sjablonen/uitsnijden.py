@@ -56,11 +56,24 @@ def vulling(a):
 
 
 def omvang(a):
-    """Het oppervlak van de omhullende rechthoek van het masker."""
-    m = a > 128
-    if not m.any():
+    """Het oppervlak van de omhullende rechthoek van de grootste vlek.
+
+    Waarom de grootste vlek en niet het hele masker: masker_dubbelslag zet de
+    rechthoek van het gematte masker af tegen die van het ruwe om te zien of de
+    matting een band heeft opgegeten. Bij de Chaos Rising Pokemon Centre-doos
+    pakte het ruwe masker een los stukje plakband van de tafel mee. Dat is
+    honderd pixels, maar het ligt een eind onder de doos, dus de rechthoek van
+    het ruwe masker werd anderhalf keer zo groot en het gematte masker leek
+    ineens een band kwijt. Het werd afgekeurd terwijl het voor 96 procent
+    gevuld was en het ruwe voor 65. Daarna ging de reparatie er overheen en was
+    het helemaal mis."""
+    from scipy.ndimage import label
+    lab, n = label(a > 128)
+    if n == 0:
         return 0
-    ys, xs = np.nonzero(m)
+    tel = np.bincount(lab.ravel())
+    tel[0] = 0
+    ys, xs = np.nonzero(lab == tel.argmax())
     return (ys.max() - ys.min() + 1) * (xs.max() - xs.min() + 1)
 
 
@@ -266,7 +279,21 @@ def gaten_vullen(m):
 
 
 # Opnames waar de tafelrand onder de doos is meegepakt. Zie voetstuk_weg.
-MET_VOETSTUK = set()
+# Met het oog vastgesteld, om dezelfde reden als bij MET_RECHTHOEK: een doos die
+# door perspectief naar onderen breder wordt en een doos die op een tafelrand
+# staat geven in cijfers hetzelfde beeld. Gemeten op helderheid, op R-B en op
+# horizontale randsterkte — geen van drieen scheidt ze.
+MET_VOETSTUK = {
+    'BC-151-BNDD-N2', 'BC-AH-BNDD-N2', 'BC-AH-PCETB-N2',
+    'BC-FP-CASE2-N2', 'BC-PE-SPC-N1',
+}
+
+# Opnames waar de tafel niet breder is dan de doos en voetstuk_weg hem dus niet
+# ziet. Bij de Ascended Heroes-bundeldisplay staat de doos op een houten balk
+# van precies dezelfde breedte. Hier de hoogte waarop het masker wordt
+# afgesneden, als deel van de hoogte van het masker zelf — met de hand
+# opgemeten aan de sprong in helderheid op de onderrand van de doos.
+HANDSNEE = {'BC-AH-BNDD-N2': 0.776, 'BC-PE-SPC-N1': 0.80}
 
 # Opnames van een doos die recht voor de lens staat en waar rembg een hap uit
 # het masker neemt. Zie masker_rechthoek. Met het oog vastgesteld, want een
@@ -398,6 +425,14 @@ def verwerk(pad):
             if not np.array_equal(gesneden, a):
                 hoe += ', voetstuk weg'
                 a = gesneden
+        deel = HANDSNEE.get(pathlib.Path(pad).stem)
+        if deel:
+            rijen = np.nonzero((a > 128).any(axis=1))[0]
+            if len(rijen):
+                grens = rijen[0] + int((rijen[-1] - rijen[0] + 1) * deel)
+                a = a.copy()
+                a[grens:] = 0
+                hoe += f', met de hand op {deel:.0%} afgesneden'
     except Exception as e:
         print(f'   rembg niet gebruikt ({e.__class__.__name__}), terugval', file=sys.stderr)
         a = masker_terugval(im)

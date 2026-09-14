@@ -53,8 +53,15 @@ def blad(sku, fotopad):
     """Het blad is nu zo kaal dat de sku er niet meer toe doet, maar hij blijft
     in de aanroep staan omdat de bestandsnaam van de uitvoer erop draait."""
     im = Image.open(fotopad)
-    ruimte_h = HOOG * 0.78
-    breed = round(im.width * min(ruimte_h / im.height, BREED * 0.70 / im.width, 1.15))
+    # Drie plafonds: hoogte, breedte, en hoeveel we een opname mogen opblazen.
+    # Het laatste stond op 1.15 en dat was te streng. Bram fotografeert alles
+    # van dezelfde afstand, dus van een booster bundle blijft 531 pixels over
+    # waar een display er 2534 heeft — en dan stond dat doosje op een derde van
+    # het kader. Opblazen mag hier ruimer dan je zou denken, want Marktplaats
+    # toont een advertentiefoto rond de 800 pixels; van 531 naar 1312 op een
+    # doek van 1600 komt op het scherm neer op ongeveer een op een.
+    breed = round(im.width * min(HOOG * 0.78 / im.height,
+                                 BREED * 0.82 / im.width, 2.0))
 
     inner = f"""    <div style="flex:none;display:flex;justify-content:center;padding:46px 0 0">{logo(132)}</div>
     <div style="flex:1;min-height:0;display:flex;align-items:flex-end;justify-content:center;padding:0 50px 10px">
