@@ -292,6 +292,41 @@ def bijsnijden(rgba):
     return strak, doek
 
 
+def witbalans(rgb, a, aandeel=0.05, klem=(0.6, 1.7)):
+    """De kleurzweem uit de opname halen, gemeten aan het product zelf.
+
+    Bram fotografeert 's avonds binnen. De witte 151-doos komt er lila uit: de
+    hooglichten meten R167 G187 B250 waar ze neutraal horen te zijn. Dat zit in
+    de opname, niet in onze verwerking — de HEIC draagt een Display P3-profiel,
+    maar netjes naar sRGB omzetten maakt het niet beter.
+
+    We corrigeren op het product en niet op de hele foto, want de muur en de
+    tafel eromheen hebben hun eigen kleur. Van de vijf procent lichtste
+    productpixels nemen we de helft die het minst verzadigd is: dat zijn de
+    glansplekken op de krimpfolie en die horen neutraal te zijn. De winst die
+    ze naar grijs brengt gaat over het hele beeld.
+
+    De klem houdt hem eerlijk. Bij een doos die van zichzelf sterk gekleurd is
+    zou een ongeremde correctie de kleur van het product zelf gaan wegpoetsen,
+    en dan verkoop je iets anders dan er in de doos zit.
+    """
+    m = a > 200
+    if m.sum() < 500:
+        return rgb
+    pix = rgb[m].astype(float)
+    lum = pix.mean(axis=1)
+    licht = pix[lum >= np.percentile(lum, 100 * (1 - aandeel))]
+    verz = licht.max(axis=1) - licht.min(axis=1)
+    neutraal = licht[verz <= np.percentile(verz, 50)]
+    if len(neutraal) < 50:
+        return rgb
+    k = neutraal.mean(axis=0)
+    if k.min() < 1:
+        return rgb
+    winst = np.clip(k.mean() / k, *klem)
+    return np.clip(rgb.astype(float) * winst, 0, 255).astype(np.uint8)
+
+
 def verwerk(pad):
     im = Image.open(pad)
     im = ImageOps.exif_transpose(im).convert('RGB')
@@ -309,7 +344,8 @@ def verwerk(pad):
         a = masker_terugval(im)
         hoe = 'terugval'
 
-    rgba = np.dstack([np.asarray(im), a])
+    rgb = witbalans(np.asarray(im), a)
+    rgba = np.dstack([rgb, a])
     strak, vierkant = bijsnijden(rgba)
     UIT.mkdir(parents=True, exist_ok=True)
     STRAK.mkdir(parents=True, exist_ok=True)
