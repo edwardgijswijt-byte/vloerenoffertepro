@@ -215,6 +215,58 @@ def gaten_vullen(m):
     return (~buiten).astype(np.uint8)
 
 
+def voetstuk_weg(a, speling=0.012, houvast=0.03):
+    """De tafelrand onder de doos wegsnijden.
+
+    Bram zet de doos op de rand van zijn tafel en plakt hem vast met
+    schilderstape. Bij een liggende doos pakt rembg die tafelrand mee: in het
+    sjabloon staat de doos dan op een plak hout met twee stukken tape eraan.
+
+    Het signaal is niet de helderheid en niet de kleur — ik heb ze allebei
+    gemeten en ze scheiden een witte doos niet van licht hout. Wat wel
+    scheidt is de breedte, maar dan andersom dan je zou denken: het tafelblad
+    steekt zijwaarts *buiten* de doos uit. Bij het 151-display zit de doos op
+    0,99 tot 1,00 van zijn kernbreedte en loopt het masker vanaf de tafel op
+    naar 1,03, om bij de voorrand terug te zakken naar 0,94 en bij de tape
+    naar 0,15.
+
+    We snijden daarom alleen op *verbreding*, nooit op versmalling. Dat is een
+    hard geleerde les: de eerste versie sneed ook bij afwijking naar beneden,
+    en knipte 736 van de 1635 rijen van de staande doos af. Een staande doos
+    loopt door perspectief taps toe en zit onderaan op 0,96 van zijn
+    kernbreedte — met een marge van een procent is dat meteen raak. Naar boven
+    afwijken doet alleen de tafel.
+
+    De tape en de voorrand van de tafel zijn juist smaller, maar die zitten
+    onder de verbreding, dus die gaan mee.
+    """
+    m = a > 128
+    if not m.any():
+        return a
+    breed = m.sum(axis=1)
+    rijen = np.nonzero(breed > 0)[0]
+    top, onder = rijen[0], rijen[-1]
+    hoog = onder - top + 1
+    if hoog < 50:
+        return a
+
+    kern = np.median(breed[top + int(hoog * 0.10):top + int(hoog * 0.60)])
+    if kern <= 0:
+        return a
+
+    vast = max(3, int(hoog * houvast))
+    begin = top + int(hoog * 0.55)
+    for y in range(begin, onder - vast):
+        blok = breed[y:y + vast] / kern
+        if np.all(blok > 1 + speling):
+            if (onder - y) < hoog * 0.04:         # te weinig om tafel te zijn
+                return a
+            uit = a.copy()
+            uit[y:] = 0
+            return uit
+    return a
+
+
 def bijsnijden(rgba):
     """Twee uitvoeren van dezelfde uitsnede.
 
@@ -248,6 +300,10 @@ def verwerk(pad):
 
     try:
         a, hoe = masker_dubbelslag(im)
+        gesneden = voetstuk_weg(a)
+        if not np.array_equal(gesneden, a):
+            hoe += ', voetstuk weg'
+            a = gesneden
     except Exception as e:
         print(f'   rembg niet gebruikt ({e.__class__.__name__}), terugval', file=sys.stderr)
         a = masker_terugval(im)
