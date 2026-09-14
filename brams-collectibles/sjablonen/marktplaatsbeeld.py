@@ -1,20 +1,29 @@
 #!/usr/bin/env python3
-"""Hoofdfoto voor Marktplaats, 1200x900.
+"""Hoofdfoto voor Marktplaats, 1600x1600.
 
     python3 marktplaatsbeeld.py BC-CR-ETB IMG_3700
 
-Marktplaats toont je foto klein en tussen tientallen andere. Daarom staat de
-naam en de prijs in het beeld zelf: wie scrollt ziet meteen wat het is en wat
-het kost, zonder te klikken. De rest van de galerij zijn gewone opnames.
+Alleen het logo en het product op de navy grond. Geen naam, geen prijs, geen
+voetregel — die stonden er eerst wel in, maar Marktplaats zet titel en
+vraagprijs zelf al naast de foto, en tekst in het beeld leest bij een kleine
+weergave toch niet.
 
-Naam en prijs komen uit register.csv.
+Het formaat ging van 1200x900 naar 1600x1600 toen de opnames van 2048 breed
+naar 5712 gingen. Bij de oude foto's was er geen ruimte om groter te gaan
+zonder op te blazen; nu wel.
+
+En vierkant, niet liggend. De dozen staan rechtop en zijn dus hoog en smal:
+op een liggend vlak van 4:3 mag zo'n doos maar 35 procent van de breedte
+innemen voordat hij bovenaan het kader raakt, en dan staat hij verloren in het
+midden. Vierkant geeft hem 46 procent. Bij een liggende doos, zoals een
+display op zijn kant, verliest vierkant niets.
 """
 import base64, csv, pathlib, subprocess, sys, tempfile, shutil
 from PIL import Image
 
 from huisstijl import NAVY, GOLD, CREAM, MUTED, FONTS, BASE, logo, frame, plateau, footer_mark
 
-BREED, HOOG = 1200, 900
+BREED, HOOG = 1600, 1600
 CHROME = '/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell'
 HIER = pathlib.Path(__file__).parent
 BRON = HIER / 'fotos' / 'uitgesneden' / 'strak' / 'recht'
@@ -36,40 +45,26 @@ def bedrag(waarde):
 
 
 def blad(sku, fotopad):
-    r = REGISTER[sku]
-    prijs = f"&euro; {bedrag(r['prijs'])}" if r['prijs'] else '&euro; [PRIJS]'
-    regel = 'Sealed &middot; Verzekerd verzonden &middot; Ophalen mogelijk'
-    if r['hoes'] == 'ja':
-        regel = 'Sealed &middot; In acrylhoes &middot; Verzekerd verzonden'
-
+    """Het blad is nu zo kaal dat de sku er niet meer toe doet, maar hij blijft
+    in de aanroep staan omdat de bestandsnaam van de uitvoer erop draait."""
     im = Image.open(fotopad)
-    ruimte = HOOG * 0.52
-    breed = round(im.width * min(ruimte / im.height, BREED * 0.42 / im.width, 1.15))
+    ruimte_h = HOOG * 0.78
+    breed = round(im.width * min(ruimte_h / im.height, BREED * 0.70 / im.width, 1.15))
 
-    inner = f"""    <div style="flex:none;display:flex;align-items:center;gap:22px;padding:22px 30px 14px">
-      {logo(84)}
-      <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:5px">
-        <div class="os" style="font-size:30px;font-weight:700;letter-spacing:.02em;color:{CREAM};
-          text-transform:uppercase;line-height:1.05">{r['naam']}</div>
-        <div class="os" style="font-size:15px;font-weight:500;letter-spacing:.19em;color:{MUTED};
-          text-transform:uppercase">{regel}</div>
-      </div>
-      <div class="pp" style="font-size:38px;font-weight:700;color:{GOLD};line-height:1;flex:none;
-        font-variant-numeric:tabular-nums;white-space:nowrap">{prijs}</div>
-    </div>
-    <div style="flex:1;min-height:0;display:flex;align-items:flex-end;justify-content:center;padding:0 40px 4px">
+    inner = f"""    <div style="flex:none;display:flex;justify-content:center;padding:46px 0 0">{logo(132)}</div>
+    <div style="flex:1;min-height:0;display:flex;align-items:flex-end;justify-content:center;padding:0 50px 10px">
       <img src="{datauri(fotopad)}" alt="" style="width:{breed}px;height:auto;max-height:100%;
-        object-fit:contain;filter:drop-shadow(0 16px 26px rgba(0,0,0,.5))">
+        object-fit:contain;filter:drop-shadow(0 18px 30px rgba(0,0,0,.5))">
     </div>
-{plateau(int(BREED * 0.40), bar=11, body=34)}
-    <div style="flex:none;padding:16px 0 20px">{footer_mark(size=14, gap=18, rule=120)}</div>"""
+{plateau(int(BREED * 0.44), bar=14, body=42)}
+    <div style="flex:none;height:50px"></div>"""
     inner = inner.replace('src="logo.png"', f'src="{datauri(HIER / "logo.png")}"')
     return f"""<!doctype html>
 <html><head><meta charset="utf-8"><style>
 {FONTS}
 {BASE}
 </style></head><body style="margin:0;background:{NAVY}">
-{frame(BREED, HOOG, inner, border=6, inset=3)}
+{frame(BREED, HOOG, inner, border=7, inset=4)}
 </body></html>
 """
 
