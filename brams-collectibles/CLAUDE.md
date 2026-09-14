@@ -150,6 +150,53 @@ en ziet er nergens naar uit. Bak ze in als data-URI; de woff2-bestanden staan in
 Een gepubliceerde pagina is bovendien privé en vraagt toegang tot dezelfde
 Claude-omgeving. Voor een externe klant is een pdf de weg.
 
+## Drukwerk
+
+`sjablonen/drukwerk.py` maakt de A5-flyer: `export/drukwerk/flyer-a5.pdf`.
+
+De eerste flyer is in Canva gemaakt en kwam bij de drukker terug met drie
+opmerkingen. Twee waren routine — hij vlakt een Canva-bestand af, en hij zet
+RGB om naar CMYK. De derde was een fout: het bestand was 161x223 in plaats van
+148x210, dus 6,5 mm te groot aan elke kant, en met een andere verhouding
+(1:1,385 tegen 1:1,419). Schalen kan dan niet zonder dat er iets af gaat of
+wordt uitgerekt.
+
+Vier dingen die een drukklaar bestand nodig heeft en die dit script regelt:
+
+**De TrimBox.** De pagina is 154x216 (A5 plus 3 mm afloop) en de TrimBox staat
+op 148x210 in het midden. Zonder TrimBox meet de preflight van de drukker de
+MediaBox, en dan leest hij de afloop als onderdeel van het formaat — precies
+hoe het Canva-bestand als 161x223 binnenkwam.
+
+**Ruimer renderen dan de pagina.** Chromium rondt het paginaformaat af op hele
+punten: vraag je 154x216 mm, dan komt er 154,18 x 215,90 uit. Snijd je dat
+achteraf terug, dan wordt de pagina aan één kant hoger dan wat er geschilderd
+is en houd je een witte haarlijn langs de snee. Daarom staat het ontwerp midden
+op een doek dat 4 mm ruimer is en wordt de pagina daar met `show_pdf_page`
+middenuit gehaald. Dat blijft vector; de tekst blijft tekst.
+
+**Niets dat tot aan de snijlijn loopt.** In het Canva-ontwerp was de gouden rand
+het buitenste element en liep hij tot de snijlijn. Snijden gaat met een
+tolerantie van een tot twee millimeter die per zijde verschilt, dus zo'n rand
+wordt zichtbaar ongelijk. Hier zit hij 7 mm naar binnen, aan alle vier de
+zijden gemeten op 7,08.
+
+**Geen alfakanaal.** `logo.png` is rond uitgesneden, en Chromium maakt van dat
+alfakanaal een SMask in de pdf. Dat is de doorzichtigheid waar de drukker over
+waarschuwt. Het logo staat toch al op navy, dus `logo_op_navy()` zet het van
+tevoren op die kleur. Op het oog identiek, in de pdf een gewone RGB-afbeelding
+zonder masker, en er valt niets meer af te vlakken.
+
+Wat het script niet doet is omzetten naar CMYK: Chromium levert RGB en
+ghostscript staat hier niet. De drukker zet het zelf om. De bouwwaarden staan in
+`teksten/huisstijl.md`.
+
+Controleren na een wijziging:
+
+```
+python3 -c "import pymupdf; b=pymupdf.open('export/drukwerk/flyer-a5.pdf')[0]; print(b.mediabox, b.trimbox)"
+```
+
 ## Teksten staan in lagen
 
 ```
