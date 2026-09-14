@@ -29,6 +29,17 @@ Twee dingen over het voorwerk:
   over als een groot.
 - **De opnames gaan onder hun sku de pijplijn in**, niet onder 1 en 2. Anders
   heet elke bron in elke map hetzelfde en kun je ze niet naast elkaar zetten.
+
+**Alleen HEIC, en dat is met opzet.** Bij de vier cases staat er naast Brams
+eigen opname ook een `1.webp` of `1.png` met varianten als "Alternatief op 1".
+Dat zijn afbeeldingen van de distributeur: een montage van de blister voor een
+bruine doos met "X6" erop. Die horen niet in een advertentie. Het is andermans
+beeld, en de algemene voorwaarden beloven dat de foto van het daadwerkelijke
+exemplaar is. Door alleen `*.HEIC` op te halen vallen ze er vanzelf buiten en
+wordt Brams foto van de carton met het verzendetiket het hoofdbeeld — wat ook
+eerlijker is, want dat is wat de koper krijgt.
+
+Voeg hier dus geen webp of png aan toe zonder daar opnieuw over na te denken.
 """
 import pathlib
 import subprocess
