@@ -137,6 +137,56 @@ def masker_omhullende(im, a):
     return np.where(binary_fill_holes(h & ver), 255, 0).astype(np.uint8)
 
 
+def masker_rechthoek(a):
+    """Alles wat we fotograferen is een doos, en een doos die recht voor de lens
+    staat is in beeld een rechthoek. Blijft rembg met een hap eruit zitten — bij
+    een donkere doos tegen een donkere achtergrond gebeurt dat — dan legt de
+    kleinste gedraaide rechthoek om het masker de doos weer heel.
+
+    Waarom dit beter is dan de omhullende: die is wel convex maar niet recht.
+    Mist rembg de rechteronderhoek, dan springt de omhullende schuin van de
+    rechterbovenhoek naar linksonder en snijdt de doos diagonaal doormidden.
+    Precies dat ging mis bij de Prismatic Super-Premium Collection: het masker
+    vulde zijn rechthoek voor 75 procent, de omhullende maakte er 79 van en de
+    doos was zijn halve rechterkant kwijt. De gedraaide rechthoek komt op 94
+    procent en de doos is heel.
+
+    Voorwaarde is wel dat de doos recht voor de lens staat. Staat hij schuin,
+    dan is hij in beeld een trapezium en pakt de rechthoek de hoeken
+    achtergrond mee. Daarom alleen voor opnames in MET_RECHTHOEK."""
+    from scipy.ndimage import label, binary_fill_holes
+    from scipy.spatial import ConvexHull
+    from skimage.draw import polygon
+    lab, n = label(a > 128)
+    if n == 0:
+        return a
+    tel = np.bincount(lab.ravel())
+    tel[0] = 0
+    m = binary_fill_holes(lab == tel.argmax())
+    ys, xs = np.nonzero(m)
+    punten = np.column_stack([xs, ys]).astype(float)
+    omtrek = punten[ConvexHull(punten).vertices]
+    beste = None
+    for i in range(len(omtrek)):                 # roterende schuifmaat
+        rib = omtrek[(i + 1) % len(omtrek)] - omtrek[i]
+        lang = np.hypot(*rib)
+        if lang < 1e-9:
+            continue
+        rib = rib / lang
+        draai = np.array([[rib[0], rib[1]], [-rib[1], rib[0]]])
+        p = omtrek @ draai.T
+        lo, hi = p.min(axis=0), p.max(axis=0)
+        opp = (hi - lo).prod()
+        if beste is None or opp < beste[0]:
+            hoeken = np.array([[lo[0], lo[1]], [hi[0], lo[1]],
+                               [hi[0], hi[1]], [lo[0], hi[1]]])
+            beste = (opp, hoeken @ draai)
+    uit = np.zeros(a.shape, np.uint8)
+    rr, cc = polygon(beste[1][:, 1], beste[1][:, 0], a.shape)
+    uit[rr, cc] = 255
+    return uit
+
+
 def masker_terugval(im):
     """Zonder rembg: de achtergrond is donkere stof, het product is licht en
     scherp. We combineren helderheid met lokaal contrast (stof is egaal,
@@ -217,6 +267,14 @@ def gaten_vullen(m):
 
 # Opnames waar de tafelrand onder de doos is meegepakt. Zie voetstuk_weg.
 MET_VOETSTUK = set()
+
+# Opnames van een doos die recht voor de lens staat en waar rembg een hap uit
+# het masker neemt. Zie masker_rechthoek. Met het oog vastgesteld, want een
+# trapezium door perspectief en een echte hap zien er in cijfers hetzelfde uit.
+MET_RECHTHOEK = {
+    'BC-PE-SPC-N1', 'BC-PE-SPC-N2',
+    'BC-MEV-GREN-N1', 'BC-MEV-GREN-N2',
+}
 
 
 def voetstuk_weg(a, speling=0.012, houvast=0.03):
@@ -330,6 +388,11 @@ def verwerk(pad):
 
     try:
         a, hoe = masker_dubbelslag(im)
+        if pathlib.Path(pad).stem in MET_RECHTHOEK:
+            recht = masker_rechthoek(a)
+            if vulling(recht) > vulling(a):
+                hoe += f' ({vulling(a):.0%} -> {vulling(recht):.0%} via rechthoek)'
+                a = recht
         if pathlib.Path(pad).stem in MET_VOETSTUK:
             gesneden = voetstuk_weg(a)
             if not np.array_equal(gesneden, a):
