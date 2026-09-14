@@ -152,7 +152,22 @@ Claude-omgeving. Voor een externe klant is een pdf de weg.
 
 ## Drukwerk
 
-`sjablonen/drukwerk.py` maakt de A5-flyer: `export/drukwerk/flyer-a5.pdf`.
+Twee scripts, en het verschil is belangrijk.
+
+`sjablonen/afloop.py` zet een **bestaand** ontwerp drukklaar zonder het te
+wijzigen. Dat is wat je wilt als er al iets ontworpen is:
+
+```
+python3 afloop.py <canva-export.pdf> export/drukwerk/flyer-a5-afloop.pdf
+```
+
+`sjablonen/drukwerk.py` bouwt een blad van nul op in de huisstijl. Handig als
+vertrekpunt voor nieuw drukwerk, maar het is niet de flyer die gedrukt wordt.
+
+Wat hier mis is gegaan: er kwam een vraag om een Canva-bestand technisch goed
+te maken, en ik heb het opnieuw ontworpen. De helft van de flyer had ik niet
+gezien en die heb ik zelf ingevuld. Dat was niet wat er gevraagd werd. De regel
+is simpel: als er een ontwerp ligt, verander je het ontwerp niet.
 
 De eerste flyer is in Canva gemaakt en kwam bij de drukker terug met drie
 opmerkingen. Twee waren routine — hij vlakt een Canva-bestand af, en hij zet
@@ -161,19 +176,30 @@ RGB om naar CMYK. De derde was een fout: het bestand was 161x223 in plaats van
 (1:1,385 tegen 1:1,419). Schalen kan dan niet zonder dat er iets af gaat of
 wordt uitgerekt.
 
-Vier dingen die een drukklaar bestand nodig heeft en die dit script regelt:
+Vier dingen die een drukklaar bestand nodig heeft, en die allebei de scripts
+regelen:
 
 **De TrimBox.** De pagina is 154x216 (A5 plus 3 mm afloop) en de TrimBox staat
 op 148x210 in het midden. Zonder TrimBox meet de preflight van de drukker de
 MediaBox, en dan leest hij de afloop als onderdeel van het formaat — precies
 hoe het Canva-bestand als 161x223 binnenkwam.
 
-**Ruimer renderen dan de pagina.** Chromium rondt het paginaformaat af op hele
-punten: vraag je 154x216 mm, dan komt er 154,18 x 215,90 uit. Snijd je dat
-achteraf terug, dan wordt de pagina aan één kant hoger dan wat er geschilderd
-is en houd je een witte haarlijn langs de snee. Daarom staat het ontwerp midden
-op een doek dat 4 mm ruimer is en wordt de pagina daar met `show_pdf_page`
-middenuit gehaald. Dat blijft vector; de tekst blijft tekst.
+**Geen naad waar twee tekeningen aan elkaar grenzen.** Twee vlakken die tot
+precies dezelfde coordinaat lopen dekken die grens niet, en dan blijft er een
+witte haarlijn van een tiende millimeter staan. In `drukwerk.py` speelt dat bij
+de paginarand: Chromium rondt het formaat af op hele punten, dus 154x216 wordt
+154,18 x 215,90, en terugsnijden laat een strookje ongeschilderd. Daar wordt het
+ontwerp midden op een doek van 4 mm ruimer gezet en met `show_pdf_page`
+middenuit gehaald — vector, dus de tekst blijft tekst. In `afloop.py` speelt het
+op de snijlijn zelf: de gespiegelde randstroken lopen daarom een halve
+millimeter over de snijlijn naar binnen en een halve millimeter buiten de pagina
+door. Nagemeten komt er op beide bestanden nul witte pixels in de afloop uit.
+
+**Schaal op de inkt, niet op de pagina.** Canva exporteerde hier 148,167 mm
+breed terwijl het ontwerp 147,913 breed is: een strookje wit van een kwart
+millimeter aan de rechterkant. Schaal je de hele pagina naar 148, dan komt dat
+wit precies op de snijlijn — het probleem dat je aan het oplossen bent.
+`inktvak()` zoekt op waar werkelijk inkt staat en schaalt daarop.
 
 **Niets dat tot aan de snijlijn loopt.** In het Canva-ontwerp was de gouden rand
 het buitenste element en liep hij tot de snijlijn. Snijden gaat met een
@@ -181,21 +207,33 @@ tolerantie van een tot twee millimeter die per zijde verschilt, dus zo'n rand
 wordt zichtbaar ongelijk. Hier zit hij 7 mm naar binnen, aan alle vier de
 zijden gemeten op 7,08.
 
-**Geen alfakanaal.** `logo.png` is rond uitgesneden, en Chromium maakt van dat
-alfakanaal een SMask in de pdf. Dat is de doorzichtigheid waar de drukker over
-waarschuwt. Het logo staat toch al op navy, dus `logo_op_navy()` zet het van
-tevoren op die kleur. Op het oog identiek, in de pdf een gewone RGB-afbeelding
-zonder masker, en er valt niets meer af te vlakken.
+**Geen alfakanaal.** Een rond uitgesneden logo heeft een alfakanaal en dat wordt
+in de pdf een SMask. Dat is de doorzichtigheid waar de drukker over waarschuwt:
+"kleurverschil tussen de afbeelding en de rest van je achtergrond". Beide
+scripts zetten zulke beelden van tevoren op hun eigen achtergrondkleur.
+`afloop.py` doet dat alleen als de omgeving egaal is — gemeten op honderd
+procent — want op een verlopende ondergrond zou dichtplakken op één kleur juist
+een rand maken.
 
 Wat het script niet doet is omzetten naar CMYK: Chromium levert RGB en
 ghostscript staat hier niet. De drukker zet het zelf om. De bouwwaarden staan in
 `teksten/huisstijl.md`.
 
+Wat overblijft aan doorzichtigheid in het Canva-bestand zijn zes
+transparantiegroepen om tekstblokken. Die zijn onschadelijk: hun ExtGState is
+`/ca 1 /BM /Normal`, dus volledig dekkend. Afvlakken verandert daar niets aan.
+
 Controleren na een wijziging:
 
 ```
-python3 -c "import pymupdf; b=pymupdf.open('export/drukwerk/flyer-a5.pdf')[0]; print(b.mediabox, b.trimbox)"
+python3 -c "import pymupdf; b=pymupdf.open('export/drukwerk/flyer-a5-afloop.pdf')[0]; print(b.mediabox, b.trimbox)"
 ```
+
+Wat geen van beide scripts oplost is een ontwerp waarin iets tot aan de snijlijn
+loopt. Op deze flyer is de gouden rand 1,5 mm dik en raakt hij de snijlijn.
+Gespiegelde afloop zorgt dat er geen wit langs komt, maar de rand wordt na het
+snijden aan de ene kant breder dan aan de andere. Dat is een kwestie van het
+ontwerp: de rand moet 3 mm naar binnen.
 
 ## Teksten staan in lagen
 

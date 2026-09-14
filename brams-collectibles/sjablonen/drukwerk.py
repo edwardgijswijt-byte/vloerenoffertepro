@@ -1,7 +1,14 @@
 #!/usr/bin/env python3
-"""Drukklaar A5-drukwerk in de huisstijl.
+"""Drukklaar A5-drukwerk in de huisstijl, van nul opgebouwd.
 
     python3 drukwerk.py            -> export/drukwerk/flyer-a5.pdf
+
+**Let op: dit is niet de flyer die gedrukt wordt.** Die is in Canva gemaakt en
+wordt met `afloop.py` drukklaar gezet, zodat het ontwerp blijft wat het is.
+Wat hier staat is een eigen opzet in dezelfde huisstijl, gemaakt voordat het
+Canva-bestand er was. De inhoud onder het logo is grotendeels invulling van
+mijn hand en niet van Bram. Gebruik het als vertrekpunt voor nieuw drukwerk,
+niet als vervanging van iets wat al ontworpen is.
 
 Waarom dit bestaat: de eerste flyer is in Canva gemaakt en kwam bij de drukker
 terug met drie opmerkingen. Twee waren routine, een was een fout. Het bestand
