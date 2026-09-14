@@ -5,15 +5,7 @@ onderaan onder "Beantwoord", zodat je kunt terugzien waarop een beslissing rust.
 
 ## Nog open
 
-**1. Welke First Partner-case is serie 1, 2 en 3?** Er liggen er vier per serie,
-en de prijzen lopen uiteen: serie 1 kost 500, serie 2 en 3 kosten 320. Fotogroep
-12 (IMG_3773 tot en met IMG_3785) bevat drie verschillende dozen, maar welke
-foto bij welke serie hoort is niet vast te stellen — het etiket op IMG_3785
-(ITEM# 10-10395-101, EAN 0196214139763, zes per carton) noemt de serie niet.
-Zonder die koppeling kan een advertentie van 500 euro de foto van een doos van
-320 krijgen. Kun je bij de nieuwe opnames per doos de serie erbij noteren?
-
-**2. Een vooraanzicht van de gewone Pitch Black ETB.** Er zijn twee opnames van
+**1. Een vooraanzicht van de gewone Pitch Black ETB.** Er zijn twee opnames van
 gevonden (het achterpaneel en een zijkant), genoeg om te plaatsen, maar geen
 voorkant.
 
