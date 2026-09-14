@@ -215,30 +215,28 @@ def gaten_vullen(m):
     return (~buiten).astype(np.uint8)
 
 
+# Opnames waar de tafelrand onder de doos is meegepakt. Zie voetstuk_weg.
+MET_VOETSTUK = set()
+
+
 def voetstuk_weg(a, speling=0.012, houvast=0.03):
-    """De tafelrand onder de doos wegsnijden.
+    """De tafelrand onder de doos wegsnijden — alleen waar dat gevraagd wordt.
 
     Bram zet de doos op de rand van zijn tafel en plakt hem vast met
-    schilderstape. Bij een liggende doos pakt rembg die tafelrand mee: in het
-    sjabloon staat de doos dan op een plak hout met twee stukken tape eraan.
+    schilderstape. Bij sommige opnames pakt rembg die tafelrand mee: de doos
+    staat dan op een plak hout met twee stukken tape eraan.
 
-    Het signaal is niet de helderheid en niet de kleur — ik heb ze allebei
-    gemeten en ze scheiden een witte doos niet van licht hout. Wat wel
-    scheidt is de breedte, maar dan andersom dan je zou denken: het tafelblad
-    steekt zijwaarts *buiten* de doos uit. Bij het 151-display zit de doos op
-    0,99 tot 1,00 van zijn kernbreedte en loopt het masker vanaf de tafel op
-    naar 1,03, om bij de voorrand terug te zakken naar 0,94 en bij de tape
-    naar 0,15.
+    Dit werd eerst automatisch gedaan, op de waarneming dat het tafelblad
+    zijwaarts buiten de doos uitsteekt en het masker daar dus breder wordt.
+    Dat is bij het 151-display ook zo, maar het is geen bruikbaar kenmerk: een
+    doos die iets van boven is geschoten loopt naar onderen óók breder, door
+    perspectief. Die regel sneed vervolgens de onderkant van de Chaos Rising
+    Pokemon Center-doos, het Ascended Heroes-display en de First Partner
+    serie 2-carton af. Helderheid, kleur en randkracht scheiden ze evenmin —
+    alle drie gemeten, alle drie onbruikbaar.
 
-    We snijden daarom alleen op *verbreding*, nooit op versmalling. Dat is een
-    hard geleerde les: de eerste versie sneed ook bij afwijking naar beneden,
-    en knipte 736 van de 1635 rijen van de staande doos af. Een staande doos
-    loopt door perspectief taps toe en zit onderaan op 0,96 van zijn
-    kernbreedte — met een marge van een procent is dat meteen raak. Naar boven
-    afwijken doet alleen de tafel.
-
-    De tape en de voorrand van de tafel zijn juist smaller, maar die zitten
-    onder de verbreding, dus die gaan mee.
+    Automatisch raden kost hier meer dan het oplevert. Wie een opname ziet met
+    tafel eronder zet hem in MET_VOETSTUK; de rest blijft ongemoeid.
     """
     m = a > 128
     if not m.any():
@@ -249,17 +247,14 @@ def voetstuk_weg(a, speling=0.012, houvast=0.03):
     hoog = onder - top + 1
     if hoog < 50:
         return a
-
     kern = np.median(breed[top + int(hoog * 0.10):top + int(hoog * 0.60)])
     if kern <= 0:
         return a
 
     vast = max(3, int(hoog * houvast))
-    begin = top + int(hoog * 0.55)
-    for y in range(begin, onder - vast):
-        blok = breed[y:y + vast] / kern
-        if np.all(blok > 1 + speling):
-            if (onder - y) < hoog * 0.04:         # te weinig om tafel te zijn
+    for y in range(top + int(hoog * 0.55), onder - vast):
+        if np.all(breed[y:y + vast] / kern > 1 + speling):
+            if (onder - y) < hoog * 0.04:
                 return a
             uit = a.copy()
             uit[y:] = 0
@@ -335,10 +330,11 @@ def verwerk(pad):
 
     try:
         a, hoe = masker_dubbelslag(im)
-        gesneden = voetstuk_weg(a)
-        if not np.array_equal(gesneden, a):
-            hoe += ', voetstuk weg'
-            a = gesneden
+        if pathlib.Path(pad).stem in MET_VOETSTUK:
+            gesneden = voetstuk_weg(a)
+            if not np.array_equal(gesneden, a):
+                hoe += ', voetstuk weg'
+                a = gesneden
     except Exception as e:
         print(f'   rembg niet gebruikt ({e.__class__.__name__}), terugval', file=sys.stderr)
         a = masker_terugval(im)
