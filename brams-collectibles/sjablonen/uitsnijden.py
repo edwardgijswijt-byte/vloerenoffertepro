@@ -293,7 +293,7 @@ MET_VOETSTUK = {
 # van precies dezelfde breedte. Hier de hoogte waarop het masker wordt
 # afgesneden, als deel van de hoogte van het masker zelf — met de hand
 # opgemeten aan de sprong in helderheid op de onderrand van de doos.
-HANDSNEE = {'BC-AH-BNDD-N2': 0.776, 'BC-PE-SPC-N1': 0.80}
+HANDSNEE = {'BC-AH-BNDD-N2': 0.776, 'BC-PE-SPC-N1': 0.80, 'BC-CR-PCETB-N1': 0.921}
 
 # Opnames van een doos die recht voor de lens staat en waar rembg een hap uit
 # het masker neemt. Zie masker_rechthoek. Met het oog vastgesteld, want een

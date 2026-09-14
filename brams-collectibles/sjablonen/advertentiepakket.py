@@ -64,9 +64,16 @@ def main():
     with zipfile.ZipFile(doel, 'w', zipfile.ZIP_DEFLATED) as z:
         for nr, r in enumerate(klaar, 1):
             sku, map_ = r['sku'], f'{nr:02d} {mapnaam(r)}'
-            beelden = [HIER / 'export' / 'marktplaats' / f'{sku}.png']
-            beelden += sorted((HIER / 'export' / 'webshop').glob(f'{sku}-*.png'),
-                              key=lambda p: int(p.stem.rsplit('-', 1)[1]))[1:]
+            # Alleen de Marktplaats-beelden, en dat is met opzet. Hier stonden
+            # de webshopbeelden achter als extra hoeken, maar die komen uit de
+            # oude opnames — 2048x1536, en Bram was er zelf niet tevreden over.
+            # In september 2026 heeft hij alles opnieuw gefotografeerd op
+            # 5712x4284. Twee reeksen door elkaar in een advertentie is
+            # zichtbaar: andere scherpte, andere kleur.
+            mp = HIER / 'export' / 'marktplaats'
+            beelden = [mp / f'{sku}.png']
+            beelden += sorted(mp.glob(f'{sku}-*.png'),
+                              key=lambda p: int(p.stem.rsplit('-', 1)[1]))
 
             for i, b in enumerate(beelden, 1):
                 z.writestr(f'{map_}/{i}.jpg', jpeg(b))
@@ -82,8 +89,8 @@ def main():
                 teksten.marktplaats(r, alles),
             ])
             z.writestr(f'{map_}/advertentie.txt', tekst)
-            regels.append(f'{nr:2d}. {r["naam"]} — {teksten.prijs(r)} — '
-                          f'{len(beelden)} foto\'s')
+            aantal = f'{len(beelden)} foto' + ('' if len(beelden) == 1 else "'s")
+            regels.append(f'{nr:2d}. {r["naam"]} — {teksten.prijs(r)} — {aantal}')
 
         niet = [r for r in alles if r['aantal'] and r not in klaar]
         if niet:
