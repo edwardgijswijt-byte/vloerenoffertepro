@@ -55,7 +55,7 @@ NIEUW = HIER / 'fotos' / 'nieuw'
 BRON = HIER / 'fotos'
 MAX = 3000        # na het bijsnijden; het eindkader is 1600
 RUW = 1100        # waarop we zoeken waar het product staat
-MARGE = 0.06      # ruimte om het product heen, als deel van de lange zijde
+DEEL = 0.55       # hoeveel van het kader het product mag vullen na bijsnijden
 
 MAPPEN = {
     '151 Booster Bundle Display (10)': 'BC-151-BNDD',
@@ -95,10 +95,16 @@ def kader(im):
         return None
     ys, xs = np.nonzero(m)
     f = im.width / klein.width
-    marge = MARGE * max(im.size)
-    return (max(0, int(xs.min() * f - marge)), max(0, int(ys.min() * f - marge)),
-            min(im.width, int(xs.max() * f + marge)),
-            min(im.height, int(ys.max() * f + marge)))
+    x0, x1 = xs.min() * f, xs.max() * f
+    y0, y1 = ys.min() * f, ys.max() * f
+    # Zoveel lucht eromheen dat het product DEEL van het kader vult. Te krap
+    # bijsnijden werkt averechts: rembg heeft achtergrond nodig om het product
+    # van te onderscheiden. Bij zes procent marge viel het masker van het
+    # staande 151-display uit elkaar — 35 procent gevuld, en wat er overbleef
+    # was een schuin afgesneden bovenstuk.
+    marge = (max(x1 - x0, y1 - y0) / DEEL - max(x1 - x0, y1 - y0)) / 2
+    return (max(0, int(x0 - marge)), max(0, int(y0 - marge)),
+            min(im.width, int(x1 + marge)), min(im.height, int(y1 + marge)))
 
 
 def draai(*args):
