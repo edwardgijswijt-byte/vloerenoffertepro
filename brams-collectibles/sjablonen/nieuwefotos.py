@@ -13,12 +13,20 @@ In september 2026 heeft Bram alles opnieuw gefotografeerd, op 5712x4284 tegen
 2048x1536 eerder. Hij levert per artikel een map met 1.HEIC en 2.HEIC, genoemd
 naar het product; MAPPEN hieronder koppelt die namen aan een sku.
 
-Twee dingen die tijd schelen en niets kosten:
+Twee dingen over het voorwerk:
 
-- **HEIC eerst verkleinen naar 2600 pixels.** uitsnijden.py levert bij 5712 en
-  bij 2600 precies dezelfde uitsnede op — gemeten: 962x1642 tegen 960x1643, in
-  beide gevallen 94 procent gevuld — maar doet er drie keer zo lang over. Het
-  eindbeeld is 1600 breed, dus meer bron heeft geen zin.
+- **Eerst bijsnijden op het product, dan pas verkleinen.** De eerste versie
+  verkleinde de hele foto naar 2600 pixels. Dat leek te kloppen, want bij het
+  151-display kwam er precies dezelfde uitsnede uit als bij 5712. Maar dat
+  display vult het beeld; een booster bundle is een klein doosje dat op
+  dezelfde afstand is geschoten en daar bleef 531 pixels van over, waar 1170
+  in de opname zat. In het kader van 1600 stond dat product dan op 31 procent,
+  want opblazen mag niet.
+
+  Nu zoekt `kader()` eerst in een grove uitsnede op 1100 pixels waar het
+  product zit, snijdt de foto op volle resolutie bij tot dat vak plus een
+  marge, en verkleint pas daarna. Zo houdt een klein product evenveel pixels
+  over als een groot.
 - **De opnames gaan onder hun sku de pijplijn in**, niet onder 1 en 2. Anders
   heet elke bron in elke map hetzelfde en kun je ze niet naast elkaar zetten.
 """
@@ -34,7 +42,9 @@ pillow_heif.register_heif_opener()
 HIER = pathlib.Path(__file__).parent
 NIEUW = HIER / 'fotos' / 'nieuw'
 BRON = HIER / 'fotos'
-MAX = 2600
+MAX = 3000        # na het bijsnijden; het eindkader is 1600
+RUW = 1100        # waarop we zoeken waar het product staat
+MARGE = 0.06      # ruimte om het product heen, als deel van de lange zijde
 
 MAPPEN = {
     '151 Booster Bundle Display (10)': 'BC-151-BNDD',
@@ -58,6 +68,28 @@ MAPPEN = {
 }
 
 
+def kader(im):
+    """Het vak waarin het product staat, gevonden op een verkleinde kopie.
+
+    Een grove uitsnede op 1100 pixels kost een paar seconden en is ruim genoeg
+    om te zien waar het product zit; de nauwkeurige uitsnede komt later toch
+    nog een keer over de bijgesneden foto heen."""
+    import numpy as np
+    from uitsnijden import masker_rembg
+
+    klein = im.copy()
+    klein.thumbnail((RUW, RUW))
+    m = masker_rembg(klein, matting=False) > 128
+    if not m.any():
+        return None
+    ys, xs = np.nonzero(m)
+    f = im.width / klein.width
+    marge = MARGE * max(im.size)
+    return (max(0, int(xs.min() * f - marge)), max(0, int(ys.min() * f - marge)),
+            min(im.width, int(xs.max() * f + marge)),
+            min(im.height, int(ys.max() * f + marge)))
+
+
 def draai(*args):
     subprocess.run([sys.executable, *args], cwd=HIER, check=True)
 
@@ -69,6 +101,9 @@ def omzetten(sku, map_):
     for heic in sorted((NIEUW / map_).glob('*.HEIC')):
         stam = f'{sku}-N{heic.stem}'
         im = Image.open(heic).convert('RGB')
+        vak = kader(im)
+        if vak:
+            im = im.crop(vak)
         im.thumbnail((MAX, MAX))
         im.save(BRON / f'{stam}.JPG', quality=95)
         namen.append(stam)
