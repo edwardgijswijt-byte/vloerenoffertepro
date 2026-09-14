@@ -156,7 +156,7 @@ def main():
 
         draai('uitsnijden.py', *[f'fotos/{n}.JPG' for n in namen])
         draai('rechtzetten.py', *[f'fotos/uitgesneden/strak/{n}.png' for n in namen])
-        draai('marktplaatsbeeld.py', sku, namen[0])
+        draai('marktplaatsbeeld.py', sku, *namen)
         gedaan.append((sku, len(namen)))
         print(f'== {sku} klaar, {len(namen)} opnames', flush=True)
 

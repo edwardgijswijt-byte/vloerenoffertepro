@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
 """Hoofdfoto voor Marktplaats, 1600x1600.
 
-    python3 marktplaatsbeeld.py BC-CR-ETB IMG_3700
+    python3 marktplaatsbeeld.py BC-CR-ETB IMG_3700 IMG_3701 ...
+
+Alle foto's van een advertentie, niet alleen de hoofdfoto. De eerste wordt
+<sku>.png, de rest <sku>-2.png en verder. Ze horen er allemaal hetzelfde uit
+te zien: een koper die doorklikt moet niet ineens een ander sjabloon zien, en
+de voetregel van het webshopsjabloon is tekst die hier niet hoort.
 
 Alleen het logo en het product op de navy grond. Geen naam, geen prijs, geen
 voetregel — die stonden er eerst wel in, maar Marktplaats zet titel en
@@ -69,25 +74,36 @@ def blad(sku, fotopad):
 """
 
 
-def main():
-    if len(sys.argv) != 3:
-        sys.exit('gebruik: marktplaatsbeeld.py <sku> <opname>')
-    sku, naam = sys.argv[1], sys.argv[2]
-    bron = BRON / f'{naam}.png'
-    if not bron.exists():
-        sys.exit(f'{bron} bestaat niet — draai eerst rechtzetten.py')
-    uit = HIER / 'export' / 'marktplaats'
-    uit.mkdir(parents=True, exist_ok=True)
-    doel = uit / f'{sku}.png'
+def schiet(sku, naam, doel):
     with tempfile.TemporaryDirectory() as tmp:
         tmp = pathlib.Path(tmp)
-        (tmp / 'p.html').write_text(blad(sku, bron), encoding='utf-8')
+        (tmp / 'p.html').write_text(blad(sku, BRON / f'{naam}.png'), encoding='utf-8')
         subprocess.run([CHROME, '--disable-gpu', '--no-sandbox', '--hide-scrollbars',
                         f'--window-size={BREED},{HOOG}', f'--screenshot={tmp / "s.png"}',
                         '--virtual-time-budget=3000', str(tmp / 'p.html')],
                        check=True, capture_output=True)
         shutil.copy(tmp / 's.png', doel)
-    print(f'{doel.name:<20} {BREED}x{HOOG}  {naam}  {doel.stat().st_size // 1024} KB')
+
+
+def main():
+    if len(sys.argv) < 3:
+        sys.exit('gebruik: marktplaatsbeeld.py <sku> <opname> [<opname> ...]')
+    sku, namen = sys.argv[1], sys.argv[2:]
+    uit = HIER / 'export' / 'marktplaats'
+    uit.mkdir(parents=True, exist_ok=True)
+
+    # Oude extra beelden weg, anders blijft er een foto van een vorige reeks
+    # tussen staan die niemand meer herkent.
+    for oud in uit.glob(f'{sku}-*.png'):
+        oud.unlink()
+
+    for i, naam in enumerate(namen, 1):
+        bron = BRON / f'{naam}.png'
+        if not bron.exists():
+            sys.exit(f'{bron} bestaat niet — draai eerst rechtzetten.py')
+        doel = uit / (f'{sku}.png' if i == 1 else f'{sku}-{i}.png')
+        schiet(sku, naam, doel)
+        print(f'{doel.name:<20} {BREED}x{HOOG}  {naam}  {doel.stat().st_size // 1024} KB')
 
 
 if __name__ == '__main__':
