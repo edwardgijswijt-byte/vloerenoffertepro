@@ -104,6 +104,40 @@ def omslaan(tekst, breedte=78):
     return '\n\n'.join(textwrap.fill(deel, breedte) for deel in tekst.split('\n\n'))
 
 
+def ontvouwen(tekst):
+    """De regelafbrekingen binnen een alinea eruit halen.
+
+    De blokken uit merk.md en teksten/sets/ staan met de hand afgebroken op 78
+    tekens, en omslaan() doet hetzelfde met wat we er zelf bij schrijven. Dat
+    leest prettig in de repo en in de plaatslijst. Maar het invulveld van
+    Marktplaats breekt zelf af op de breedte van de kolom, en die harde enters
+    blijven staan: je krijgt een alinea die halverwege afbreekt en op een nieuwe
+    regel verdergaat. Wie dat wil rechtzetten moet de hele tekst nalopen.
+
+    Dus voor het plakken: elke alinea op een regel, alinea's gescheiden door een
+    lege regel. Een regel die met een opsommingsteken begint blijft op zichzelf
+    staan, anders plakken de punten aan elkaar.
+
+    Wat we niet doen is ook de lege regels weghalen. Marktplaats houdt de
+    witregel tussen alinea's wel netjes aan; het zijn alleen de enters binnen
+    een alinea die niet kloppen."""
+    uit = []
+    for deel in tekst.split('\n\n'):
+        blok, lopend = [], []
+        for regel in deel.split('\n'):
+            if regel.lstrip().startswith(('•', '-')):
+                if lopend:
+                    blok.append(' '.join(lopend))
+                    lopend = []
+                blok.append(regel.strip())
+            else:
+                lopend.append(regel.strip())
+        if lopend:
+            blok.append(' '.join(lopend))
+        uit.append('\n'.join(blok))
+    return '\n\n'.join(uit)
+
+
 def marktplaats(r, alles):
     d = ['Brams Collectibles', '', MERK['verhaal-lang'], '', r['naam'], '']
     hp = hoogtepunten(r)
@@ -126,7 +160,7 @@ def marktplaats(r, alles):
         d += [omslaan(b), '']
     d += [MERK['verzenden'].replace('**', ''), '']
     d += [f'Prijs: {prijs(r)}']
-    return '\n'.join(d)
+    return ontvouwen('\n'.join(d))
 
 
 def socials(r):

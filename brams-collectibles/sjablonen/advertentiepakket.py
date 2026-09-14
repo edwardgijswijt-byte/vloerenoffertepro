@@ -57,9 +57,14 @@ def main():
     doel = HIER / 'export' / 'marktplaats-advertenties.zip'
     regels = ['Marktplaats — advertentiepakket', '',
               f'{len(klaar)} advertenties, hoogste vraagprijs eerst.', '',
-              'Per artikel een map. Daarin staat advertentie.txt met de titel, de',
-              'vraagprijs en de tekst om te plakken, en de foto\'s genummerd in de',
-              'volgorde waarin je ze uploadt. Foto 1 is de hoofdfoto.', '']
+              'Per artikel een map met drie soorten bestanden:', '',
+              '  plakken.txt      de omschrijving, en verder niets. Alles',
+              '                   selecteren en in het omschrijvingsveld',
+              '                   plakken. De alinea\'s staan elk op een regel,',
+              '                   zodat Marktplaats zelf mag afbreken.',
+              '  advertentie.txt  de titel, de vraagprijs en de voorraad.',
+              '  1.jpg, 2.jpg     de foto\'s in de volgorde waarin je ze',
+              '                   uploadt. Foto 1 is de hoofdfoto.', '']
 
     with zipfile.ZipFile(doel, 'w', zipfile.ZIP_DEFLATED) as z:
         for nr, r in enumerate(klaar, 1):
@@ -78,17 +83,23 @@ def main():
             for i, b in enumerate(beelden, 1):
                 z.writestr(f'{map_}/{i}.jpg', jpeg(b))
 
-            tekst = '\n'.join([
+            # Twee bestanden en niet een. Eerst stond de titel, de prijs en
+            # de tekst samen in advertentie.txt met een streep ertussen, maar
+            # dan moet je bij het plakken de goede helft selecteren. Nu is
+            # plakken.txt precies wat er in het omschrijvingsveld hoort:
+            # openen, alles selecteren, plakken.
+            z.writestr(f'{map_}/plakken.txt', teksten.marktplaats(r, alles) + '\n')
+            z.writestr(f'{map_}/advertentie.txt', '\n'.join([
+                'Titel:',
                 f"{r['naam']} — sealed",
                 '',
                 f"Vraagprijs: {teksten.prijs(r)}",
                 f"Voorraad: {r['aantal']} stuks" if int(r['aantal']) > 1 else 'Voorraad: 1 stuk',
+                f"Foto's: {len(beelden)}",
                 '',
-                '--- tekst hieronder plakken ---',
-                '',
-                teksten.marktplaats(r, alles),
-            ])
-            z.writestr(f'{map_}/advertentie.txt', tekst)
+                'De omschrijving staat in plakken.txt. Dat bestand bevat niets',
+                'anders, dus alles selecteren en plakken kan zo.',
+                '']))
             aantal = f'{len(beelden)} foto' + ('' if len(beelden) == 1 else "'s")
             regels.append(f'{nr:2d}. {r["naam"]} — {teksten.prijs(r)} — {aantal}')
 
