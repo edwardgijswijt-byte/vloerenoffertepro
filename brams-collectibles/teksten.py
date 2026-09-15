@@ -163,6 +163,118 @@ def marktplaats(r, alles):
     return ontvouwen('\n'.join(d))
 
 
+# ---------------------------------------------------------------- Instagram
+
+# Hashtags in drie lagen: wat je altijd meegeeft, wat bij de set hoort en wat
+# bij het soort doos hoort. Zo staat er onder elke post dezelfde basis en
+# daarbovenop precies de tags waarop een verzamelaar van díé set zoekt.
+#
+# Waarom niet dertig tags: Instagram staat er dertig toe, maar een post die
+# onder dertig verschillende onderwerpen wordt gehangen komt in geen enkele
+# ervan bovenaan. Vijftien tot twintig gerichte tags is hier de maat, en de
+# helft daarvan is set- of soortspecifiek.
+#
+# Deze lijst is opgebouwd uit de set- en soortnamen zelf; hij is niet getoetst
+# aan wat op Instagram werkelijk loopt. Wat er is afgesloten of verstopt door
+# Instagram kan hier niet worden nagegaan — die controle is handwerk in de app.
+TAGS_BASIS = ['pokemontcg', 'pokemonkaarten', 'sealedpokemon', 'pokemonsealed',
+              'pokemonnederland', 'tcgnederland', 'bramscollectibles']
+
+TAGS_SET = {
+    'sv-151':               ['pokemon151', 'scarletviolet151', 'kanto151'],
+    'prismatic-evolutions': ['prismaticevolutions', 'eeveelutions', 'eevee'],
+    'chaos-rising':         ['chaosrising', 'megaevolution'],
+    'pitch-black':          ['pitchblack', 'megaevolution', 'megadarkrai'],
+    'destined-rivals':      ['destinedrivals', 'teamrocket'],
+    'ascended-heroes':      ['ascendedheroes', 'megaevolution'],
+    'first-partner':        ['firstpartnerpack', 'firstpartnercollection'],
+    'paldean-fates':        ['paldeanfates', 'shinypokemon', 'shinymimikyu'],
+}
+
+TAGS_SOORT = {
+    'ETB':                ['elitetrainerbox', 'pokemonetb'],
+    'Booster Box':        ['boosterbox', 'pokemonboosterbox'],
+    'Booster Bundle':     ['boosterbundle'],
+    'Display':            ['boosterdisplay', 'pokemondisplay'],
+    'Case':               ['sealedcase', 'pokemoncase'],
+    'Premium Collection': ['premiumcollection'],
+}
+
+TAGS_VERZAMELEN = ['pokemoncollector', 'sealedcollection', 'pokemonverzamelaar']
+
+# Artikelen die zelf een onderwerp zijn waar mensen op zoeken, los van de set.
+# Alleen invullen waar dat echt zo is: een tag die niemand intikt kost een plek
+# in de lijst en levert niets op.
+TAGS_ARTIKEL = {
+    'BC-MEV-GREN': ['megagreninja'],
+    'BC-PE-SPC': ['superpremiumcollection'],
+}
+
+
+def hashtags(r):
+    """De tags voor één artikel, zonder dubbele, in een vaste volgorde."""
+    tags = list(TAGS_BASIS)
+    tags += TAGS_SET.get(r['set'], [])
+    tags += TAGS_SOORT.get(r['soort'], [])
+    tags += TAGS_ARTIKEL.get(r['sku'], [])
+    if pokemon_center(r):
+        tags += ['pokemoncenter', 'pokemoncenteretb']
+    tags += TAGS_VERZAMELEN
+    return ['#' + t for t in dict.fromkeys(tags)]
+
+
+def alttekst(r):
+    """Wat er op de foto staat, voor het alt-tekstveld van Instagram.
+
+    Twee redenen om dit in te vullen: een schermlezer heeft er iets aan, en
+    Instagram leest het mee bij het zoeken. Het staat er standaard niet in, dus
+    het is gratis vindbaarheid die de meeste accounts laten liggen."""
+    kant = 'op een donkerblauwe achtergrond met het logo van Brams Collectibles'
+    return f'Verzegelde {r["naam"]}, {kant}.'
+
+
+def instagram(r, alles, oproep='dm'):
+    """Bijschrift voor Instagram.
+
+    De opbouw is die van de andere teksten, maar de volgorde is omgedraaid:
+    hier staat de productnaam bovenaan en het merkverhaal niet in de post. Dat
+    is geen stijlkeuze. Instagram knipt een bijschrift in de tijdlijn af rond
+    de honderdvijfentwintig tekens, dus wat daarna komt leest alleen wie op
+    "meer" tikt. En Instagram doorzoekt sinds een paar jaar ook de tekst van
+    het bijschrift zelf, niet alleen de hashtags — dus de setnaam en de
+    productnaam horen in de eerste regels te staan en niet onderaan.
+
+    `oproep` bepaalt de laatste regel. Zolang de winkel achter een wachtwoord
+    staat is "link in bio" een doodlopende weg; dan is een dm de enige oproep
+    die werkt."""
+    hp = hoogtepunten(r)
+    d = [r['naam'], '']
+    d += [f'{hp[0]}. Fabrieksverzegeld, nooit open geweest.' if hp
+          else 'Fabrieksverzegeld, nooit open geweest.', '']
+    if len(hp) > 1:
+        # Een case is geen doos maar een carton met dozen erin, en een display
+        # ook niet. "In de doos" onder een carton met tien ETB's leest fout.
+        kop = {'Case': 'In de carton:', 'Display': 'In het display:'}.get(
+            r['soort'], 'In de doos:')
+        d += [kop] + [f'• {h}' for h in hp[1:6]] + ['']
+    if r['publiek']:
+        d += [r['publiek'], '']
+    if pokemon_center(r):
+        d += [MERK['pokemon-center'].replace('**', '').split('\n\n', 1)[1], '']
+    d += [settekst(r['set']), '']
+    b = bundel(r, alles)
+    if b:
+        d += [b, '']
+    if oproep == 'bio':
+        d += [f'{prijs(r)} — link in bio.']
+    else:
+        d += [f'{prijs(r)} — stuur een dm voor beschikbaarheid of om op te halen.']
+    # Zelfde reden als bij Marktplaats: de bronblokken staan met de hand
+    # afgebroken op 78 tekens en Instagram breekt zelf af op schermbreedte.
+    # Die harde enters blijven staan en dan valt een alinea halverwege stil.
+    return ontvouwen('\n'.join(d))
+
+
 def socials(r):
     hp = hoogtepunten(r)
     kern = hp[0] if hp else r['soort']

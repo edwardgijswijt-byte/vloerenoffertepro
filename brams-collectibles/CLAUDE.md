@@ -260,6 +260,51 @@ driehonderd advertenties zie je zoiets niet meer terug.
 
 De teksten zijn van Bram. Niet herschrijven zonder overleg.
 
+## Instagram
+
+```
+python3 instagrambeeld.py <sku> <opname> ...   beeld 1080x1350
+python3 instagrampakket.py                     zip plus _instagram-plaatsen.md
+```
+
+Het beeld is 4:5 en niet vierkant zoals bij Marktplaats. Dat is de hoogste
+verhouding die Instagram in de tijdlijn nog volledig toont; vierkant kost een
+vijfde schermhoogte bij dezelfde breedte, en op een telefoon is schermhoogte het
+enige wat je hebt. 1080 breed is waar Instagram alles naartoe herschaalt, dus
+groter aanleveren levert alleen een extra hercodering op.
+
+Het bijschrift is niet de Marktplaats-tekst met tags eronder. Drie verschillen,
+en die zijn geen stijlkeuze:
+
+- **De productnaam staat bovenaan, het merkverhaal staat er niet in.** Instagram
+  knipt een bijschrift in de tijdlijn af rond 125 tekens. Wat daarna komt leest
+  alleen wie op "meer" tikt, en dat is het merkverhaal niet waard.
+- **De setnaam en de productnaam staan in de eerste regels.** Instagram doorzoekt
+  de tekst van het bijschrift zelf, niet alleen de hashtags. Onderaan zetten wat
+  mensen intikken is die zoekingang weggooien.
+- **Er is alt-tekst.** Dat veld zit onder Geavanceerde instellingen bij het
+  plaatsen, de meeste accounts laten het leeg, en Instagram leest het wel mee.
+
+De hashtags staan in drie lagen in `teksten.py`: `TAGS_BASIS` onder alles,
+`TAGS_SET` per set, `TAGS_SOORT` per soort doos, plus `TAGS_ARTIKEL` voor de
+paar artikelen die zelf een zoekterm zijn. Dat geeft vijftien tot twintig tags.
+Niet dertig: een post die onder dertig onderwerpen hangt komt in geen enkele
+ervan bovenaan.
+
+**Die lijst is opgebouwd uit de eigen set- en soortnamen en niet getoetst aan
+Instagram.** Welke tags daar werkelijk lopen en welke zijn afgesloten of
+verstopt is van hieruit niet na te gaan; dat is handwerk in de app.
+
+De volgorde van plaatsen komt uit `spreiden()`: meeste voorraad eerst, maar
+nooit twee keer dezelfde set achter elkaar. Alle artikelen uit dezelfde set
+delen de alinea uit `teksten/sets/`, en van Chaos Rising liggen er vijf. Op
+Marktplaats geeft dat niets — losse advertenties, losse kopers. Een volger ziet
+ze alle vijf, en drie keer achter elkaar dezelfde alinea leest als opvulling.
+
+De oproep onderaan staat op een dm en niet op "link in bio". Zolang de winkel
+achter het wachtwoord staat is die link een doodlopende weg. Zodra hij open is:
+`teksten.instagram(r, alles, oproep='bio')`.
+
 ## Shopify
 
 Winkel op `bramscollectibles.nl` sinds 11 september, plan Basic, EUR,
