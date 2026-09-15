@@ -99,6 +99,11 @@ def lijst(klaar, alles):
          'Volgorde: meeste voorraad eerst, nooit twee keer dezelfde set achter',
          'elkaar. De hashtags kun je achter het bijschrift plakken of als eerste',
          'reactie plaatsen; voor het bereik maakt dat niet uit.', '']
+    d += ['## 00. Openingspost', '',
+          'Beeld: het logo.', '',
+          '**Bijschrift**', '', '```', teksten.openingspost(alles), '```', '',
+          '**Hashtags**', '', '```', ' '.join(teksten.openingstags()), '```', '',
+          '---', '']
     for nr, r in enumerate(klaar, 1):
         d += [f'## {nr:02d}. {r["naam"]}', '',
               f'Voorraad {r["aantal"]} · {teksten.prijs(r)} · '
@@ -134,6 +139,22 @@ def main():
               '                  onder Geavanceerde instellingen.', '']
 
     with zipfile.ZipFile(doel, 'w', zipfile.ZIP_DEFLATED) as z:
+        # De openingspost heeft geen productbeeld; Bram zet daar het logo neer.
+        # Vandaar map 00 en alleen tekst.
+        z.writestr('00 Openingspost/bijschrift.txt',
+                   teksten.openingspost(alles) + '\n')
+        z.writestr('00 Openingspost/hashtags.txt',
+                   ' '.join(teksten.openingstags()) + '\n')
+        z.writestr('00 Openingspost/alt-tekst.txt',
+                   'Het logo van Brams Collectibles: een ronde gouden zegel met '
+                   'de naam in wit schrift op een donkerblauwe achtergrond, met '
+                   'een ster en het jaartal 2026.\n')
+        z.writestr('00 Openingspost/LEES-MIJ.txt',
+                   'Deze post gaat als eerste. Het beeld is het logo; dat zet je\n'
+                   'er zelf bij. Daarna pas de productposts, in de volgorde van\n'
+                   'de mappen hierna.\n')
+        regels.append(' 0. Openingspost — het logo als beeld')
+
         for nr, r in enumerate(klaar, 1):
             sku, map_ = r['sku'], f'{nr:02d} {mapnaam(r)}'
             beelden = [BEELD / f'{sku}.png']

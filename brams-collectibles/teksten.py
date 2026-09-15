@@ -233,6 +233,47 @@ def alttekst(r):
     return f'Verzegelde {r["naam"]}, {kant}.'
 
 
+def openingspost(alles, oproep='dm'):
+    """De eerste post: wie Bram is en wat er ligt.
+
+    Dit is de enige post waar het merkverhaal wel in hoort. In een productpost
+    kost het de eerste honderdvijfentwintig tekens aan iets wat niemand zoekt;
+    hier is het de reden dat de post er staat.
+
+    De cijfers komen uit het register en worden dus nooit oud: hoeveel sets,
+    hoeveel artikelen. Een getal dat je met de hand invult staat er over een
+    maand verkeerd.
+
+    Wat er bewust NIET in staat is dat de winkel open is. Die staat nog achter
+    een wachtwoord. "Binnenkort" mag, "nu te koop" is een toezegging die de
+    winkel niet waarmaakt."""
+    op_voorraad = [r for r in alles if r['aantal'] and r['prijs']]
+    sets = len({r['set'] for r in op_voorraad})
+    return ontvouwen('\n'.join([
+        'Brams Collectibles is er.',
+        '',
+        MERK['verhaal-lang'],
+        '',
+        f'Wat er nu klaarstaat: {len(op_voorraad)} artikelen uit {sets} sets. '
+        'Elite Trainer Boxen, Pokémon Center-uitgaven, booster boxes, displays '
+        'en complete cases. Alles fabrieksverzegeld en uit eigen voorraad.',
+        '',
+        'De komende weken laat ik ze hier een voor een zien.',
+        '',
+        ('Zoek je iets bepaalds? Stuur een dm — ik denk graag mee.'
+         if oproep == 'dm' else
+         'Zoek je iets bepaalds? Kijk in de winkel, link in bio.'),
+    ]))
+
+
+def openingstags():
+    """Geen set- of soorttags: er staat geen product op deze post. Wat er wel
+    in moet zijn de tags waaronder Nederlandse verzamelaars elkaar vinden."""
+    return ['#' + t for t in dict.fromkeys(
+        TAGS_BASIS + TAGS_VERZAMELEN
+        + ['pokemontcgnederland', 'pokemoncommunity', 'nieuwewinkel'])]
+
+
 def instagram(r, alles, oproep='dm'):
     """Bijschrift voor Instagram.
 
