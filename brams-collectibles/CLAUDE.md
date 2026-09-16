@@ -305,6 +305,32 @@ De oproep onderaan staat op een dm en niet op "link in bio". Zolang de winkel
 achter het wachtwoord staat is die link een doodlopende weg. Zodra hij open is:
 `teksten.instagram(r, alles, oproep='bio')`.
 
+### Drukwerk op Instagram
+
+```
+python3 socialbeeld.py <bron.pdf> export/instagram/<naam>   losse beelden 4:5
+python3 reel.py <bron.pdf> export/instagram/<naam>.mp4      reel 9:16
+```
+
+Een reel wordt door Instagram ook aan niet-volgers getoond, een carrousel
+vrijwel alleen aan de eigen volgers. Op een nieuw account is dat het hele
+verschil, dus voor de flyer is de reel de eerste keus en zijn de losse beelden
+de terugval.
+
+Allebei de scripts snijden niets weg. A5 is 1:1,419, een reel is 1:1,778 en een
+carrousel toont hooguit 1:1,25 — de flyer past dus in geen van beide precies.
+Vullend maken zou bij de reel links en rechts een centimeter kosten, en daar zit
+de gouden rand. Daarom schalen op de breedte en aanvullen met navy.
+
+`reel.py` zoomt van 94 naar 100 procent en dus nooit verder dan passend.
+Beweging is nodig, want een reel die stilstaat wordt weggeswipet, maar een blad
+vol tekst moet leesbaar blijven. De tweede pagina krijgt anderhalf keer zoveel
+tijd: daar staat de uitleg van de actie.
+
+Er zit een stil audiospoor op zodat Instagram het bestand accepteert. Muziek
+kiezen kan alleen in de telefoon-app; de muziekbibliotheek zit niet in de
+browserversie. Wil je geluid, zet het bestand dan op de telefoon.
+
 ## Shopify
 
 Winkel op `bramscollectibles.nl` sinds 11 september, plan Basic, EUR,
