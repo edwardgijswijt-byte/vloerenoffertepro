@@ -320,12 +320,25 @@ de terugval.
 Allebei de scripts snijden niets weg. A5 is 1:1,419, een reel is 1:1,778 en een
 carrousel toont hooguit 1:1,25 — de flyer past dus in geen van beide precies.
 Vullend maken zou bij de reel links en rechts een centimeter kosten, en daar zit
-de gouden rand. Daarom schalen op de breedte en aanvullen met navy.
+de gouden rand. Daarom schalen en aanvullen met navy.
 
-`reel.py` zoomt van 94 naar 100 procent en dus nooit verder dan passend.
-Beweging is nodig, want een reel die stilstaat wordt weggeswipet, maar een blad
-vol tekst moet leesbaar blijven. De tweede pagina krijgt anderhalf keer zoveel
-tijd: daar staat de uitleg van de actie.
+**Het kader van een reel is niet wat je ziet.** De eerste versie van `reel.py`
+vulde de hoogte netjes op, en toen stond de QR-code van de flyer achter de
+knoppenkolom van Instagram. Bovenaan komt de kopregel eroverheen, onderaan de
+naam, het bijschrift, de geluidsbalk en de knoppen. Meta houdt zelf de bovenste
+14 en de onderste 20 procent vrij; dat is 270 pixels boven en 384 onder, dus
+alles wat gezien moet worden past in een strook van 1266 hoog. Op A5 komt dat
+neer op 894 breed in plaats van 1080.
+
+Dat het blad daardoor kleiner wordt is de prijs van het formaat, geen fout. Voor
+een blad met kleine tekst is dat wel een grens: wat op de flyer in acht punt
+staat is op een telefoon in een reel niet meer te lezen. Zet dat dan in het
+bijschrift, niet in beeld.
+
+`reel.py` zoomt van 94 naar 100 procent van die strook en dus nooit verder dan
+passend. Beweging is nodig, want een reel die stilstaat wordt weggeswipet, maar
+een blad vol tekst moet leesbaar blijven. De tweede pagina krijgt anderhalf keer
+zoveel tijd: daar staat de uitleg van de actie.
 
 Er zit een stil audiospoor op zodat Instagram het bestand accepteert. Muziek
 kiezen kan alleen in de telefoon-app; de muziekbibliotheek zit niet in de

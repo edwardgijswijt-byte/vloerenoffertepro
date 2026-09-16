@@ -10,11 +10,17 @@ hele verschil.
 
 Drie dingen die hier bewust zo staan:
 
-**9:16 en niets weggesneden.** Een reel is 1080x1920. A5 heeft de verhouding
-1:1,419 en is dus minder hoog dan het kader. Het blad wordt op de breedte
-geschaald en boven en onder aangevuld met navy. Vullend maken zou betekenen dat
-er links en rechts een centimeter af gaat, en daar staat bij deze flyer de
-gouden rand.
+**Het blad staat binnen de veilige zone.** Een reel is 1080x1920, maar je ziet
+dat kader nooit helemaal: Instagram legt er bovenaan zijn kopregel overheen en
+onderaan de naam, het bijschrift, de geluidsbalk en de knoppenkolom. De eerste
+versie hiervan vulde de hoogte netjes op en toen stond de QR-code van de flyer
+achter de knoppen. Meta's eigen richtlijn is de bovenste 14 en de onderste 20
+procent vrijhouden; dat is hier 270 pixels boven en 384 onder, dus het blad past
+in een strook van 1266 hoog. Op A5 komt dat neer op 894 breed.
+
+Dat het blad daardoor kleiner wordt is geen gebrek maar de prijs van het
+formaat. Het alternatief — vullend maken — kost links en rechts een centimeter,
+en daar zit bij deze flyer de gouden rand.
 
 **Langzaam inzoomen, en nooit verder dan passend.** Van 94 naar 100 procent, dus
 op het laatste beeld staat het blad precies passend en is er nergens iets
@@ -45,6 +51,13 @@ FPS = 30
 SECONDEN = [4.0, 6.0]          # per pagina; pagina 2 heeft meer tekst
 ZOOM = (0.94, 1.00)            # nooit boven 1: dan zou er iets afvallen
 
+# Wat Instagram over je reel heen legt. Meta houdt zelf 14 procent boven en 20
+# procent onder aan; dat is de kopregel, en onderaan de naam, het bijschrift,
+# de geluidsbalk en de knoppenkolom.
+VEILIG_BOVEN = round(HOOG * 0.14)
+VEILIG_ONDER = round(HOOG * 0.20)
+VEILIG_HOOG = HOOG - VEILIG_BOVEN - VEILIG_ONDER
+
 
 def paginabeeld(blad):
     """De pagina op ruime resolutie, zodat inzoomen scherp blijft."""
@@ -53,11 +66,20 @@ def paginabeeld(blad):
 
 
 def kader(beeld, schaal):
-    breed = round(BREED * schaal)
-    hoog = round(beeld.height * breed / beeld.width)
+    """Het blad passend in de veilige strook, gecentreerd binnen die strook.
+
+    Passend op de hoogte van de strook en niet op de breedte van het doek: een
+    staand blad loopt anders onderuit het kader. Blijkt het blad dan breder dan
+    het doek — bij een liggend blad — dan alsnog op de breedte."""
+    hoog = round(VEILIG_HOOG * schaal)
+    breed = round(beeld.width * hoog / beeld.height)
+    if breed > BREED:
+        breed = BREED
+        hoog = round(beeld.height * breed / beeld.width)
     doek = Image.new('RGB', (BREED, HOOG), NAVY)
     doek.paste(beeld.resize((breed, hoog), Image.LANCZOS),
-               ((BREED - breed) // 2, (HOOG - hoog) // 2))
+               ((BREED - breed) // 2,
+                VEILIG_BOVEN + (VEILIG_HOOG - hoog) // 2))
     return doek
 
 
