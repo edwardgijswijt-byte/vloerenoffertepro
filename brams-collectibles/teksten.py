@@ -188,6 +188,8 @@ ZOEK_SOORT = {
                            'oversized promo', 'jumbo kaart'],
     'Poster Collection':  ['Poster Collection', 'poster', 'dubbelzijdige poster',
                            'wandposter', 'promokaart', 'promo card'],
+    'Ultra Premium Collection': ['Ultra Premium Collection', 'UPC',
+                                 'Premium Collection', 'promokaart', 'promo card'],
 }
 
 ZOEK_KOPER = ['verzamelen', 'verzameling', 'collectie', 'cadeau', 'kado',
@@ -202,6 +204,11 @@ ZOEK_ARTIKEL = {
     'BC-30-SYLV': ['Sylveon', 'Sylveon ex', 'Eevee', 'Eeveelutions'],
     'BC-30-POSTER': ['Articuno', 'Zapdos', 'Moltres', 'legendarische vogels',
                      'legendary birds', 'Kanto'],
+    # Day en Night zijn twee varianten van hetzelfde artikel; Bram verkoopt ze
+    # allebei, dus allebei de namen horen erbij.
+    'BC-30-UPC': ['Pikachu', 'Pikachu ex', 'Espeon', 'Espeon ex', 'Umbreon',
+                  'Umbreon ex', 'Eeveelutions', 'Day', 'Night', 'YOSHIROTTEN',
+                  'pre-order', 'preorder'],
     'BC-MEV-GREN': ['Greninja', 'Mega Greninja', 'Mega Greninja ex'],
 }
 
@@ -296,6 +303,7 @@ TAGS_SOORT = {
     'Binder Collection':  ['pokemonbinder', 'bindercollection'],
     'ex Box':             ['pokemonpromo', 'exbox'],
     'Poster Collection':  ['pokemonposter', 'postercollection'],
+    'Ultra Premium Collection': ['ultrapremiumcollection', 'pokemonupc'],
 }
 
 TAGS_VERZAMELEN = ['pokemoncollector', 'sealedcollection', 'pokemonverzamelaar']
@@ -310,6 +318,7 @@ TAGS_ARTIKEL = {
     'BC-30-GREN': ['greninja', 'greninjaex'],
     'BC-30-SYLV': ['sylveon', 'sylveonex', 'eeveelutions'],
     'BC-30-POSTER': ['articuno', 'zapdos', 'moltres', 'legendarybirds'],
+    'BC-30-UPC': ['pikachu', 'espeon', 'umbreon', 'eeveelutions'],
     'BC-PE-SPC': ['superpremiumcollection'],
 }
 
