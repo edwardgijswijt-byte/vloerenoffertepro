@@ -138,6 +138,82 @@ def ontvouwen(tekst):
     return '\n\n'.join(uit)
 
 
+# ------------------------------------------------------------- zoekwoorden
+
+# Marktplaats zoekt op woorden in de titel en de omschrijving. Wat er niet
+# letterlijk staat, vind je niet. De advertentietekst van Bram is geschreven om
+# te lezen, niet om gevonden te worden: daar staat "Elite Trainer Box" in maar
+# nergens "ETB", en "Pokémon" met accent maar nooit zonder.
+#
+# Vandaar een blok onderaan. Geen trucje: het zijn de woorden waarmee iemand
+# werkelijk zoekt, en ze staan apart zodat de lopende tekst van Bram niet
+# verminkt hoeft te worden om er zoektermen in te proppen.
+#
+# Wat hier NIET in gaat zijn namen van kaarten die er misschien in zitten.
+# "Charizard" onder een booster bundle levert zoekverkeer op van mensen die een
+# Charizard zoeken, en die hebben er niets aan. Dat is geen vindbaarheid maar
+# misleiding, en het levert je bovendien de verkeerde vragen op.
+ZOEK_VAST = ['Pokemon', 'Pokémon', 'Pokemon kaarten', 'Pokemon TCG',
+             'trading card game', 'verzamelkaarten', 'sealed', 'verzegeld',
+             'nieuw', 'ongeopend', 'origineel', 'Engelstalig']
+
+ZOEK_SET = {
+    'sv-151':               ['151', 'Scarlet & Violet 151', 'Scarlet en Violet 151',
+                             'Kanto', 'Mew'],
+    'prismatic-evolutions': ['Prismatic Evolutions', 'Prismatic', 'Eevee',
+                             'Eeveelutions'],
+    'chaos-rising':         ['Chaos Rising', 'Mega Evolution'],
+    'pitch-black':          ['Pitch Black', 'Mega Evolution'],
+    'destined-rivals':      ['Destined Rivals', 'Team Rocket'],
+    'ascended-heroes':      ['Ascended Heroes', 'Mega Evolution'],
+    'first-partner':        ['First Partner', 'Illustration Collection'],
+    'paldean-fates':        ['Paldean Fates', 'shiny'],
+    '30th-celebration':     ['30th Celebration', '30th Anniversary',
+                             '30 jaar Pokemon', 'jubileum', 'Classic Collection'],
+}
+
+# Per soort de namen die mensen intikken, inclusief de afkorting en de
+# schrijfwijze aan elkaar. Iemand die "boosterbox" zoekt vindt "booster box"
+# niet per se.
+ZOEK_SOORT = {
+    'ETB':                ['Elite Trainer Box', 'ETB', 'trainer box'],
+    'Booster Box':        ['Booster Box', 'boosterbox', 'display'],
+    'Booster Bundle':     ['Booster Bundle', 'boosterbundle', 'booster packs'],
+    'Display':            ['display', 'booster display', 'bundle display'],
+    'Case':               ['case', 'carton', 'verzegelde doos', 'partij'],
+    'Premium Collection': ['Premium Collection', 'collection box'],
+    'Binder Collection':  ['Binder Collection', 'binder', 'verzamelmap',
+                           '9 pocket', 'portfolio'],
+}
+
+ZOEK_KOPER = ['verzamelen', 'verzameling', 'collectie', 'cadeau', 'kado',
+              'investering']
+
+
+def zoekwoorden(r):
+    """Het blok zoektermen onder een Marktplaats-advertentie.
+
+    Bewust gescheiden door een punt met spatie en niet door komma's: dat leest
+    als losse zoektermen en niet als een zin die iemand heeft proberen te
+    verbergen. Marktplaats haalt advertenties weg die volgestopt zijn met
+    woorden die er niet toe doen, dus het blijft kort — vijfentwintig termen,
+    allemaal van toepassing op wat er in de doos zit."""
+    woorden = list(ZOEK_VAST)
+    woorden += ZOEK_SET.get(r['set'], [])
+    woorden += ZOEK_SOORT.get(r['soort'], [])
+    woorden += [r['naam']]
+    if 'Pokémon Center' in r['naam']:
+        woorden += ['Pokemon Center', 'Pokémon Center', 'Pokemon Center exclusive']
+    woorden += ZOEK_KOPER
+    # ontdubbelen zonder op hoofdletters te letten, en de volgorde houden
+    gezien, uit = set(), []
+    for w in woorden:
+        if w.lower() not in gezien:
+            gezien.add(w.lower())
+            uit.append(w)
+    return 'Zoektermen: ' + ' · '.join(uit)
+
+
 def marktplaats(r, alles):
     d = ['Brams Collectibles', '', MERK['verhaal-lang'], '', r['naam'], '']
     hp = hoogtepunten(r)
@@ -159,7 +235,8 @@ def marktplaats(r, alles):
     if b:
         d += [omslaan(b), '']
     d += [MERK['verzenden'].replace('**', ''), '']
-    d += [f'Prijs: {prijs(r)}']
+    d += [f'Prijs: {prijs(r)}', '']
+    d += [zoekwoorden(r)]
     return ontvouwen('\n'.join(d))
 
 
@@ -189,6 +266,7 @@ TAGS_SET = {
     'ascended-heroes':      ['ascendedheroes', 'megaevolution'],
     'first-partner':        ['firstpartnerpack', 'firstpartnercollection'],
     'paldean-fates':        ['paldeanfates', 'shinypokemon', 'shinymimikyu'],
+    '30th-celebration':     ['30thcelebration', 'pokemon30', '30jaarpokemon'],
 }
 
 TAGS_SOORT = {
@@ -198,6 +276,7 @@ TAGS_SOORT = {
     'Display':            ['boosterdisplay', 'pokemondisplay'],
     'Case':               ['sealedcase', 'pokemoncase'],
     'Premium Collection': ['premiumcollection'],
+    'Binder Collection':  ['pokemonbinder', 'bindercollection'],
 }
 
 TAGS_VERZAMELEN = ['pokemoncollector', 'sealedcollection', 'pokemonverzamelaar']
