@@ -186,6 +186,8 @@ ZOEK_SOORT = {
                            '9 pocket', 'portfolio'],
     'ex Box':             ['ex Box', 'promo box', 'promokaart', 'promo card',
                            'oversized promo', 'jumbo kaart'],
+    'Poster Collection':  ['Poster Collection', 'poster', 'dubbelzijdige poster',
+                           'wandposter', 'promokaart', 'promo card'],
 }
 
 ZOEK_KOPER = ['verzamelen', 'verzameling', 'collectie', 'cadeau', 'kado',
@@ -198,6 +200,8 @@ ZOEK_KOPER = ['verzamelen', 'verzameling', 'collectie', 'cadeau', 'kado',
 ZOEK_ARTIKEL = {
     'BC-30-GREN': ['Greninja', 'Greninja ex'],
     'BC-30-SYLV': ['Sylveon', 'Sylveon ex', 'Eevee', 'Eeveelutions'],
+    'BC-30-POSTER': ['Articuno', 'Zapdos', 'Moltres', 'legendarische vogels',
+                     'legendary birds', 'Kanto'],
     'BC-MEV-GREN': ['Greninja', 'Mega Greninja', 'Mega Greninja ex'],
 }
 
@@ -291,6 +295,7 @@ TAGS_SOORT = {
     'Premium Collection': ['premiumcollection'],
     'Binder Collection':  ['pokemonbinder', 'bindercollection'],
     'ex Box':             ['pokemonpromo', 'exbox'],
+    'Poster Collection':  ['pokemonposter', 'postercollection'],
 }
 
 TAGS_VERZAMELEN = ['pokemoncollector', 'sealedcollection', 'pokemonverzamelaar']
@@ -304,6 +309,7 @@ TAGS_ARTIKEL = {
     'BC-MEV-GREN': ['megagreninja'],
     'BC-30-GREN': ['greninja', 'greninjaex'],
     'BC-30-SYLV': ['sylveon', 'sylveonex', 'eeveelutions'],
+    'BC-30-POSTER': ['articuno', 'zapdos', 'moltres', 'legendarybirds'],
     'BC-PE-SPC': ['superpremiumcollection'],
 }
 
