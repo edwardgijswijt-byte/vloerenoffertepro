@@ -197,6 +197,7 @@ ZOEK_KOPER = ['verzamelen', 'verzameling', 'collectie', 'cadeau', 'kado',
 # kaart die je er misschien uit trekt hoort er niet in.
 ZOEK_ARTIKEL = {
     'BC-30-GREN': ['Greninja', 'Greninja ex'],
+    'BC-30-SYLV': ['Sylveon', 'Sylveon ex', 'Eevee', 'Eeveelutions'],
     'BC-MEV-GREN': ['Greninja', 'Mega Greninja', 'Mega Greninja ex'],
 }
 
@@ -302,6 +303,7 @@ TAGS_VERZAMELEN = ['pokemoncollector', 'sealedcollection', 'pokemonverzamelaar']
 TAGS_ARTIKEL = {
     'BC-MEV-GREN': ['megagreninja'],
     'BC-30-GREN': ['greninja', 'greninjaex'],
+    'BC-30-SYLV': ['sylveon', 'sylveonex', 'eeveelutions'],
     'BC-PE-SPC': ['superpremiumcollection'],
 }
 
