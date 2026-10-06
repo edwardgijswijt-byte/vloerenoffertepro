@@ -184,10 +184,21 @@ ZOEK_SOORT = {
     'Premium Collection': ['Premium Collection', 'collection box'],
     'Binder Collection':  ['Binder Collection', 'binder', 'verzamelmap',
                            '9 pocket', 'portfolio'],
+    'ex Box':             ['ex Box', 'promo box', 'promokaart', 'promo card',
+                           'oversized promo', 'jumbo kaart'],
 }
 
 ZOEK_KOPER = ['verzamelen', 'verzameling', 'collectie', 'cadeau', 'kado',
               'investering']
+
+# Namen die letterlijk in deze doos zitten en waar dus ook op gezocht mag
+# worden. Let op het verschil met de regel hierboven: Greninja mag hier staan
+# omdat de Greninja ex-promo in de doos zit en op de verpakking staat. Een
+# kaart die je er misschien uit trekt hoort er niet in.
+ZOEK_ARTIKEL = {
+    'BC-30-GREN': ['Greninja', 'Greninja ex'],
+    'BC-MEV-GREN': ['Greninja', 'Mega Greninja', 'Mega Greninja ex'],
+}
 
 
 def zoekwoorden(r):
@@ -201,6 +212,7 @@ def zoekwoorden(r):
     woorden = list(ZOEK_VAST)
     woorden += ZOEK_SET.get(r['set'], [])
     woorden += ZOEK_SOORT.get(r['soort'], [])
+    woorden += ZOEK_ARTIKEL.get(r['sku'], [])
     woorden += [r['naam']]
     if 'Pokémon Center' in r['naam']:
         woorden += ['Pokemon Center', 'Pokémon Center', 'Pokemon Center exclusive']
@@ -277,6 +289,7 @@ TAGS_SOORT = {
     'Case':               ['sealedcase', 'pokemoncase'],
     'Premium Collection': ['premiumcollection'],
     'Binder Collection':  ['pokemonbinder', 'bindercollection'],
+    'ex Box':             ['pokemonpromo', 'exbox'],
 }
 
 TAGS_VERZAMELEN = ['pokemoncollector', 'sealedcollection', 'pokemonverzamelaar']
@@ -284,8 +297,11 @@ TAGS_VERZAMELEN = ['pokemoncollector', 'sealedcollection', 'pokemonverzamelaar']
 # Artikelen die zelf een onderwerp zijn waar mensen op zoeken, los van de set.
 # Alleen invullen waar dat echt zo is: een tag die niemand intikt kost een plek
 # in de lijst en levert niets op.
+# Staat er een sku in die nog niet in het register voorkomt, dan is dat met
+# opzet: dan ligt het klaar voor zodra het artikel wordt toegevoegd.
 TAGS_ARTIKEL = {
     'BC-MEV-GREN': ['megagreninja'],
+    'BC-30-GREN': ['greninja', 'greninjaex'],
     'BC-PE-SPC': ['superpremiumcollection'],
 }
 
