@@ -209,6 +209,12 @@ ZOEK_ARTIKEL = {
     'BC-30-UPC': ['Pikachu', 'Pikachu ex', 'Espeon', 'Espeon ex', 'Umbreon',
                   'Umbreon ex', 'Eeveelutions', 'Day', 'Night', 'YOSHIROTTEN',
                   'pre-order', 'preorder'],
+    # Dezelfde doos maar per vier verkocht. De case-woorden erbij, want wie een
+    # hele case zoekt tikt "case" of "carton" en niet de productnaam.
+    'BC-30-UPC-CASE': ['case', 'carton', 'verzegelde case', 'partij', '4 stuks',
+                       'Pikachu', 'Pikachu ex', 'Espeon', 'Espeon ex', 'Umbreon',
+                       'Umbreon ex', 'Eeveelutions', 'Day', 'Night', 'YOSHIROTTEN',
+                       'pre-order', 'preorder'],
     'BC-MEV-GREN': ['Greninja', 'Mega Greninja', 'Mega Greninja ex'],
 }
 
@@ -319,6 +325,7 @@ TAGS_ARTIKEL = {
     'BC-30-SYLV': ['sylveon', 'sylveonex', 'eeveelutions'],
     'BC-30-POSTER': ['articuno', 'zapdos', 'moltres', 'legendarybirds'],
     'BC-30-UPC': ['pikachu', 'espeon', 'umbreon', 'eeveelutions'],
+    'BC-30-UPC-CASE': ['pikachu', 'espeon', 'umbreon', 'sealedcase'],
     'BC-PE-SPC': ['superpremiumcollection'],
 }
 
