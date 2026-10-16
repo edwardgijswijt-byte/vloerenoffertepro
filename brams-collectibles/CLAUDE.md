@@ -240,9 +240,22 @@ ontwerp: de rand moet 3 mm naar binnen.
 ```
 teksten/merk.md          verhaal, "Pokemon Center" en "verzenden of ophalen"
 teksten/sets/<set>.md    de alinea over de set, gedeeld door alles uit die set
+teksten/artikelen/<sku>.md  eigen alinea van één artikel, vervangt de setalinea
 register.csv             naam, hoogtepunten, staat, prijs
 teksten.py               stelt Marktplaats, socials en webshop samen
 ```
+
+`teksten/artikelen/` bestaat voor de 30th Celebration-producten: die hebben elk
+een eigen tekst van Bram, en een setalinea zou voor alle acht dezelfde zijn. Het
+bestand mag de blokken `tekst`, `pokemon-center`, `hoes`, `preorder`,
+`prijsregels`, `meer` en `foto` hebben; de docstring van `artikel()` in
+`teksten.py` legt ze uit. Heeft een artikel zo'n bestand, dan komt er geen
+automatische bundelregel bij: de tekst is al compleet. Zet `foto` op `geen` als
+het productfoto's zijn en geen foto's van het exemplaar, anders staat er
+"de foto's zijn van een exemplaar uit de voorraad" en dat is dan niet waar.
+
+Bij het overnemen van Brams tekst zijn alleen schrijffouten rechtgezet
+("annaversary", "betrefteen", een ontbrekende spatie of hoofdletter).
 
 Het blok **pokemon-center** gaat automatisch mee bij elk artikel met "Pokemon
 Center" in de naam. Vier artikelen delen die alinea; je kunt hem dus niet ergens
@@ -380,6 +393,12 @@ blok terug.
 Shopify zet daarbij `current` in `settings_data.json` om van een verwijzing naar
 de preset naar de volledige instellingen, en plakt er een commentaarblok boven.
 Dat mag daar; een gewone JSON-lezer struikelt erover.
+
+Een nieuw product maak je het eenvoudigst met `productSet`: titel, tekst, tags,
+SEO, foto's (`files` met de `resourceUrl`), prijs, sku en voorraad in een keer.
+Daarna met `publishablePublish` op Webshop en Shop zetten. Staat een artikel in
+het register dan komt alles daaruit; de tags zijn `pokemon tcg`, de set en
+`sealed`, en `pre-order` als het artikel een pre-orderblok heeft.
 
 **Wat de koppeling niet mag:** een thema publiceren, en terecht. Dat doe je zelf.
 

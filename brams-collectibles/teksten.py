@@ -41,6 +41,32 @@ def settekst(slug):
     return blokken(pad).get('tekst', '')
 
 
+def artikel(sku):
+    """Tekstblokken die bij één artikel horen, uit teksten/artikelen/<sku>.md.
+
+    Bijna alles staat per set in teksten/sets/. De 30th Celebration-producten
+    zijn de uitzondering: elk heeft zijn eigen alinea, en een set-alinea
+    daarvoor zou voor alle tien dezelfde zijn. Een artikelbestand mag deze
+    blokken hebben, allemaal optioneel:
+
+        tekst            vervangt de set-alinea
+        pokemon-center   vervangt het vaste Pokémon Center-blok uit merk.md
+        hoes             de zin over de acrylhoes
+        preorder         het pre-orderblok
+        prijsregels      extra prijsregels, alleen voor Marktplaats
+        meer             "ja" of "nee": 'En nog veel meer!' forceren of weglaten
+        foto             "geen": de foto's zijn productfoto's, laat de fotoregel weg
+    """
+    pad = HIER / 'teksten' / 'artikelen' / f'{sku}.md'
+    return blokken(pad) if pad.exists() else {}
+
+
+def alinea(r):
+    """De alinea over de set of, als het artikel er een eigen heeft, die."""
+    a = artikel(r['sku'])
+    return a['tekst'] if 'tekst' in a else settekst(r['set'])
+
+
 def bedrag(waarde):
     """Nederlands: punt voor de duizendtallen, komma als decimaalteken, en hele
     bedragen als 1.740,- in plaats van 1.740,00."""
@@ -76,6 +102,8 @@ def bundel(r, alles):
     combinatie met een ETB" te staan onder een advertentie voor een ETB.
     Zijn eigen soort telt daarom niet mee, en blijft er niets over, dan
     noemen we het andere artikel bij naam — dat is toch duidelijker."""
+    if artikel(r['sku']):
+        return ''
     zelfde_set = [a for a in alles
                   if a['set'] == r['set'] and a['sku'] != r['sku'] and a['aantal'] and a['prijs']]
     if not zelfde_set:
@@ -245,26 +273,34 @@ def zoekwoorden(r):
 
 
 def marktplaats(r, alles):
+    a = artikel(r['sku'])
     d = ['Brams Collectibles', '', MERK['verhaal-lang'], '', r['naam'], '']
     hp = hoogtepunten(r)
     if hp:
         d += ['De hoogtepunten:']
         d += [f'• In perfecte staat en sealed.'] if r['staat'] == 'sealed' else []
         d += [f'• {h}' for h in hp]
-        if r['soort'] in ('ETB', 'Premium Collection'):
+        meer = a.get('meer', 'ja' if r['soort'] in ('ETB', 'Premium Collection') else 'nee')
+        if meer == 'ja':
             d += ['En nog veel meer!']      # in een ETB zit meer dan je opsomt
         d += ['']
     if r['publiek']:
         d += [omslaan(r['publiek']), '']
-    d += [settekst(r['set']), '']
+    d += [alinea(r), '']
     if pokemon_center(r):
-        d += [MERK['pokemon-center'].replace('**', ''), '']
-    if r['hoes'] == 'ja':
+        d += [a.get('pokemon-center', MERK['pokemon-center']).replace('**', ''), '']
+    if a.get('hoes'):
+        d += [a['hoes'], '']
+    elif r['hoes'] == 'ja':
         d += ['Zit in een acryl beschermhoes, die gaat mee bij verkoop.', '']
     b = bundel(r, alles)
     if b:
         d += [omslaan(b), '']
+    if a.get('preorder'):
+        d += [a['preorder'].replace('**', ''), '']
     d += [MERK['verzenden'].replace('**', ''), '']
+    if a.get('prijsregels'):
+        d += [a['prijsregels'], '']
     d += [f'Prijs: {prijs(r)}', '']
     d += [zoekwoorden(r)]
     return ontvouwen('\n'.join(d))
@@ -420,8 +456,9 @@ def instagram(r, alles, oproep='dm'):
     if r['publiek']:
         d += [r['publiek'], '']
     if pokemon_center(r):
-        d += [MERK['pokemon-center'].replace('**', '').split('\n\n', 1)[1], '']
-    d += [settekst(r['set']), '']
+        blok = artikel(r['sku']).get('pokemon-center', MERK['pokemon-center'])
+        d += [blok.replace('**', '').split('\n\n', 1)[1], '']
+    d += [alinea(r), '']
     b = bundel(r, alles)
     if b:
         d += [b, '']
@@ -442,7 +479,7 @@ def socials(r):
             ' #sealed #pokemonnederland #tcgnederland #bramscollectibles')
     return '\n'.join([
         f'{r["naam"]}. Sealed{", in acrylhoes" if r["hoes"] == "ja" else ""}.',
-        '', kern + '.', '', settekst(r['set']), '',
+        '', kern + '.', '', alinea(r), '',
         'Prijs en beschikbaarheid: link in bio.', '', tags,
     ])
 
@@ -495,10 +532,13 @@ def gidslinks(r):
 
 
 def webshop(r):
-    d = [settekst(r['set']), '']
+    a = artikel(r['sku'])
+    d = [alinea(r), '']
     if pokemon_center(r):
-        d += [MERK['pokemon-center'], '']
-    if r['hoes'] == 'ja':
+        d += [a.get('pokemon-center', MERK['pokemon-center']), '']
+    if a.get('hoes'):
+        d += [a['hoes'], '']
+    elif r['hoes'] == 'ja':
         d += ['Geleverd in de acryl beschermhoes waarin hij op de foto staat.', '']
     hp = hoogtepunten(r)
     if hp:
@@ -507,7 +547,12 @@ def webshop(r):
         d += ['']
     if r['publiek']:
         d += [omslaan(r['publiek']), '']
-    d += [f'Staat: {r["staat"]}. {fotoregel(r)}', '']
+    # Zijn het productfoto's en geen foto's van het exemplaar dat de koper
+    # krijgt, dan zou "de foto's zijn van een exemplaar uit de voorraad" niet
+    # kloppen. Het artikelbestand zet dan `foto` op "geen": alleen de staat.
+    d += [f'Staat: {r["staat"]}.' + ('' if a.get('foto') == 'geen' else f' {fotoregel(r)}'), '']
+    if a.get('preorder'):
+        d += [a['preorder'], '']
     links = gidslinks(r)
     if links:
         d += ['Meer weten:', '']
