@@ -3,8 +3,9 @@
 ## 1. Wie wij zijn
 
 **Brams Collectibles**
-[STRAAT EN HUISNUMMER], [POSTCODE] [PLAATS]
-E-mail: [EMAIL] · Telefoon: [TELEFOON]
+Geosplitsing
+Nachtegaallaan 55, 3741 WT Baarn
+E-mail: bramr94@gmail.com · Telefoon: [TELEFOON]
 KvK-nummer: 42024670
 
 Wij zijn bereikbaar op werkdagen en reageren in de regel binnen één werkdag.
@@ -92,7 +93,7 @@ verzenden pas na ontvangst van de betaling.
 
 ## 10. Klachten
 
-Heb je een klacht? Mail ons op [EMAIL] met je bestelnummer en een omschrijving.
+Heb je een klacht? Mail ons op bramr94@gmail.com met je bestelnummer en een omschrijving.
 Wij reageren binnen 14 dagen inhoudelijk. Lukt het ons niet om er samen uit te
 komen, dan kun je je klacht voorleggen via het Europese ODR-platform:
 https://ec.europa.eu/consumers/odr

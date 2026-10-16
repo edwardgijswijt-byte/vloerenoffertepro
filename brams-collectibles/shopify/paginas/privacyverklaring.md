@@ -6,8 +6,9 @@ welke, waarom, hoe lang we ze bewaren en welke rechten je hebt.
 ## Verwerkingsverantwoordelijke
 
 **Brams Collectibles**
-[STRAAT EN HUISNUMMER], [POSTCODE] [PLAATS]
-E-mail: [EMAIL] · KvK: 42024670
+Geosplitsing
+Nachtegaallaan 55, 3741 WT Baarn
+E-mail: bramr94@gmail.com · KvK: 42024670
 
 ## Welke gegevens wij verwerken, en waarom
 
@@ -67,7 +68,7 @@ Je hebt het recht om:
 - gegeven **toestemming in te trekken**, zonder dat dit gevolgen heeft voor wat
   daarvoor al is verwerkt.
 
-Stuur een bericht naar [EMAIL] en wij reageren binnen een maand. Om te voorkomen
+Stuur een bericht naar bramr94@gmail.com en wij reageren binnen een maand. Om te voorkomen
 dat wij gegevens aan de verkeerde persoon geven, kunnen wij je vragen jezelf te
 identificeren.
 

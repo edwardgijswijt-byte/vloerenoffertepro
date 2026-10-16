@@ -23,3 +23,18 @@ kunnen niet tegelijk op de site staan. Dat is de vraag die al bij de boekhouder
 ligt (`teksten/vragen-aan-bram.md`, punt 5); met een btw-nummer in handen is het
 antwoord waarschijnlijk dat er wel btw wordt gerekend, en dan moet elke prijs op
 de site opnieuw worden bekeken.
+
+## Adres en e-mail (16 oktober)
+
+| Wat | Waarde | Staat in |
+|---|---|---|
+| Adres | Geosplitsing, Nachtegaallaan 55, 3741 WT Baarn | algemene voorwaarden, privacyverklaring, modelformulier, retouradres, ophaaladres |
+| E-mail | bramr94@gmail.com | voorwaarden, privacyverklaring, modelformulier, `index.html` |
+
+Het adres is ook als retour- en ophaaladres ingevuld, omdat er maar één is
+doorgegeven. Wijkt een van die twee af, dan staan ze in
+`shopify/paginas/herroeping-en-retour.md` en `verzenden-en-leveren.md`.
+
+Nog leeg: telefoon/WhatsApp, het verzendtijdstip, het aantal werkdagen in
+artikel 8, de betaaldienst in de privacyverklaring, en de datum onderaan de
+pagina's.

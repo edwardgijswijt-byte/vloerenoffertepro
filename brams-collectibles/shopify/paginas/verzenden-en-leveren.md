@@ -42,7 +42,7 @@ Liever ophalen? Dat kan. Kies bij het afrekenen voor ophalen, dan nemen wij
 contact op om een moment af te spreken. Ophalen is gratis en ik maak graag een
 keer kennis.
 
-Ophaaladres: **[OPHAALADRES]**
+Ophaaladres: **Nachtegaallaan 55, 3741 WT Baarn**, op afspraak
 
 ## Als er iets misgaat onderweg
 
