@@ -23,7 +23,7 @@ past niet naast een btw-nummer.
 Zolang dit open staat kan de winkel niet open: de prijzen en artikel 6 hangen
 eraan.
 
-## 3. Adres en contactgegevens
+## 2. Adres en contactgegevens
 
 Een webshop moet een bereikbaar adres tonen. Wat mag er op de site staan?
 
