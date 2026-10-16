@@ -56,7 +56,7 @@ pakket ook echt hebt ontvangen. Meld het gewoon, dan zoeken we het uit.
 
 ---
 
-*Laatst bijgewerkt: [DATUM]*
+*Laatst bijgewerkt: 16 oktober 2026*
 
 > **Nog te beslissen.** De tarieven hierboven zijn de tarieven die op dit moment
 > in de webshop staan. Twee dingen om bewust te kiezen voordat de kassa opengaat:

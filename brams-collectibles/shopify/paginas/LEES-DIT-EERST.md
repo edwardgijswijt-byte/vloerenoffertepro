@@ -90,3 +90,20 @@ Duitsland is de veilige route.
   verzendtarieven níet — die gaan op orderbedrag, niet op gewicht — maar het
   werkt wel door in PostNL-labels.
 - Het **wachtwoord** kan er pas af als bovenstaande rond is.
+
+
+## Stand van 16 oktober
+
+- **Ingevuld:** KvK-nummer, adres, e-mailadres, retour- en ophaaladres (zie
+  `teksten/bedrijfsgegevens.md`).
+- **Nog leeg:** telefoon (voorwaarden, art. 1), aantal werkdagen voor verzenden
+  (art. 8), verzendtijdstip, betaaldienst en de keuze voor analytische cookies
+  (privacyverklaring).
+- **In Shopify:** alleen de pagina "Modelformulier voor herroeping", verborgen.
+  De koppeling mag geen beleid schrijven (`write_legal_policies` ontbreekt), dus
+  de vier beleidsteksten plakt Bram of Edward zelf in Shopify onder Instellingen,
+  Beleid. De HTML staat klaar in `shopify/paginas/uit/`, gemaakt met
+  `sjablonen/beleidshtml.py`. De aantekeningen voor de jurist staan er niet in.
+- **Let op bij het plakken:** het privacybeleid dat nu in Shopify staat is het
+  standaardbeleid van Shopify met `edward@sozials.com` als contactadres. Dat
+  moet vervangen worden, niet aangevuld.

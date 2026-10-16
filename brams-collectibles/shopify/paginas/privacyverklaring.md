@@ -86,7 +86,7 @@ Toegang tot bestelgegevens is beperkt tot wie ze nodig heeft.
 
 ---
 
-*Laatst bijgewerkt: [DATUM]*
+*Laatst bijgewerkt: 16 oktober 2026*
 
 > **Nog in te vullen.** [BETAALDIENST] kan pas worden ingevuld als de
 > betaalprovider gekozen is. Bij cookies moet [WEL/GEEN] worden beslist: Shopify

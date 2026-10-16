@@ -104,7 +104,7 @@ Op onze overeenkomsten is Nederlands recht van toepassing.
 
 ---
 
-*Laatst bijgewerkt: [DATUM]*
+*Laatst bijgewerkt: 16 oktober 2026*
 
 > **Laat dit nakijken.** Dit is een zorgvuldig opgestelde set voorwaarden voor
 > een Nederlandse webshop, maar het is geen juridisch advies. Laat het door een
