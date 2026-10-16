@@ -1,0 +1,182 @@
+[
+ {
+  "handle": "pokemon-tcg-30th-anniversary-ultra-premium-collection",
+  "title": "Pokémon TCG 30th Anniversary Ultra Premium Collection",
+  "productType": "Ultra Premium Collection",
+  "tags": [
+   "30th celebration",
+   "pokemon tcg",
+   "pre-order",
+   "sealed"
+  ],
+  "priceRangeV2": {
+   "minVariantPrice": {
+    "amount": "424.95"
+   }
+  },
+  "featuredMedia": {
+   "preview": {
+    "image": {
+     "url": "https://cdn.shopify.com/s/files/1/1035/8312/1755/files/BC-30-UPC-1.png?v=1792140799"
+    }
+   }
+  }
+ },
+ {
+  "handle": "pokemon-tcg-30th-anniversary-elite-trainer-box-pokemon-center",
+  "title": "Pokémon TCG 30th Anniversary Elite Trainer Box Pokémon Center",
+  "productType": "Elite Trainer Box",
+  "tags": [
+   "30th celebration",
+   "pokemon tcg",
+   "pre-order",
+   "sealed"
+  ],
+  "priceRangeV2": {
+   "minVariantPrice": {
+    "amount": "425.0"
+   }
+  },
+  "featuredMedia": {
+   "preview": {
+    "image": {
+     "url": "https://cdn.shopify.com/s/files/1/1035/8312/1755/files/BC-30-PCETB-1.png?v=1792140735"
+    }
+   }
+  }
+ },
+ {
+  "handle": "prismatic-evolutions-pokemon-center-elite-trainer-box",
+  "title": "Prismatic Evolutions Pokémon Center Elite Trainer Box",
+  "productType": "Elite Trainer Box",
+  "tags": [
+   "eevee",
+   "pokemon center",
+   "prismatic evolutions",
+   "sealed"
+  ],
+  "priceRangeV2": {
+   "minVariantPrice": {
+    "amount": "599.0"
+   }
+  },
+  "featuredMedia": {
+   "preview": {
+    "image": {
+     "url": "https://cdn.shopify.com/s/files/1/1035/8312/1755/files/BC-PE-PCETB-1_11b2185c-9fc2-4256-a1f4-fda8c43628f4.png?v=1792138442"
+    }
+   }
+  }
+ },
+ {
+  "handle": "prismatic-evolutions-super-premium-collection",
+  "title": "Prismatic Evolutions Super Premium Collection",
+  "productType": "Premium Collection",
+  "tags": [
+   "pokemon tcg",
+   "prismatic evolutions",
+   "sealed"
+  ],
+  "priceRangeV2": {
+   "minVariantPrice": {
+    "amount": "269.95"
+   }
+  },
+  "featuredMedia": {
+   "preview": {
+    "image": {
+     "url": "https://cdn.shopify.com/s/files/1/1035/8312/1755/files/BC-PE-SPC-1.png?v=1792136788"
+    }
+   }
+  }
+ },
+ {
+  "handle": "pokemon-tcg-30th-anniversary-greninja-ex-box",
+  "title": "Pokémon TCG 30th Anniversary Greninja ex Box",
+  "productType": "ex Box",
+  "tags": [
+   "30th celebration",
+   "pokemon tcg",
+   "sealed"
+  ],
+  "priceRangeV2": {
+   "minVariantPrice": {
+    "amount": "59.95"
+   }
+  },
+  "featuredMedia": {
+   "preview": {
+    "image": {
+     "url": "https://cdn.shopify.com/s/files/1/1035/8312/1755/files/BC-30-GREN-1.png?v=1792140752"
+    }
+   }
+  }
+ },
+ {
+  "handle": "ascended-heroes-pokemon-center-elite-trainer-box",
+  "title": "Ascended Heroes Pokémon Center Elite Trainer Box",
+  "productType": "Elite Trainer Box",
+  "tags": [
+   "ascended heroes",
+   "pokemon tcg",
+   "sealed"
+  ],
+  "priceRangeV2": {
+   "minVariantPrice": {
+    "amount": "525.0"
+   }
+  },
+  "featuredMedia": {
+   "preview": {
+    "image": {
+     "url": "https://cdn.shopify.com/s/files/1/1035/8312/1755/files/BC-AH-PCETB-1_b2a6e30e-b0a1-4829-aaa3-b2611bf6c5a1.png?v=1792138445"
+    }
+   }
+  }
+ },
+ {
+  "handle": "pokemon-tcg-30th-anniversary-elite-trainer-box",
+  "title": "Pokémon TCG 30th Anniversary Elite Trainer Box",
+  "productType": "Elite Trainer Box",
+  "tags": [
+   "30th celebration",
+   "pokemon tcg",
+   "pre-order",
+   "sealed"
+  ],
+  "priceRangeV2": {
+   "minVariantPrice": {
+    "amount": "139.95"
+   }
+  },
+  "featuredMedia": {
+   "preview": {
+    "image": {
+     "url": "https://cdn.shopify.com/s/files/1/1035/8312/1755/files/BC-30-ETB-1.png?v=1792140652"
+    }
+   }
+  }
+ },
+ {
+  "handle": "destined-rivals-elite-trainer-box",
+  "title": "Destined Rivals Elite Trainer Box",
+  "productType": "Elite Trainer Box",
+  "tags": [
+   "destined rivals",
+   "etb",
+   "sealed"
+  ],
+  "priceRangeV2": {
+   "minVariantPrice": {
+    "amount": "119.95"
+   }
+  },
+  "featuredMedia": {
+   "preview": {
+    "image": {
+     "url": "https://cdn.shopify.com/s/files/1/1035/8312/1755/files/BC-DR-ETB-1.png?v=1792137317"
+    }
+   }
+  }
+ }
+]

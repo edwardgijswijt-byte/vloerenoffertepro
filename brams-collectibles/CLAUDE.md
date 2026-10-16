@@ -530,7 +530,37 @@ verzendcontract ligt, moeten ze langs de meetlat.
 
 ## Startpagina
 
-Negen zichtbare secties plus een onzichtbaar scriptblok:
+Acht secties, sinds 16 oktober:
+
+```
+brams-carrousel       draaiende carrousel met kop, drie dozen tegelijk
+custom-liquid         doorlopende balk met de vaste beloften
+collection-list       zes soortcollecties als vierkante tegels
+multicolumn           waarom bij Brams, vier gouden pictogrammen
+collection-list       acht setcollecties als vierkante tegels, 30th Celebration eerst
+rich-text             Brams verhaal, ingekort uit teksten/merk.md
+collapsible-content   veelgestelde vragen, inclusief de verzendtarieven
+newsletter            mailadres voor nieuwe voorraad, op goud
+```
+
+De carrousel (`sections/brams-carrousel.liquid`) vervangt het kopbeeld, de
+productrij en het scriptblok dat die liet doorschuiven. De actieve doos staat in
+het midden, de vorige en volgende kleiner en gedimd aan de zijkant, en de rij
+loopt rond: geen eind, geen terugspringen. Hij draait elke vijf seconden, pauzeert
+bij muis of toetsenbord, heeft een pauzeknop en draait niet vanzelf bij wie
+minder beweging heeft ingesteld. Op een telefoon staat alleen de actieve in beeld
+en veeg je. Zonder JavaScript blijft de eerste doos met zijn knop staan.
+
+De producten komen uit de collectie **Uitgelicht** (`frontpage`), handmatig
+gesorteerd. Welke dozen erin zitten en in welke volgorde pas je aan in Shopify
+onder Collecties; het thema hoeft er niet voor te wijzigen. Acht is een goede
+maat: meer dan twaalf staat er de rij te lang rond.
+
+Een voorbeeld zonder Shopify: `sjablonen/carrouselvoorbeeld.py` rendert de
+sectie met python-liquid (`/usr/bin/python3`, daar staat het) en fotografeert hem
+op bureaublad- en telefoonbreedte.
+
+De oude opbouw hieronder staat er nog om te laten zien waarom de volgorde zo is:
 
 ```
 image-banner          kopbeeld uit sjablonen/hero.py, kop en een knop

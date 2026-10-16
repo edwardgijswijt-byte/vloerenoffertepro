@@ -1,0 +1,322 @@
+{%- comment -%}
+  Brams Collectibles — draaiende carrousel met meerdere producten.
+
+  Drie dozen tegelijk: de actieve in het midden, de vorige en de volgende kleiner
+  en gedimd aan de zijkant. Elke paar seconden schuift hij een plek door en de
+  rij loopt rond, dus er is geen eind en geen terugspringen naar het begin. Op
+  een telefoon staat alleen de actieve in beeld; veeg om te wisselen.
+
+  De producten komen uit een gewone collectie (standaard "Uitgelicht"). Volgorde
+  aanpassen of een product vervangen gaat in Shopify onder Collecties, niet hier.
+
+  Zonder JavaScript staat de eerste doos er gewoon, met zijn knop.
+{%- endcomment -%}
+
+{%- liquid
+  assign verzameling = section.settings.collection
+  assign aantal = section.settings.aantal | default: 8
+  assign tempo = section.settings.interval | default: 5 | times: 1000
+-%}
+
+{%- style -%}
+  .brams-car-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+{%- endstyle -%}
+
+<style>
+  .brams-car { overflow: hidden; }
+  .brams-car__kop { text-align: center; margin: 0 auto 1.6rem; max-width: 64rem; }
+  .brams-car__kop .brams-car__titel { margin: 0 0 .8rem; }
+  .brams-car__kop p { margin: 0; font-family: var(--font-heading-family); font-weight: 500; letter-spacing: .2em; text-transform: uppercase; font-size: 1.3rem; color: var(--brams-gold, #c9a24b); }
+
+  .brams-car__podium { position: relative; height: clamp(26rem, 34vw, 40rem); margin: 0 auto; max-width: 112rem; }
+  .brams-car__glans { position: absolute; left: 50%; top: 46%; width: min(70%, 64rem); aspect-ratio: 1; transform: translate(-50%, -50%); background: radial-gradient(circle, rgba(201,162,75,.22), rgba(201,162,75,0) 62%); pointer-events: none; }
+
+  .brams-car__dia { --b: clamp(18rem, 28vw, 37rem); position: absolute; left: 50%; top: 50%; width: var(--b); margin: calc(var(--b) / -2) 0 0 calc(var(--b) / -2); opacity: 0; visibility: hidden; transform: scale(.6); transition: transform .7s cubic-bezier(.3,.7,.2,1), opacity .7s ease, visibility 0s .7s; z-index: 0; }
+  .brams-car__dia a { display: block; }
+  .brams-car__dia img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; filter: drop-shadow(0 1.4rem 2.2rem rgba(0,0,0,.45)); }
+
+  .brams-car__dia[data-plek="0"]  { opacity: 1; visibility: visible; transform: none; z-index: 3; transition-delay: 0s, 0s, 0s; }
+  .brams-car__dia[data-plek="-1"] { opacity: .45; visibility: visible; transform: translateX(-72%) scale(.68); z-index: 2; transition-delay: 0s, 0s, 0s; }
+  .brams-car__dia[data-plek="1"]  { opacity: .45; visibility: visible; transform: translateX(72%) scale(.68); z-index: 2; transition-delay: 0s, 0s, 0s; }
+  .brams-car__dia[data-plek="-1"] a, .brams-car__dia[data-plek="1"] a { cursor: pointer; }
+
+  .brams-car__info { display: grid; text-align: center; margin: .4rem auto 0; max-width: 56rem; min-height: 12rem; }
+  .brams-car__tekst { grid-area: 1 / 1; opacity: 0; visibility: hidden; transition: opacity .45s ease; }
+  .brams-car__tekst.is-actief { opacity: 1; visibility: visible; }
+  .brams-car__soort { margin: 0 0 .6rem; font-family: var(--font-heading-family); font-weight: 500; letter-spacing: .2em; text-transform: uppercase; font-size: 1.2rem; color: var(--brams-gold, #c9a24b); }
+  .brams-car__naam { margin: 0 0 .8rem; font-size: clamp(2.2rem, 2.6vw, 3rem); line-height: 1.15; }
+  .brams-car__naam a { color: inherit; text-decoration: none; }
+  .brams-car__prijs { display: inline-flex; align-items: center; gap: 1rem; margin: 0 0 1.2rem; font-family: var(--font-body-family); font-weight: 600; font-size: 2rem; font-variant-numeric: tabular-nums; }
+  .brams-car__label { padding: .3rem .9rem; border: 1px solid var(--brams-gold, #c9a24b); border-radius: 999px; font-family: var(--font-heading-family); font-weight: 500; font-size: 1.1rem; letter-spacing: .16em; text-transform: uppercase; color: var(--brams-gold, #c9a24b); }
+
+  .brams-car__bediening { display: flex; align-items: center; justify-content: center; gap: 1.4rem; margin-top: 1.2rem; }
+  .brams-car__knop { display: inline-flex; align-items: center; justify-content: center; width: 4.4rem; height: 4.4rem; padding: 0; border: 1px solid rgba(201,162,75,.55); border-radius: 50%; background: transparent; color: var(--brams-gold, #c9a24b); cursor: pointer; transition: background .2s, color .2s; }
+  .brams-car__knop:hover, .brams-car__knop:focus-visible { background: var(--brams-gold, #c9a24b); color: var(--brams-navy, #0d1b2a); }
+  .brams-car__knop svg { width: 1.6rem; height: 1.6rem; }
+  .brams-car__stippen { display: flex; gap: .8rem; }
+  .brams-car__stip { width: 1rem; height: 1rem; padding: 0; border: 0; border-radius: 50%; background: rgba(242,239,230,.28); cursor: pointer; transition: background .2s, transform .2s; }
+  .brams-car__stip[aria-current="true"] { background: var(--brams-gold, #c9a24b); transform: scale(1.35); }
+  .brams-car__pauze .brams-car__pauze-spelen { display: none; }
+  .brams-car.is-gepauzeerd .brams-car__pauze .brams-car__pauze-spelen { display: block; }
+  .brams-car.is-gepauzeerd .brams-car__pauze .brams-car__pauze-stop { display: none; }
+
+  /* Zonder JavaScript: alleen de eerste, in het midden. */
+  .brams-car:not(.is-klaar) .brams-car__dia:first-child { opacity: 1; visibility: visible; transform: none; }
+  .brams-car:not(.is-klaar) .brams-car__tekst:first-child { opacity: 1; visibility: visible; }
+  .brams-car:not(.is-klaar) .brams-car__bediening { display: none; }
+
+  @media (max-width: 749px) {
+    .brams-car__podium { height: clamp(24rem, 78vw, 34rem); }
+    .brams-car__dia { --b: min(78vw, 32rem); }
+    .brams-car__dia[data-plek="-1"], .brams-car__dia[data-plek="1"] { opacity: 0; visibility: hidden; }
+    .brams-car__bediening { gap: 1rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .brams-car__dia, .brams-car__tekst { transition: none; }
+  }
+</style>
+
+<section class="brams-car brams-car-{{ section.id }} color-{{ section.settings.color_scheme }} gradient" id="brams-car-{{ section.id }}" data-tempo="{{ tempo }}" aria-roledescription="carrousel" aria-label="Uitgelichte producten">
+  <div class="page-width">
+    {%- if section.settings.heading != blank or section.settings.subheading != blank -%}
+      <div class="brams-car__kop">
+        {%- if section.settings.heading != blank -%}
+          <h1 class="brams-car__titel h1">{{ section.settings.heading | escape }}</h1>
+        {%- endif -%}
+        {%- if section.settings.subheading != blank -%}
+          <p>{{ section.settings.subheading | escape }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- if verzameling != blank and verzameling.products_count > 0 -%}
+      <div class="brams-car__podium">
+        <div class="brams-car__glans" aria-hidden="true"></div>
+        {%- for product in verzameling.products limit: aantal -%}
+          <div class="brams-car__dia" data-plek="{% if forloop.first %}0{% else %}x{% endif %}" role="group" aria-roledescription="slide" aria-label="{{ forloop.index }} van {{ forloop.length }}">
+            <a href="{{ product.url }}" tabindex="{% unless forloop.first %}-1{% endunless %}">
+              {%- if product.featured_media -%}
+                {{ product.featured_media | image_url: width: 800 | image_tag: loading: 'lazy', widths: '400, 600, 800', sizes: '(min-width: 750px) 40rem, 78vw', alt: product.title }}
+              {%- endif -%}
+            </a>
+          </div>
+        {%- endfor -%}
+      </div>
+
+      <div class="brams-car__info" aria-live="off">
+        {%- for product in verzameling.products limit: aantal -%}
+          <div class="brams-car__tekst{% if forloop.first %} is-actief{% endif %}">
+            <p class="brams-car__soort">{{ product.type | escape }}</p>
+            <h2 class="brams-car__naam h2"><a href="{{ product.url }}">{{ product.title | escape }}</a></h2>
+            <p class="brams-car__prijs">
+              <span>{{ product.price | money }}</span>
+              {%- if product.tags contains 'pre-order' -%}<span class="brams-car__label">Pre-order</span>{%- endif -%}
+              {%- unless product.available -%}<span class="brams-car__label">Uitverkocht</span>{%- endunless -%}
+            </p>
+            <p><a class="button" href="{{ product.url }}">Bekijk</a></p>
+          </div>
+        {%- endfor -%}
+      </div>
+
+      <div class="brams-car__bediening">
+        <button type="button" class="brams-car__knop" data-vorige aria-label="Vorige">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3 5 8l5 5"/></svg>
+        </button>
+        <div class="brams-car__stippen">
+          {%- for product in verzameling.products limit: aantal -%}
+            <button type="button" class="brams-car__stip" data-ga="{{ forloop.index0 }}" aria-label="{{ product.title | escape }}"{% if forloop.first %} aria-current="true"{% endif %}></button>
+          {%- endfor -%}
+        </div>
+        <button type="button" class="brams-car__knop" data-volgende aria-label="Volgende">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 3 5 5-5 5"/></svg>
+        </button>
+        <button type="button" class="brams-car__knop brams-car__pauze" data-pauze aria-label="Automatisch draaien pauzeren">
+          <svg class="brams-car__pauze-stop" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><rect x="4" y="3" width="3" height="10" rx=".6"/><rect x="9" y="3" width="3" height="10" rx=".6"/></svg>
+          <svg class="brams-car__pauze-spelen" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M5 3.2v9.6a.5.5 0 0 0 .76.43l7.6-4.8a.5.5 0 0 0 0-.86l-7.6-4.8A.5.5 0 0 0 5 3.2Z"/></svg>
+        </button>
+      </div>
+    {%- elsif request.design_mode -%}
+      <p class="center">Kies een collectie met producten voor de carrousel.</p>
+    {%- endif -%}
+  </div>
+</section>
+
+<script>
+  (function () {
+    var wortel = document.getElementById('brams-car-{{ section.id }}');
+    if (!wortel) return;
+    var dia = wortel.querySelectorAll('.brams-car__dia');
+    var tekst = wortel.querySelectorAll('.brams-car__tekst');
+    var stip = wortel.querySelectorAll('.brams-car__stip');
+    var n = dia.length;
+    if (n < 2) return;
+
+    var nu = 0;
+    var klok = null;
+    var tempo = parseInt(wortel.getAttribute('data-tempo'), 10) || 5000;
+    var stil = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var gepauzeerd = stil;     // wie minder beweging vraagt krijgt geen automatisch draaien
+    var boven = false;
+
+    function plek(i) {
+      // Kortste weg rond de ring: -1, 0 of 1, de rest staat achter de schermen.
+      var v = ((i - nu) % n + n) % n;
+      if (v === 0) return '0';
+      if (v === 1) return '1';
+      if (v === n - 1) return '-1';
+      return 'x';
+    }
+
+    function toon() {
+      for (var i = 0; i < n; i++) {
+        var p = plek(i);
+        dia[i].setAttribute('data-plek', p);
+        var a = dia[i].querySelector('a');
+        if (a) a.setAttribute('tabindex', p === '0' ? '0' : '-1');
+        dia[i].setAttribute('aria-hidden', p === '0' ? 'false' : 'true');
+        tekst[i].classList.toggle('is-actief', i === nu);
+        if (stip[i]) {
+          if (i === nu) stip[i].setAttribute('aria-current', 'true');
+          else stip[i].removeAttribute('aria-current');
+        }
+      }
+    }
+
+    function ga(i) { nu = ((i % n) + n) % n; toon(); herstart(); }
+    function volgende() { ga(nu + 1); }
+    function vorige() { ga(nu - 1); }
+
+    function herstart() {
+      clearInterval(klok);
+      klok = null;
+      if (!gepauzeerd && !boven && !document.hidden) klok = setInterval(volgende, tempo);
+    }
+
+    wortel.querySelector('[data-volgende]').addEventListener('click', volgende);
+    wortel.querySelector('[data-vorige]').addEventListener('click', vorige);
+    Array.prototype.forEach.call(stip, function (s) {
+      s.addEventListener('click', function () { ga(parseInt(s.getAttribute('data-ga'), 10)); });
+    });
+
+    var pauze = wortel.querySelector('[data-pauze]');
+    function zetPauze() {
+      wortel.classList.toggle('is-gepauzeerd', gepauzeerd);
+      pauze.setAttribute('aria-label', gepauzeerd ? 'Automatisch draaien hervatten' : 'Automatisch draaien pauzeren');
+    }
+    pauze.addEventListener('click', function () { gepauzeerd = !gepauzeerd; zetPauze(); herstart(); });
+
+    // Een zijdia aanklikken haalt hem naar voren; pas de middelste opent het product.
+    Array.prototype.forEach.call(dia, function (d, i) {
+      d.addEventListener('click', function (e) {
+        if (d.getAttribute('data-plek') !== '0') { e.preventDefault(); ga(i); }
+      });
+    });
+
+    // Niet verder draaien terwijl iemand kijkt of met het toetsenbord bezig is.
+    wortel.addEventListener('mouseenter', function () { boven = true; herstart(); });
+    wortel.addEventListener('mouseleave', function () { boven = false; herstart(); });
+    wortel.addEventListener('focusin', function () { boven = true; herstart(); });
+    wortel.addEventListener('focusout', function () { boven = false; herstart(); });
+    document.addEventListener('visibilitychange', herstart);
+
+    wortel.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { volgende(); }
+      else if (e.key === 'ArrowLeft') { vorige(); }
+    });
+
+    // Vegen op een telefoon.
+    var x0 = null;
+    wortel.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+    wortel.addEventListener('touchend', function (e) {
+      if (x0 === null) return;
+      var dx = e.changedTouches[0].clientX - x0;
+      x0 = null;
+      if (Math.abs(dx) > 40) { dx < 0 ? volgende() : vorige(); }
+    }, { passive: true });
+
+    wortel.classList.add('is-klaar');
+    zetPauze();
+    toon();
+    herstart();
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Brams carrousel",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Kop",
+      "default": "Sealed Pokémon TCG, uit eigen voorraad"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Regel onder de kop",
+      "default": "Gestart als fan. Voor de verzamelaar. Voor de community."
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collectie met de producten"
+    },
+    {
+      "type": "range",
+      "id": "aantal",
+      "min": 3,
+      "max": 12,
+      "step": 1,
+      "default": 8,
+      "label": "Aantal producten"
+    },
+    {
+      "type": "range",
+      "id": "interval",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "default": 5,
+      "label": "Tijd per product"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Kleurenschema",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 40,
+      "label": "Ruimte boven"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 40,
+      "label": "Ruimte onder"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brams carrousel"
+    }
+  ]
+}
+{% endschema %}

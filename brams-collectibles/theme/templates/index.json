@@ -1,51 +1,16 @@
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Sealed Pokémon TCG, uit eigen voorraad",
-            "heading_size": "h0"
-          }
-        },
-        "tekst": {
-          "type": "text",
-          "settings": {
-            "text": "Gestart als fan. Voor de verzamelaar. Voor de community.",
-            "text_style": "caption-with-letter-spacing"
-          }
-        },
-        "button": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Bekijk de voorraad",
-            "button_link_1": "/collections/all",
-            "button_style_secondary_1": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "heading",
-        "tekst",
-        "button"
-      ],
+    "brams_carrousel": {
+      "type": "brams-carrousel",
       "settings": {
-        "image": "shopify://shop_images/brams-hero.png",
-        "image_overlay_opacity": 0,
-        "image_height": "adapt",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "image_behavior": "none",
-        "desktop_content_alignment": "center",
+        "heading": "Sealed Pokémon TCG, uit eigen voorraad",
+        "subheading": "Gestart als fan. Voor de verzamelaar. Voor de community.",
+        "collection": "frontpage",
+        "aantal": 8,
+        "interval": 5,
         "color_scheme": "scheme-1",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": true
+        "padding_top": 32,
+        "padding_bottom": 32
       }
     },
     "loopbalk": {
@@ -174,6 +139,81 @@
         "columns_mobile": "1",
         "swipe_on_mobile": false,
         "padding_top": 56,
+        "padding_bottom": 56
+      }
+    },
+    "sets": {
+      "type": "collection-list",
+      "blocks": {
+        "celebration30": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "30th-celebration"
+          }
+        },
+        "chaos_rising": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "chaos-rising"
+          }
+        },
+        "pitch_black": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "pitch-black"
+          }
+        },
+        "ascended_heroes": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "ascended-heroes"
+          }
+        },
+        "prismatic_evolutions": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "prismatic-evolutions"
+          }
+        },
+        "destined_rivals": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "destined-rivals"
+          }
+        },
+        "scarlet_violet_151": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "scarlet-violet-151"
+          }
+        },
+        "paldean_fates": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "paldean-fates"
+          }
+        }
+      },
+      "block_order": [
+        "celebration30",
+        "chaos_rising",
+        "pitch_black",
+        "ascended_heroes",
+        "prismatic_evolutions",
+        "destined_rivals",
+        "scarlet_violet_151",
+        "paldean_fates"
+      ],
+      "settings": {
+        "title": "Of zoek op set",
+        "heading_size": "h2",
+        "image_ratio": "square",
+        "columns_desktop": 4,
+        "color_scheme": "scheme-1",
+        "show_view_all": false,
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 40,
         "padding_bottom": 56
       }
     },
@@ -314,115 +354,11 @@
         "padding_top": 56,
         "padding_bottom": 56
       }
-    },
-    "sets": {
-      "type": "collection-list",
-      "blocks": {
-        "chaos_rising": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "chaos-rising"
-          }
-        },
-        "pitch_black": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "pitch-black"
-          }
-        },
-        "ascended_heroes": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "ascended-heroes"
-          }
-        },
-        "prismatic_evolutions": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "prismatic-evolutions"
-          }
-        },
-        "destined_rivals": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "destined-rivals"
-          }
-        },
-        "scarlet_violet_151": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "scarlet-violet-151"
-          }
-        },
-        "paldean_fates": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "paldean-fates"
-          }
-        }
-      },
-      "block_order": [
-        "chaos_rising",
-        "pitch_black",
-        "ascended_heroes",
-        "prismatic_evolutions",
-        "destined_rivals",
-        "scarlet_violet_151",
-        "paldean_fates"
-      ],
-      "settings": {
-        "title": "Of zoek op set",
-        "heading_size": "h2",
-        "image_ratio": "square",
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "show_view_all": false,
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "padding_top": 40,
-        "padding_bottom": 56
-      }
-    },
-    "carrousel": {
-      "type": "featured-collection",
-      "settings": {
-        "title": "Nu op voorraad",
-        "heading_size": "h2",
-        "collection": "alle-dozen",
-        "products_to_show": 15,
-        "columns_desktop": 4,
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "link",
-        "enable_desktop_slider": true,
-        "swipe_on_mobile": true,
-        "columns_mobile": "2",
-        "image_ratio": "square",
-        "image_shape": "default",
-        "show_secondary_image": false,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "color_scheme": "scheme-2",
-        "padding_top": 48,
-        "padding_bottom": 48
-      }
-    },
-    "carrousel_beweging": {
-      "type": "custom-liquid",
-      "settings": {
-        "custom_liquid": "<script>\n  (function () {\n    var wortel = document.getElementById('shopify-section-carrousel');\n    if (!wortel) return;\n    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;\n\n    var spoor = wortel.querySelector('.slider');\n    var verder = wortel.querySelector('.slider-button--next');\n    if (!spoor || !verder) return;\n\n    var klok = null;\n    var gestopt = false;\n\n    function stap() {\n      if (verder.hasAttribute('disabled')) {\n        spoor.scrollTo({ left: 0, behavior: 'smooth' });\n      } else {\n        verder.click();\n      }\n    }\n\n    function loop() {\n      if (klok || gestopt || document.hidden) return;\n      klok = setInterval(stap, 5000);\n    }\n\n    function pauze() {\n      clearInterval(klok);\n      klok = null;\n    }\n\n    function stop() {\n      gestopt = true;\n      pauze();\n    }\n\n    wortel.addEventListener('mouseenter', pauze);\n    wortel.addEventListener('mouseleave', loop);\n    wortel.addEventListener('focusin', pauze);\n    wortel.addEventListener('focusout', loop);\n    wortel.addEventListener('pointerdown', stop);\n    wortel.addEventListener('touchstart', stop, { passive: true });\n    document.addEventListener('visibilitychange', function () {\n      document.hidden ? pauze() : loop();\n    });\n\n    loop();\n  })();\n</script>",
-        "color_scheme": "scheme-2",
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
     }
   },
   "order": [
-    "image_banner",
+    "brams_carrousel",
     "loopbalk",
-    "carrousel",
-    "carrousel_beweging",
     "soorten",
     "waarom",
     "sets",
