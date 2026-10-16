@@ -7,7 +7,7 @@ bericht per e-mail of WhatsApp mag ook — dit formulier is niet verplicht.*
 
 **Aan:**
 Brams Collectibles
-Geosplitsing
+Onderdeel van Geosplitsing
 Nachtegaallaan 55, 3741 WT Baarn
 bramr94@gmail.com
 

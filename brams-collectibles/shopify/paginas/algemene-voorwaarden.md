@@ -3,7 +3,7 @@
 ## 1. Wie wij zijn
 
 **Brams Collectibles**
-Geosplitsing
+Onderdeel van Geosplitsing
 Nachtegaallaan 55, 3741 WT Baarn
 E-mail: bramr94@gmail.com · Telefoon: [TELEFOON]
 KvK-nummer: 42024670

@@ -6,7 +6,7 @@ welke, waarom, hoe lang we ze bewaren en welke rechten je hebt.
 ## Verwerkingsverantwoordelijke
 
 **Brams Collectibles**
-Geosplitsing
+Onderdeel van Geosplitsing
 Nachtegaallaan 55, 3741 WT Baarn
 E-mail: bramr94@gmail.com · KvK: 42024670
 

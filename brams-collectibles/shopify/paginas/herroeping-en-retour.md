@@ -30,7 +30,7 @@ Na je melding heb je **nog eens 14 dagen** om het product terug te sturen.
   afwijkt van de staat waarin je het ontving, hoe eerder er sprake is van
   waardevermindering (zie hieronder).
 
-Retouradres: **Geosplitsing, Nachtegaallaan 55, 3741 WT Baarn**
+Retouradres: **Brams Collectibles (onderdeel van Geosplitsing), Nachtegaallaan 55, 3741 WT Baarn**
 
 ## Terugbetaling
 

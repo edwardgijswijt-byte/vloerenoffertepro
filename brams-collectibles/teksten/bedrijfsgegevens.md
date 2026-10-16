@@ -28,7 +28,7 @@ de site opnieuw worden bekeken.
 
 | Wat | Waarde | Staat in |
 |---|---|---|
-| Adres | Geosplitsing, Nachtegaallaan 55, 3741 WT Baarn | algemene voorwaarden, privacyverklaring, modelformulier, retouradres, ophaaladres |
+| Adres | Brams Collectibles, onderdeel van Geosplitsing, Nachtegaallaan 55, 3741 WT Baarn | algemene voorwaarden, privacyverklaring, modelformulier, retouradres, ophaaladres |
 | E-mail | bramr94@gmail.com | voorwaarden, privacyverklaring, modelformulier, `index.html` |
 
 Het adres is ook als retour- en ophaaladres ingevuld, omdat er maar één is
@@ -38,3 +38,9 @@ doorgegeven. Wijkt een van die twee af, dan staan ze in
 Nog leeg: telefoon/WhatsApp, het verzendtijdstip, het aantal werkdagen in
 artikel 8, de betaaldienst in de privacyverklaring, en de datum onderaan de
 pagina's.
+
+**Rechtsvorm nog niet vastgesteld.** Geosplitsing is het moederbedrijf en Brams
+Collectibles zit daaronder. In de voorwaarden staat nu "Onderdeel van
+Geosplitsing". Of Brams een eigen rechtspersoon is of een handelsnaam, en bij
+welke van de twee het KvK-nummer 42024670 en het btw-nummer horen, bepaalt wie
+de wederpartij van de koper is en moet kloppen met de KvK-uittreksels.
