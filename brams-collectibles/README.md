@@ -35,7 +35,7 @@ Alle plekken tussen vierkante haken staan klaar om vervangen te worden:
 | `[TELEFOON]` | Nummer zoals je het wilt tonen |
 | `[EMAIL]` | E-mailadres |
 | `[INSTAGRAM]` / `[TIKTOK]` | Profiel-URL's |
-| `[KVK-NUMMER]` / `[BTW-ID]` | Verplicht zodra je zakelijk verkoopt |
+| `[KVK-NUMMER]` / `[BTW-ID]` | Ingevuld, zie `teksten/bedrijfsgegevens.md` |
 
 Zoek en vervang in `index.html`; verder is er niets aan te passen.
 

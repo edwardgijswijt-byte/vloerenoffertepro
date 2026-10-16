@@ -5,7 +5,7 @@
 **Brams Collectibles**
 [STRAAT EN HUISNUMMER], [POSTCODE] [PLAATS]
 E-mail: [EMAIL] · Telefoon: [TELEFOON]
-KvK-nummer: [KVK-NUMMER]
+KvK-nummer: 42024670
 
 Wij zijn bereikbaar op werkdagen en reageren in de regel binnen één werkdag.
 

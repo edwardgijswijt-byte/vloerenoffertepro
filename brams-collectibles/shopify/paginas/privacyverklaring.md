@@ -7,7 +7,7 @@ welke, waarom, hoe lang we ze bewaren en welke rechten je hebt.
 
 **Brams Collectibles**
 [STRAAT EN HUISNUMMER], [POSTCODE] [PLAATS]
-E-mail: [EMAIL] · KvK: [KVK-NUMMER]
+E-mail: [EMAIL] · KvK: 42024670
 
 ## Welke gegevens wij verwerken, en waarom
 

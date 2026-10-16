@@ -734,7 +734,12 @@ kopers vandaag betalen — bij de Prismatic scheelde dat 60 euro.
 
 Bram verkoopt dit voorlopig als **verkoop uit privécollectie**, dus zonder btw
 en zonder btw-identificatienummer. Daarom kunnen de marges zo krap: er gaat geen
-btw af. De KvK-inschrijving is aangevraagd maar bewust nog niet gepubliceerd.
+btw af.
+
+**Bijgewerkt 16 oktober:** Bram heeft een KvK-nummer (42024670) en een
+btw-nummer doorgegeven; ze staan in `teksten/bedrijfsgegevens.md`. Met een
+btw-nummer botst "geen btw, verkoop uit privécollectie" in artikel 6 met wat de
+voet van de site zegt. Dat is nog niet opgelost en hoort bij de boekhouder.
 
 Reken dus nergens met btw, en zet geen btw-regel in de webshop of op een
 factuur zolang dit geldt. Verandert dit, dan verandert elke prijs mee.

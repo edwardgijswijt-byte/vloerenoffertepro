@@ -20,7 +20,7 @@ Dit zijn feiten, geen juridische keuzes. Zonder deze zes kunnen de teksten niet
 gepubliceerd worden.
 
 1. **Bedrijfsnaam en rechtsvorm** zoals die bij de KvK komt te staan.
-2. **KvK-nummer.** Aangevraagd, nog niet bekend.
+2. **KvK-nummer.** 42024670, ingevuld in de voorwaarden en de privacyverklaring.
 3. **Een adres dat getoond mag worden.** Een webshop moet een bereikbaar adres
    tonen. Een postadres of het adres van de inschrijving volstaat. Dit is
    dezelfde vraag als het ophaaladres en het retouradres — het mogen drie
