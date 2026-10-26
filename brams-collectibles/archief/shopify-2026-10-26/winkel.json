@@ -1,0 +1,42 @@
+{
+ "naam": "Brams Collectibles",
+ "intern_adres": "mwbxzp-qm.myshopify.com",
+ "plan": "Basic",
+ "aangemaakt": "2026-09-10",
+ "valuta": "EUR",
+ "tijdzone": "Europe/Amsterdam",
+ "domein": {
+  "primair": "bramscollectibles.nl",
+  "registrar": "Hostnet",
+  "dns": "A-record apex naar 23.227.38.65, CNAME www naar shops.myshopify.com. (met punt)"
+ },
+ "winkelmail_toen": "edward@sozials.com",
+ "winkelmail_hoort_te_zijn": "bramr94@gmail.com",
+ "thema": {
+  "repo": "edwardgijswijt-byte/brams-collectibles-theme",
+  "branch": "main",
+  "naam_in_shopify": "brams-collectibles-theme/main",
+  "basis": "Dawn 16.0.0"
+ },
+ "verkoopkanalen_per_product": [
+  "Webshop",
+  "Shop"
+ ],
+ "locatie": "Winkellocatie",
+ "wachtwoord": "De winkel stond achter een wachtwoord; het wachtwoord staat niet in dit archief.",
+ "bedrijf": {
+  "kvk": "42024670",
+  "btw": "8693.52.751.B.01",
+  "adres": "Nachtegaallaan 55, 3741 WT Baarn",
+  "email": "bramr94@gmail.com",
+  "opmerking": "Zie teksten/bedrijfsgegevens.md voor wat nog openstaat (rechtspersoon, btw-positie)."
+ },
+ "blog": {
+  "gids": "5 artikelen, bron in teksten/blog/, uitvoer in teksten/uit/blog/"
+ },
+ "paginas": [
+  "Contact (leeg)",
+  "Modelformulier voor herroeping (verborgen) — shopify/paginas/modelformulier-herroeping.md"
+ ],
+ "beleid_in_shopify_toen": "alleen het standaard privacybeleid van Shopify met edward@sozials.com; de eigen teksten staan in shopify/paginas/ en shopify/paginas/uit/"
+}

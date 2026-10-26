@@ -400,6 +400,14 @@ Daarna met `publishablePublish` op Webshop en Shop zetten. Staat een artikel in
 het register dan komt alles daaruit; de tags zijn `pokemon tcg`, de set en
 `sealed`, en `pre-order` als het artikel een pre-orderblok heeft.
 
+**Archief van de winkel.** Op 26 oktober 2026 besloot Bram de winkel voorlopig niet
+te openen. Alles wat alleen in Shopify stond — producten met foto's, collecties,
+menu, verzendtarieven, instellingen — staat in `archief/shopify-2026-10-26/`, met
+`HERSTEL.md` voor de volgorde waarin je het terugzet en wat het sluiten van de
+winkel kost. Dat archief is nu de duurzame kopie van de productfoto's: de regel
+hierboven dat Shopify die kopie is gold zolang de winkel bleef bestaan.
+`sjablonen/shopify_archief.py` heeft het gemaakt.
+
 **Wat de koppeling niet mag:** een thema publiceren, en terecht. Dat doe je zelf.
 
 **Controleer de status na elke productbewerking.** Op 10 september sprongen drie

@@ -1,0 +1,112 @@
+{
+ "profiel": "Algemeen profiel",
+ "conditie": "op totaalbedrag van de bestelling, niet op gewicht",
+ "zones": [
+  {
+   "zone": "Nederland",
+   "landen": [
+    "Netherlands"
+   ],
+   "tarieven": [
+    {
+     "naam": "Verzekerd verzonden — PostNL",
+     "prijs_eur": 6.95,
+     "bestelbedrag_vanaf": 0,
+     "bestelbedrag_tot": 99.99
+    },
+    {
+     "naam": "Verzekerd verzonden — PostNL",
+     "prijs_eur": 9.95,
+     "bestelbedrag_vanaf": 100,
+     "bestelbedrag_tot": 499.99
+    },
+    {
+     "naam": "Verzekerd verzonden — PostNL, hoge waarde",
+     "prijs_eur": 14.95,
+     "bestelbedrag_vanaf": 500,
+     "bestelbedrag_tot": null
+    }
+   ]
+  },
+  {
+   "zone": "EU (Europeese Unie)",
+   "landen": [
+    "Austria",
+    "Belgium",
+    "Bulgaria",
+    "Croatia",
+    "Cyprus",
+    "Czech Republic",
+    "Germany",
+    "Denmark",
+    "Estonia",
+    "Finland",
+    "France",
+    "Greece",
+    "Hungary",
+    "Ireland",
+    "Italy",
+    "Latvia",
+    "Lithuania",
+    "Luxembourg",
+    "Malta",
+    "Poland",
+    "Portugal",
+    "Romania",
+    "Slovakia",
+    "Slovenia",
+    "Spain",
+    "Sweden"
+   ],
+   "tarieven": [
+    {
+     "naam": "Verzekerd verzonden — EU",
+     "prijs_eur": 14.95,
+     "bestelbedrag_vanaf": 0,
+     "bestelbedrag_tot": 499.99
+    },
+    {
+     "naam": "Verzekerd verzonden — EU, hoge waarde",
+     "prijs_eur": 24.95,
+     "bestelbedrag_vanaf": 500,
+     "bestelbedrag_tot": null
+    }
+   ]
+  },
+  {
+   "zone": "International",
+   "landen": [
+    "United Arab Emirates",
+    "Australia",
+    "Canada",
+    "Switzerland",
+    "United Kingdom",
+    "Hong Kong",
+    "Israel",
+    "Japan",
+    "South Korea",
+    "Malaysia",
+    "Norway",
+    "New Zealand",
+    "Singapore",
+    "United States"
+   ],
+   "tarieven": [
+    {
+     "naam": "Verzekerd verzonden — buiten de EU",
+     "prijs_eur": 24.95,
+     "bestelbedrag_vanaf": 0,
+     "bestelbedrag_tot": 499.99
+    },
+    {
+     "naam": "Verzekerd verzonden — buiten de EU, hoge waarde",
+     "prijs_eur": 49.95,
+     "bestelbedrag_vanaf": 500,
+     "bestelbedrag_tot": null
+    }
+   ]
+  }
+ ],
+ "ophalen": "gratis, op afspraak (in Shopify als aparte optie bij het afrekenen)",
+ "opmerking": "Bedragen zijn een voorstel op basis van PostNL-tarieven; er is nog geen doos gewogen. Zie teksten/vragen-aan-bram.md punt 11 over verzenden buiten de EU."
+}

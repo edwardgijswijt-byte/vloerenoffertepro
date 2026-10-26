@@ -1,0 +1,95 @@
+{
+ "hoofdmenu": [
+  {
+   "titel": "Home",
+   "url": "/"
+  },
+  {
+   "titel": "Soort",
+   "url": "/collections/all",
+   "items": [
+    {
+     "titel": "Elite Trainer Boxes",
+     "collectie": "elite-trainer-boxes"
+    },
+    {
+     "titel": "Booster Boxes",
+     "collectie": "booster-boxes"
+    },
+    {
+     "titel": "Booster Bundles",
+     "collectie": "booster-bundles"
+    },
+    {
+     "titel": "Premium Collections",
+     "collectie": "premium-collections"
+    },
+    {
+     "titel": "Displays",
+     "collectie": "displays"
+    },
+    {
+     "titel": "Cases",
+     "collectie": "cases"
+    }
+   ]
+  },
+  {
+   "titel": "Set",
+   "url": "/collections/all",
+   "items": [
+    {
+     "titel": "30th Celebration",
+     "collectie": "30th-celebration"
+    },
+    {
+     "titel": "Chaos Rising",
+     "collectie": "chaos-rising"
+    },
+    {
+     "titel": "Pitch Black",
+     "collectie": "pitch-black"
+    },
+    {
+     "titel": "Ascended Heroes",
+     "collectie": "ascended-heroes"
+    },
+    {
+     "titel": "Prismatic Evolutions",
+     "collectie": "prismatic-evolutions"
+    },
+    {
+     "titel": "Destined Rivals",
+     "collectie": "destined-rivals"
+    },
+    {
+     "titel": "Scarlet & Violet 151",
+     "collectie": "scarlet-violet-151"
+    },
+    {
+     "titel": "Paldean Fates",
+     "collectie": "paldean-fates"
+    }
+   ]
+  },
+  {
+   "titel": "Alles",
+   "url": "/collections/all"
+  },
+  {
+   "titel": "Gids",
+   "blog": "gids"
+  },
+  {
+   "titel": "Contact",
+   "pagina": "contact"
+  }
+ ],
+ "voettekstmenu": [
+  {
+   "titel": "Zoeken",
+   "url": "/search"
+  }
+ ],
+ "opmerking": "De voettekst had alleen Zoeken. Beleidspagina's horen er nog bij zodra ze bestaan."
+}
